@@ -2,7 +2,7 @@ import React from 'react'
 
 const server = () => {
   return (
-    <div>server</div>
+    <div>only testing ki khya hoga</div>
   )
 }
 
