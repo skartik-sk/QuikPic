@@ -3,7 +3,8 @@ import React from 'react'
 const like = () => {
   return (
     <div>
-      g
+      ishaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+      kartikkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk
     </div>
   )
 }
