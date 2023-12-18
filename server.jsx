@@ -2,7 +2,7 @@ import React from 'react'
 
 const server = () => {
   return (
-    <div>server</div>
+    <div>sirf normal chnage kit=a hai</div>
   )
 }
 
