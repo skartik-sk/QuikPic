@@ -1,10 +1,9 @@
 import React from 'react'
 
 const server = () => {
-  return (<>
+  return (
     <div>this is kartik</div>
     <div>sirf normal chnage kit=a hai</div>
-  </>
   )
 }
 
