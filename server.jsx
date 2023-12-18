@@ -2,7 +2,9 @@ import React from 'react'
 
 const server = () => {
   return (
-    <div>server</div>
+    <div>this is Isha sahu</div>
+    
+    
   )
 }
 
