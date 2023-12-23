@@ -42,7 +42,7 @@ export const signup = async (req, res) => {
   }
 };
 export const logout = (req, res) => {
-  // Perform signout logic here
+    res.clearCookie("access_token");
 
-  res.status(200).json({ message: "Signout successful" });
+  res.status(200).json({ message: "logout successful" });
 };

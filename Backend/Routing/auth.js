@@ -12,6 +12,6 @@ router.route('/login' ).post(isAuth,login);
 router.route('/signup').post(signup);
 
 // Signout
-router.route('/signout').post(login);
+router.route('/logout').get(isAuth,logout);
 
 export default router;
