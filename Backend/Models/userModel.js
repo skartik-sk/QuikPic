@@ -4,6 +4,10 @@ import bcript from "bcrypt";
 import jwt from "jsonwebtoken";
 configDotenv();
 const userSchema = new mongoose.Schema({
+  profileImage: {
+    type: String,
+    default: "",
+  },
   username: {
     type: String,
     required: true,

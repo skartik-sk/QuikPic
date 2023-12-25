@@ -1,12 +1,15 @@
 import express from "express";
-import router from "./Routing/auth.js";
+import userRouter from "./Routing/auth.js";
+
 import cookie from "cookie-parser";
+import postRouter from "./Routing/post.js";
  
 
 const app = express();
 
 app.use(express.json());
 app.use(cookie());
-app.use("/",router);
+app.use("/",userRouter);
+app.use("/post",postRouter); 
 
 export default app;
