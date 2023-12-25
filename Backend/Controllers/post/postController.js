@@ -67,7 +67,7 @@ export const updatePost = async (req, res) => {
     const postId = req.params.id;
 
     const postData = await Post.findById(postId);
-
+    
     if (res.user.id._id.toString() !== postData.createdBy._id.toString()) {
       return res.status(403).json({ error: "Unauthorized" });
     }
