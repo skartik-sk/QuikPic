@@ -1,7 +1,6 @@
-// Import the Post model
+
 import Post from "../../Models/postModel.js";
 
-// Define the comment function
 export const addComment = async (req, res) => {
   const { comment } = req.body;
   const postId = req.params.id;
