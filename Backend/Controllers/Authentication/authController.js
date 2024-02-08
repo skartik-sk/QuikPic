@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken';
 export const login = async (req, res) => {
   try {
     const { username, email, password } = req.body;
-    const user = await User.findOne({ ussername });
+    const user = await User.findOne({ username });
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
@@ -33,7 +33,7 @@ export const forgotPassword = async (req, res) => {
     }
 
     // Generate a reset token
-    const token = jwt.sign({ _id: user._id }, process.env.RESET_PASSWORD_KEY, { expiresIn: '30m' });
+    const token = jwt.sign({ _id: user._id }, process.env.SECREAT_KEY, { expiresIn: '30m' });
     
     // Send the reset token to the user's email
     const transporter = nodemailer.createTransport({
@@ -48,7 +48,7 @@ export const forgotPassword = async (req, res) => {
       from: process.env.EMAIL_USERNAME,
       to: email,
       subject: 'Password Reset Link',
-      html: `<p>Please click this <a href="${process.env.CLIENT_URL}/reset-password/${token}">link</a> to reset your password.</p>`
+      html: `<p>Please click this <a href="ThisIsYourReset/reset-password/${user._id}/${token}">link</a> to reset your password.</p>`
     };
 
     transporter.sendMail(mailOptions, (error, info) => {
