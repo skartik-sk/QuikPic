@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { login,signup,logout } from '../Controllers/Authentication/authController.js';
+import { login,signup,logout,forgotPassword } from '../Controllers/Authentication/authController.js';
 import isAuth from '../Middlewares/isAuth.js';
 const router = express.Router();
 
@@ -15,9 +15,9 @@ router.route('/signup').post(signup);
 router.route('/logout').get(isAuth,logout);
 
 // Forgot password
-router.post('/forgot-password', forgotPassword);
+router.route('/forgotPassword').post(forgotPassword);
 
 // Reset password
-router.post('/reset-password', resetPassword);
+// router.post('/reset-password', resetPassword);
 
 export default router;
