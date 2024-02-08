@@ -14,4 +14,10 @@ router.route('/signup').post(signup);
 // Signout
 router.route('/logout').get(isAuth,logout);
 
+// Forgot password
+router.post('/forgot-password', forgotPassword);
+
+// Reset password
+router.post('/reset-password', resetPassword);
+
 export default router;
