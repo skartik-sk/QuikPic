@@ -33,7 +33,7 @@ export const forgotPassword = async (req, res) => {
     }
 
     // Generate a reset token
-    const token = jwt.sign({ _id: user._id }, process.env.RESET_PASSWORD_KEY, { expiresIn: '30m' });
+    const token = jwt.sign({ _id: user._id }, process.env.SECREAT_KEY, { expiresIn: '30m' });
     
     // Send the reset token to the user's email
     const transporter = nodemailer.createTransport({
@@ -48,7 +48,7 @@ export const forgotPassword = async (req, res) => {
       from: process.env.EMAIL_USERNAME,
       to: email,
       subject: 'Password Reset Link',
-      html: `<p>Please click this <a href="${process.env.CLIENT_URL}/reset-password/${token}">link</a> to reset your password.</p>`
+      html: `<p>Please click this <a href="ThisIsReset/reset-password/${user._id}/${token}">link</a> to reset your password.</p>`
     };
 
     transporter.sendMail(mailOptions, (error, info) => {
