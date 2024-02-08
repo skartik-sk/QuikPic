@@ -1,6 +1,8 @@
 import User from "../../Models/userModel.js";
 import nodemailer from 'nodemailer';
-import jwt from 'jsonwebtoken';
+import jwt, { decode } from 'jsonwebtoken';
+import UserModel from "../../Models/userModel.js";
+import bcrypt from "bcrypt";
 
 export const login = async (req, res) => {
   try {
@@ -26,7 +28,7 @@ export const login = async (req, res) => {
 export const forgotPassword = async (req, res) => {
   try {
     const { email } = req.body;
-    const user = await  User.findOne({ email });
+    const user = await User.findOne({ email });
 
     if (!user) {
       return res.status(404).json({ message: "User not found" });
@@ -34,7 +36,7 @@ export const forgotPassword = async (req, res) => {
 
     // Generate a reset token
     const token = jwt.sign({ _id: user._id }, process.env.SECREAT_KEY, { expiresIn: '30m' });
-    
+
     // Send the reset token to the user's email
     const transporter = nodemailer.createTransport({
       service: 'gmail',
@@ -65,29 +67,55 @@ export const forgotPassword = async (req, res) => {
     res.status(500).json({ message: "Internal server error" });
   }
 };
-export const signup = async (req, res) => {
-      try {
-        const { username, email, password } = req.body;
-        const user = await User.findOne({ email });
 
-        if (user) {
-          return res.status(409).json({ message: "User already exists" });
-        }
-        const newUser = new User({ username, email, password });
-        await newUser.save();
+export const resetPassword = async (req, res) => {
+  try {
+    const { id, token } = req.params;
+    const { password } = req.body;
 
-        const token = await newUser.generateAuthToken();
+    // Verify token
+    jwt.verify(token, process.env.SECRET_KEY, async (err, decoded) => {
+      if (err) {
+        return res.status(400).json({ message: 'Error with token' });
+      } else {
+        // Hash new password
+        const hashedPassword = await bcrypt.hash(password, 10);
 
-        res
-          .status(201)
-          .cookie("access_token", token)
-          .json({ message: "Signup successful" });
-      } catch (error) {
-        res.status(500).json({ message: error });
+        // Update user's password in the database
+        await UserModel.findByIdAndUpdate({ _id: id }, { password: hashedPassword });
+
+        return res.status(200).json({ message: 'Password reset successfully' });
       }
-    };
-    export const logout = (req, res) => {
-      res.clearCookie("access_token");
+    });
+  } catch (error) {
+    console.error('Error resetting password:', error);
+    return res.status(500).json({ message: 'Internal server error' });
+  }
+};
 
-      res.status(200).json({ message: "logout successful" });
-    };
+export const signup = async (req, res) => {
+  try {
+    const { username, email, password } = req.body;
+    const user = await User.findOne({ email });
+
+    if (user) {
+      return res.status(409).json({ message: "User already exists" });
+    }
+    const newUser = new User({ username, email, password });
+    await newUser.save();
+
+    const token = await newUser.generateAuthToken();
+
+    res
+      .status(201)
+      .cookie("access_token", token)
+      .json({ message: "Signup successful" });
+  } catch (error) {
+    res.status(500).json({ message: error });
+  }
+};
+export const logout = (req, res) => {
+  res.clearCookie("access_token");
+
+  res.status(200).json({ message: "logout successful" });
+};
