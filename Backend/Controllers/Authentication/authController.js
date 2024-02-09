@@ -73,11 +73,10 @@ export const resetPassword = async (req, res) => {
     const id = req.params.id;
     const token = req.params.token;
     const { password } = req.body;
-console.log(id)
-console.log(token)
     // Verify token
-    jwt.verify(token, process.env.SECRET_KEY, async (err, decoded) => {
-      if (err) {
+    const userId = await jwt.decode(token, process.env.SECRET_KEY) 
+    
+      if (userId._id !== id) {
         return res.status(400).json({ message: 'Error with token' });
       } else {
         // Hash new password
@@ -87,8 +86,8 @@ console.log(token)
         await UserModel.findByIdAndUpdate({ _id: id }, { password: hashedPassword });
 
         return res.status(200).json({ message: 'Password reset successfully' });
-      }
-    });
+   
+    };
   } catch (error) {
     console.error('Error resetting password:', error);
     return res.status(500).json({ message: 'Internal server error' });
