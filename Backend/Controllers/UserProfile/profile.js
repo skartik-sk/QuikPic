@@ -4,7 +4,6 @@ import cloudinary from "../../Utils/coudney.js";
 // Controller function to get user profile
 export const getUserProfile = async (req, res) => {
   try {
-    // Retrieve user profile based on the authenticated user's ID
     const userProfile = await UserModel.findOne({ user: res.user._id });
     
     if (!userProfile) {
