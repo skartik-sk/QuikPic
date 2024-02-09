@@ -18,13 +18,13 @@ const userSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
-  password: {
-    type: String,
-    required: true,
-  },
   bio: {
     type: String,
     default: "",
+  },
+  password: {
+    type: String,
+    required: true,
   },
   post: [
     {
