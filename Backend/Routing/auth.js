@@ -6,7 +6,7 @@ const router = express.Router();
 
 
 // Login
-router.route('/login' ).post(isAuth,login);
+router.route('/login' ).post(login);
 
 // Signup
 router.route('/signup').post(signup);
