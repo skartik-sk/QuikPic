@@ -21,30 +21,32 @@ export const getUserProfile = async (req, res) => {
 // Controller function to update user profile
 export const updateUserProfile = async (req, res) => { 
     const { bio, username, email } = req.body;
-    console.log(bio, username, email, req.file.path)
-  const result = await cloudinary.v2.uploader.upload(req.file.path);
+    
+    //Cloudinary for uploading file
+    const result = await cloudinary.v2.uploader.upload(req.file.path);
     if (!result || result.error) {
       throw new Error("Failed to upload the image");
     }
+
     try {
       let userProfile = await UserModel.findOne({ user: res.user._id });
+
       // If user profile doesn't exist, create a new one
       if (!userProfile) {
         return res.status(404).json({ msg: 'User profile not found' });
       }
-       else {
-        
+       else {        
         // Update profile fields if provided
+
         if (bio) userProfile.bio = bio;
         if (req.file.path) 
         {
-
           userProfile.profileImage = result.secure_url;
         }
         if (username) userProfile.username = username;
         if (email) userProfile.email = email;
       }
-  
+      
       await userProfile.save();
       res.json(userProfile);
     } catch (err) {
