@@ -13,8 +13,8 @@ router.route('/unfollow/:ids').put(isAuth, unfollow);
 router.route('/follow/:ids').put(isAuth, follow);
 
 // Routes for user profile
-router.route('/profile').get(isAuth, getUserProfile); // Get user profile
-// router.route('/updateUserProfile').put(isAuth, updateUserProfile); // Update user profile
+// Get user profile
+//  // Update user profile
 
 
 export default router;

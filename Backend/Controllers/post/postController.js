@@ -12,7 +12,7 @@ export const posting = async (req, res) => {
       throw new Error("Failed to upload the image");
     }
     console.log(res.user.id._id);
-    const newPost = new postModel({
+    const newPost = new postModel({ 
       image: result.secure_url,
       caption: caption,
       createdBy: res.user.id._id,
