@@ -21,6 +21,7 @@ export const getUserProfile = async (req, res) => {
 // Controller function to update user profile
 export const updateUserProfile = async (req, res) => { 
     const { bio, username, email } = req.body;
+    console.log(bio, username, email, req.file.path)
   const result = await cloudinary.v2.uploader.upload(req.file.path);
     if (!result || result.error) {
       throw new Error("Failed to upload the image");
