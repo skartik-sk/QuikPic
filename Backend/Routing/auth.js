@@ -18,6 +18,6 @@ router.route('/logout').get(isAuth,logout);
 router.route('/forgotPassword').post(forgotPassword);
 
 // Reset password
-router.route('/resetPassword').post(resetPassword);
+router.route('/resetPassword/:id/:token').post(resetPassword);
 
 export default router;
