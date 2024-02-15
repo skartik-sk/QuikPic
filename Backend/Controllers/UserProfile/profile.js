@@ -1,10 +1,12 @@
+import e from "express";
 import UserModel from "../../Models/userModel.js";
 import cloudinary from "../../Utils/coudney.js";
 
 // Controller function to get user profile
 export const getUserProfile = async (req, res) => {
   try {
-    const userProfile = await UserModel.findOne({ user: res.user._id });
+    console.log(res.user.id._id)
+    const userProfile = await UserModel.findById( res.user.id._id );
     
     if (!userProfile) {
       return res.status(404).json({ msg: 'User profile not found' });
@@ -28,8 +30,8 @@ export const updateUserProfile = async (req, res) => {
     }
 
     try {
-      let userProfile = await UserModel.findOne({ user: res.user._id });
-
+      let userProfile = await UserModel.findById( res.user.id._id );
+console.log(userProfile)
       // If user profile doesn't exist, create a new one
       if (!userProfile) {
         return res.status(404).json({ msg: 'User profile not found' });
@@ -47,9 +49,11 @@ export const updateUserProfile = async (req, res) => {
       }
       
       await userProfile.save();
+      console.log(userProfile)
       res.json(userProfile);
     } catch (err) {
       console.error(err.message);
       res.status(500).send('Server Error');
     }
   };
+

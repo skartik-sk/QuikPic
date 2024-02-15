@@ -1,7 +1,8 @@
 import express from 'express';
 
-import { login,signup,logout,forgotPassword,resetPassword } from '../Controllers/Authentication/authController.js';
+import { login,signup,logout } from '../Controllers/Authentication/authController.js';
 import isAuth from '../Middlewares/isAuth.js';
+import { forgotPassword, resetPassword } from '../Controllers/Authentication/password.js';
 const router = express.Router();
 
 
