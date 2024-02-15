@@ -21,7 +21,7 @@ export const getUserProfile = async (req, res) => {
 
 // Controller function to update user profile
 export const updateUserProfile = async (req, res) => { 
-    const { bio, username, email } = req.body;
+    const { bio,gender, username, email } = req.body;
     
     //Cloudinary for uploading file
     const result = await cloudinary.v2.uploader.upload(req.file.path);
@@ -40,6 +40,7 @@ console.log(userProfile)
         // Update profile fields if provided
 
         if (bio) userProfile.bio = bio;
+        if (gender) userProfile.gender = gender;
         if (req.file.path) 
         {
           userProfile.profileImage = result.secure_url;
