@@ -17,4 +17,5 @@ router.route("/updateProfile").post(isAuth,upload.single('userphoto'), updateUse
 
 //Route for Delete user profile 
 router.route("/deleteProfile").delete(isAuth, deleteUserProfile);
+
 export default router;
