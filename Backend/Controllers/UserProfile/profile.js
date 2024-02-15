@@ -57,3 +57,10 @@ console.log(userProfile)
     }
   };
 
+// Controller function to delete user profile
+export const deleteUserProfile = async (req, res) => {
+// complete the funtion isha🔥
+
+
+};
+
