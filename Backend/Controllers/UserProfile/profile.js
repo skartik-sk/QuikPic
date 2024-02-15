@@ -63,12 +63,16 @@ console.log(userProfile)
 export const deleteUserProfile = async (req, res) => {
     try {
       const user = await UserModel.findById(res.user.id._id);
-      console.log(user)
       const userId = user._id;
       const followers = user.followers;
+      console.log(followers)
       const following = user.following;
+      console.log(following)
       const posts = user.post;
-      await user.deleteOne(user);
+      if (!user) {
+        return res.status(404).json({ msg: 'User not found' });
+      }
+     
 
       //deleting all posts of the user
       for (let i = 0; i < posts.length; i++) {
@@ -78,26 +82,24 @@ export const deleteUserProfile = async (req, res) => {
       
       //removing user from followers following
       for (let i = 0; i < followers.length; i++) {
-        const follower = await UserModel.findById(followers[i]);
+        const followerprofile = await UserModel.findById(followers[i]);
+        const index = followerprofile.following.indexOf(userId);
+        await followerprofile.following.splice(index, 1)
 
-        const index = followers.following.indexOf(userId);
-        await follower.following.splice(index, 1)
-
-        await follower.save();
+        await followerprofile.save();
       }
 
       //removing user from followers following
       for (let i = 0; i < following.length; i++) {
-        const follows = await UserModel.findById(followers[i]);
+        const followsprofile = await UserModel.findById(following[i]);
+        const index = followsprofile.followers.indexOf(userId);
+        await followsprofile.followers.splice(index, 1)
 
-        const index = follows.followers.indexOf(userId);
-        await follows.followers.splice(index, 1)
-
-        await follows.save();
+        await followsprofile.save();
       }
-
+      await user.deleteOne(user);
       res.status(200).cookie("token",null, {
-        expires: newDate(Date.now()),
+        expires: new Date(Date.now()),
         httpOnly: true,
       }).json({
         success: true,
