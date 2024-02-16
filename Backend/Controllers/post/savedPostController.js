@@ -25,7 +25,7 @@ import UserModel from "../../Models/userModel.js";
 // };
 export const savePost = async (req, res) => {
   try {
-    const postId = req.body.postId;
+    const postId = req.params.id;
     const userId = res.user.id._id;
     const user = await UserModel.findById(userId);
     if (!user) {
