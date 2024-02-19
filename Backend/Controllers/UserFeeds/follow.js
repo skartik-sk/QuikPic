@@ -44,3 +44,25 @@ export const unfollow = async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 };
+  export const getFollowers = async (req, res) => {
+    try {
+      const userId = res.user.id._id.toString();
+      const user = await UserModel.findById(userId);
+      const followers = user.followers.filter(follower => !user.following.includes(follower));
+
+      // Fetch data for each follower
+      const followerData = await Promise.all(followers.map(async (followerId) => {
+        const follower = await UserModel.findById(followerId);
+        return {
+          id: follower._id,
+          name: follower.name,
+          photo: follower.profileImage,
+          // Add more properties as needed
+        };
+      }));
+
+      res.json({ followers: followerData });
+    } catch (error) {
+      res.status(500).json({ error: "Internal server error" });
+    }
+  };
