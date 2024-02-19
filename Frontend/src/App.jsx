@@ -9,6 +9,7 @@ import {
   Image,
   Button,
 } from "@nextui-org/react";
+import { UserFeedPage } from "./assets/pages/UserFeedPage";
 
 export default function App() {
   const colors = ["primary", "secondary", "success", "warning", "danger"];
@@ -60,6 +61,7 @@ export default function App() {
           </Button>
         </CardFooter>
       </Card>
+      <UserFeedPage/>
     </>
   );
 }
