@@ -14,6 +14,7 @@ import {
 } from "@nextui-org/react";
 import { UserFeedPage } from "./assets/pages/UserFeedPage";
 import CreatePostPage from "./assets/pages/CreatePostPage";
+import PostViewPage from "./assets/pages/PostViewPage";
 
 export default function App() {
   const navigate = useNavigate();
@@ -25,6 +26,7 @@ export default function App() {
           <Routes>
             <Route path="/UserFeedPage" element={<UserFeedPage />} />
             <Route path="/CreatePost" element={<CreatePostPage />} />
+            <Route path="/ViewPost" element={<PostViewPage />} />
             {/* ... */}
           </Routes>
         </NextThemesProvider>
