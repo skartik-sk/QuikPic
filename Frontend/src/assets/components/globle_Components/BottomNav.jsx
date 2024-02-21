@@ -3,12 +3,79 @@ import { CreatPost } from "../../icons/Navbar/creatPost";
 import { Explore } from "../../icons/Navbar/Explore";
 import { Message } from "../../icons/Navbar/Message";
 import { Home } from "../../icons/Navbar/Home";
-import { Avatar } from "@nextui-org/react";
+
+import { Card, CardBody, CardFooter, CardHeader } from "@nextui-org/react";
+
+import {
+  Dropdown,
+  DropdownTrigger,
+  DropdownMenu,
+  DropdownItem,
+  Avatar,
+  User,
+} from "@nextui-org/react";
+
+import Bookmark from "../../icons/Navbar/Bookmark";
 
 const BottomNav = () => {
   return (
-    <div>
-      <div className="sticky  bottom-4 z-50 w-full h-16 max-w-lg -translate-x-1/2 bg-white border border-gray-200 rounded-full  left-1/2 dark:bg-gray-700 dark:border-gray-600">
+    <div style={{ width: "100vh", bottom: "0", height: "70px", zIndex: "100" }}>
+      <Card
+        style={{
+          height: "70px",
+          position: "fixed",
+          bottom: "0",
+          width: "100%",
+        }}
+        className=" py-4 px-4 flex-row justify-between items-center w-full  "
+      >
+        <CardBody className="flex-row  justify-between items-center w-full gap-4">
+          <button>
+            <Home />
+          </button>{" "}
+          <button>
+            <Message />
+          </button>{" "}
+          <button>
+            <CreatPost />
+          </button>{" "}
+          <button>
+            <Explore />
+          </button>
+          <button>
+            <Dropdown placement="top-end">
+              <DropdownTrigger>
+                <Avatar
+                  isBordered
+                  as="button"
+                  className="transition-transform"
+                  src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
+                />
+              </DropdownTrigger>
+              <DropdownMenu aria-label="Profile Actions" variant="flat">
+                <DropdownItem key="profile" className="h-14 gap-2">
+                  <p className="font-semibold">Signed in as</p>
+                  <p className="font-semibold">zoey@example.com</p>
+                </DropdownItem>
+                <DropdownItem key="settings">My Settings</DropdownItem>
+                <DropdownItem key="team_settings">Team Settings</DropdownItem>
+                <DropdownItem key="analytics">Analytics</DropdownItem>
+                <DropdownItem key="system">System</DropdownItem>
+                <DropdownItem key="configurations">Configurations</DropdownItem>
+                <DropdownItem key="help_and_feedback">
+                  Help & Feedback
+                </DropdownItem>
+                <DropdownItem key="logout" color="danger">
+                  Log Out
+                </DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
+          </button>
+        </CardBody>
+      </Card>
+    </div>
+    /**
+     *  <div className="sticky  bottom-4 z-50 w-full h-16 max-w-lg -translate-x-1/2 bg-white border border-gray-200 rounded-full  left-1/2 dark:bg-gray-700 dark:border-gray-600">
         <div className="flex px-5  justify-between align-middle h-full">
           <button
             data-tooltip-target="tooltip-home"
@@ -94,65 +161,8 @@ const BottomNav = () => {
           </div>
         </div>
       </div>
-    </div>
+     */
   );
 };
 
 export default BottomNav;
-
-// import React from "react";
-// import { CreatPost } from "../../icons/Navbar/creatPost";
-// import { Explore } from "../../icons/Navbar/Explore";
-// import { Message } from "../../icons/Navbar/Message";
-// import { Home } from "../../icons/Navbar/Home";
-// import { Avatar } from "@nextui-org/react";
-// import {
-//   Navbar,
-//   NavbarBrand,
-//   NavbarContent,
-//   NavbarItem,
-//   Link,
-//   Button,
-// } from "@nextui-org/react";
-
-// const BottomNav = () => {
-//   return (
-//     <Navbar
-//       classNames={{
-//         item: [
-//           "flex",
-//           "relative",
-//           "h-full",
-//           "items-center",
-//           "data-[active=true]:after:content-['']",
-//           "data-[active=true]:after:absolute",
-//           "data-[active=true]:after:bottom-0",
-//           "data-[active=true]:after:left-0",
-//           "data-[active=true]:after:right-0",
-//           "data-[active=true]:after:h-[2px]",
-//           "data-[active=true]:after:rounded-[2px]",
-//           "data-[active=true]:after:bg-primary",
-//         ],
-//       }}
-//     >
-//       <NavbarContent justify="center">
-//         <NavbarItem>
-//           <Home />
-//         </NavbarItem>
-//         <NavbarItem>
-//           <Message />
-//         </NavbarItem>
-//         <NavbarItem>
-//           <CreatPost />
-//         </NavbarItem>
-//         <NavbarItem>
-//           <Explore />
-//         </NavbarItem>
-//         <NavbarItem>
-//           <Avatar />
-//         </NavbarItem>
-//       </NavbarContent>
-//     </Navbar>
-//   );
-// };
-// export default BottomNav;

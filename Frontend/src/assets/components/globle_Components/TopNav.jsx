@@ -19,8 +19,12 @@ const TopNav = () => {
   const { theme, setTheme } = useTheme();
   const colors = ["primary", "secondary", "success", "warning", "danger"];
   return (
-    <Navbar shouldHideOnScroll>
-      <NavbarBrand>
+    <Navbar
+      maxWidth="full"
+      shouldHideOnScroll
+      className="flex-row justify-between w-full "
+    >
+      <NavbarBrand style={{ maxWidth: "none" }}>
         {/* <AcmeLogo /> */}
         <p className="font-bold text-inherit">Social Media</p>
       </NavbarBrand>
@@ -56,11 +60,11 @@ const TopNav = () => {
             }
           />
         </NavbarItem>
-        
+
         <NavbarItem>
           <Switch
             defaultSelected
-            size="lg"
+            size="md"
             color="success"
             startContent={<SunIcon />}
             endContent={<MoonIcon />}
