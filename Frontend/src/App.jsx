@@ -1,5 +1,5 @@
 import React from "react";
-import {ThemeProvider as NextThemesProvider} from "next-themes";
+import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { NextUIProvider } from "@nextui-org/react";
 import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 import {
@@ -13,19 +13,20 @@ import {
   Button,
 } from "@nextui-org/react";
 import { UserFeedPage } from "./assets/pages/UserFeedPage";
+import CreatePostPage from "./assets/pages/CreatePostPage";
 
 export default function App() {
-  const colors = ["primary", "secondary", "success", "warning", "danger"];
   const navigate = useNavigate();
   return (
     <>
       <NextUIProvider navigate={navigate}>
-      <NextThemesProvider attribute="class" defaultTheme="dark">
-        {/* Your app here... */}
-        <Routes>
-          <Route path="/UserFeedPage" element={<UserFeedPage />} />
-          {/* ... */}
-        </Routes>
+        <NextThemesProvider attribute="class" defaultTheme="dark">
+          {/* Your app here... */}
+          <Routes>
+            <Route path="/UserFeedPage" element={<UserFeedPage />} />
+            <Route path="/CreatePost" element={<CreatePostPage />} />
+            {/* ... */}
+          </Routes>
         </NextThemesProvider>
       </NextUIProvider>
     </>
