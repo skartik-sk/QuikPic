@@ -16,6 +16,9 @@ import { UserFeedPage } from "./assets/pages/UserFeedPage";
 import CreatePostPage from "./assets/pages/CreatePostPage";
 import PostViewPage from "./assets/pages/PostViewPage";
 import LoginPage from "./assets/pages/LoginPage";
+import SignupPage from "./assets/pages/SignupPage";
+import UserProfilePage from "./assets/pages/UserProfilePage";
+
 
 export default function App() {
   const navigate = useNavigate();
@@ -29,6 +32,8 @@ export default function App() {
             <Route path="/CreatePost" element={<CreatePostPage />} />
             <Route path="/ViewPost" element={<PostViewPage />} />
             <Route path="/Login" element={<LoginPage />} />
+            <Route path="/Signup" element={<SignupPage />} />
+            <Route path="/UserProfile" element={<UserProfilePage />} />
             {/* ... */}
           </Routes>
         </NextThemesProvider>

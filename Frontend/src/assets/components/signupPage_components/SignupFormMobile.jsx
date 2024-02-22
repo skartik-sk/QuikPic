@@ -4,12 +4,13 @@ import { Input, Link, Divider, Button, Avatar, NavbarItem, Switch, Navbar } from
 import { MailIcon } from '../../icons/LoginSignupForm/MailIcon';
 import { EyeFilledIcon } from "../../icons/LoginSignupForm/EyeFilledIcon";
 import { EyeSlashFilledIcon } from "../../icons/LoginSignupForm/EyeSlashFilledIcon";
+import { UsernameIcon } from "../../icons/LoginSignupForm/UsernameIcon";
 import { useTheme } from "next-themes";
 import { SunIcon } from "../../icons/Navbar/SunIcon";
 import { MoonIcon } from "../../icons/Navbar/Moonicon";
 
 
-const LoginFormMobile = () => {
+const SignupFormMobile = () => {
     const [email, setEmail] = useState('');
     const [isInvalid, setIsInvalid] = useState(false);
     const { theme, setTheme } = useTheme();
@@ -59,8 +60,20 @@ const LoginFormMobile = () => {
                     </div>
 
                     <div className="py-4 text-xl font-semibold">
-                        <h1>Nice to see you again!</h1>
+                        <h1>Join us today!</h1>
                     </div>
+
+                    <Input
+                        type="username"
+                        label="Username"
+                        variant="bordered"
+                        placeholder="Enter your name"
+                        className="md:max-w-xs"
+                        // value={username}
+                        endContent={
+                            <UsernameIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
+                        }
+                    />
 
                     <Input
                         type="email"
@@ -97,13 +110,9 @@ const LoginFormMobile = () => {
 
                     />
 
-                    <div className="flex justify-end md:max-w-xs" style={{ paddingBottom: "1rem" }}>
-                        <Link href="#" size="sm" underline="active">Forgot Password</Link>
-                    </div>
-
                     <div>
                         <Button className="w-full md:max-w-xs" color="primary" variant="shadow">
-                            Login
+                            Signup
                         </Button>
                     </div>
 
@@ -112,7 +121,7 @@ const LoginFormMobile = () => {
                     </div>
 
                     <div className="flex justify-center">
-                        <h3>Don't have an account? <Link href="#" size="md" underline="active">Signup</Link></h3>
+                        <h3>Already have an account? <Link href="#" size="md" underline="active">Login</Link></h3>
                     </div>
                 </div>
             </div>
@@ -120,4 +129,4 @@ const LoginFormMobile = () => {
     );
 };
 
-export default LoginFormMobile;
+export default SignupFormMobile;

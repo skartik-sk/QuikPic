@@ -4,12 +4,13 @@ import { Input, Link, Divider, Button, Avatar, NavbarItem, Switch, Navbar } from
 import { MailIcon } from '../../icons/LoginSignupForm/MailIcon';
 import { EyeFilledIcon } from "../../icons/LoginSignupForm/EyeFilledIcon";
 import { EyeSlashFilledIcon } from "../../icons/LoginSignupForm/EyeSlashFilledIcon";
+import { UsernameIcon } from "../../icons/LoginSignupForm/UsernameIcon";
 import { useTheme } from "next-themes";
 import { SunIcon } from "../../icons/Navbar/SunIcon";
 import { MoonIcon } from "../../icons/Navbar/Moonicon";
 
 
-const LoginFormMobile = () => {
+const SignupForm = () => {
     const [email, setEmail] = useState('');
     const [isInvalid, setIsInvalid] = useState(false);
     const { theme, setTheme } = useTheme();
@@ -31,7 +32,7 @@ const LoginFormMobile = () => {
     return (
         <div className="w-full flex flex-row">
 
-            <div className=" hidden md:flex flex-1 ">
+            <div className="flex flex-1 ">
                 <img className="w-full h-full" src="https://img.freepik.com/free-vector/flat-geometric-mosaic-pattern-design_23-2149265253.jpg?t=st=1708605617~exp=1708609217~hmac=fc3c7fa167553102f487104e1f666002f7ae4f1696bda2fe93b053c25d76507a&w=740" alt="" />
             </div>
 
@@ -42,6 +43,7 @@ const LoginFormMobile = () => {
                     <div className="flex flex-row items-center px-8" style={{ marginBottom: "1.8rem", gap: ".8rem" }}>
                         <Avatar src="https://i.pravatar.cc/150?u=a04258114e29026302d" size="md"  style={{width:"2.8rem", height:"2.2rem", borderRadius:"50%"}}/>
                         <h2>Quipify</h2>
+                        <div >
                         <Navbar >
                             <NavbarItem>
                                 <Switch
@@ -56,12 +58,25 @@ const LoginFormMobile = () => {
                                 ></Switch>
                             </NavbarItem>
                         </Navbar>
+                        </div>
                     </div>
+
 
                     <div className="py-4 text-xl font-semibold">
-                        <h1>Nice to see you again!</h1>
+                        <h1>Join us today!</h1>
                     </div>
 
+                    <Input
+                        type="username"
+                        label="Username"
+                        variant="bordered"
+                        placeholder="Enter your name"
+                        className="md:max-w-xs"
+                        // value={username}
+                        endContent={
+                            <UsernameIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
+                        }
+                    />
                     <Input
                         type="email"
                         label="Email"
@@ -97,13 +112,9 @@ const LoginFormMobile = () => {
 
                     />
 
-                    <div className="flex justify-end md:max-w-xs" style={{ paddingBottom: "1rem" }}>
-                        <Link href="#" size="sm" underline="active">Forgot Password</Link>
-                    </div>
-
                     <div>
                         <Button className="w-full md:max-w-xs" color="primary" variant="shadow">
-                            Login
+                            Signup
                         </Button>
                     </div>
 
@@ -112,7 +123,7 @@ const LoginFormMobile = () => {
                     </div>
 
                     <div className="flex justify-center">
-                        <h3>Don't have an account? <Link href="#" size="md" underline="active">Signup</Link></h3>
+                        <h3>Already have an account? <Link href="#" size="md" underline="active">Login</Link></h3>
                     </div>
                 </div>
             </div>
@@ -120,4 +131,4 @@ const LoginFormMobile = () => {
     );
 };
 
-export default LoginFormMobile;
+export default SignupForm;

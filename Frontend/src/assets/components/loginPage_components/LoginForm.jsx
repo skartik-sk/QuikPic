@@ -1,14 +1,18 @@
 import React from "react";
 import { useState } from 'react';
-import { Input, Link, Divider, Button, Avatar } from "@nextui-org/react";
-import { MailIcon } from '../../icons/LoginForm/MailIcon';
-import { EyeFilledIcon } from "../../icons/LoginForm/EyeFilledIcon";
-import { EyeSlashFilledIcon } from "../../icons/LoginForm/EyeSlashFilledIcon";
+import { Input, Link, Divider, Button, Avatar, NavbarItem, Switch, Navbar } from "@nextui-org/react";
+import { MailIcon } from '../../icons/LoginSignupForm/MailIcon';
+import { EyeFilledIcon } from "../../icons/LoginSignupForm/EyeFilledIcon";
+import { EyeSlashFilledIcon } from "../../icons/LoginSignupForm/EyeSlashFilledIcon";
+import { useTheme } from "next-themes";
+import { SunIcon } from "../../icons/Navbar/SunIcon";
+import { MoonIcon } from "../../icons/Navbar/Moonicon";
 
 
 const LoginForm = () => {
     const [email, setEmail] = useState('');
     const [isInvalid, setIsInvalid] = useState(false);
+    const { theme, setTheme } = useTheme();
 
     const handleChange = (event) => {
         setEmail(event.target.value);
@@ -36,8 +40,22 @@ const LoginForm = () => {
                 <div style={{ paddingLeft: "6rem", paddingRight: "6rem", paddingTop: "4rem" }} className="flex w-full h-screen flex-col md:flex-nowrap mb-2 md:mb-0 gap-4 ">
 
                     <div className="flex flex-row items-center px-8" style={{ marginBottom: "1.8rem", gap: ".8rem" }}>
-                        <Avatar src="https://i.pravatar.cc/150?u=a04258114e29026302d" size="md" />
+                        <Avatar src="https://i.pravatar.cc/150?u=a04258114e29026302d" size="md" style={{width:"2.8rem", height:"2.2rem", borderRadius:"50%"}} />
                         <h2>Quipify</h2>
+                        <Navbar >
+                            <NavbarItem>
+                                <Switch
+                                    defaultSelected
+                                    size="md"
+                                    color="success"
+                                    startContent={<SunIcon />}
+                                    endContent={<MoonIcon />}
+                                    onChange={(e) => {
+                                        theme === "light" ? setTheme("dark") : setTheme("light");
+                                    }}
+                                ></Switch>
+                            </NavbarItem>
+                        </Navbar>
                     </div>
 
                     <div className="py-4 text-xl font-semibold">
