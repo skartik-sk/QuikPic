@@ -4,7 +4,7 @@ import { Image, Button } from "@nextui-org/react";
 const ProfileDetails = () => {
     return (
         <div style={{ marginTop: "2rem", flex: "row", display: "flex", justifyContent:"center", gap:"8rem"}}>
-            <div>
+            <div style={{maxWidth:"none"}}>
                 <Image
                     width={230}
                     alt="NextUI hero Image"
