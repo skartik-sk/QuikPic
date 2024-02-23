@@ -18,6 +18,7 @@ import PostViewPage from "./assets/pages/PostViewPage";
 import LoginPage from "./assets/pages/LoginPage";
 import SignupPage from "./assets/pages/SignupPage";
 import UserProfilePage from "./assets/pages/UserProfilePage";
+import SettingPage from "./assets/pages/SettingPage";
 
 
 export default function App() {
@@ -34,6 +35,7 @@ export default function App() {
             <Route path="/Login" element={<LoginPage />} />
             <Route path="/Signup" element={<SignupPage />} />
             <Route path="/UserProfile" element={<UserProfilePage />} />
+            <Route path="/Setting" element={<SettingPage />} />
             {/* ... */}
           </Routes>
         </NextThemesProvider>
