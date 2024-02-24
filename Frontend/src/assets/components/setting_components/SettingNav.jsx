@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import  EditProfile  from "../../components/UserProfile_components/EditProfile.jsx";
 import  Help  from "../../components/setting_components/Help.jsx";
+import  Logout  from "../../components/setting_components/Logout.jsx";
 import { EditDocumentIcon } from "../../icons/Setting/EditDocumentIcon.jsx";
 import { DeleteDocumentIcon } from "../../icons/Setting/DeleteDocumentIcon.jsx";
 import { ResetPasswordIcon } from "../../icons/Setting/ResetPasswordIcon.jsx";
@@ -11,6 +12,7 @@ import { ListboxWrapper } from "../../icons/Setting/ListboxWrapper.jsx";
 
 const SettingNav = () => {
     const iconClasses = "text-xl text-default-500 pointer-events-none flex-shrink-0";
+    // const {onOpen} = useDisclosure();
 
     // State to track active section
     const [activeSection, setActiveSection] = useState(null);
@@ -43,6 +45,7 @@ const SettingNav = () => {
                             description="Allows to exit the account"
                             startContent={<LogoutIcon className={iconClasses} />}
                             onClick={() => setActiveSection("logout")}
+                            // onPress={onOpen}
                         >
                             Logout
                         </ListboxItem>
@@ -65,7 +68,7 @@ const SettingNav = () => {
                             startContent={<DeleteDocumentIcon className={cn(iconClasses, "text-danger")} />}
                             onClick={() => setActiveSection("delete")}
                         >
-                            Delete file
+                            Delete Account
                         </ListboxItem>
                     </Listbox>
                 </ListboxWrapper>
@@ -80,7 +83,7 @@ const SettingNav = () => {
                     <div>Reset Password Content Goes Here</div>
                 )}
                 {activeSection === "logout" && (
-                    <div>Logout Content Goes Here</div>
+                    <div><Logout /></div>
                 )}
                 {activeSection === "help" && (
                     <div><Help /></div>
