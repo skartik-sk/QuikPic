@@ -10,13 +10,15 @@ const SettingPage = () => {
             <div className="flex-col">
                 <TopNav />
 
-                <div className="flex ">
+                <div className="flex max-w-full">
                     
                     <div className="md:flex">
                         <SideNav />
                     </div>
-
+                    
+                    <div style={{width:"100%"}}>
                     <SettingNav />
+                    </div>
 
                 </div>
 
