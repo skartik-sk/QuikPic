@@ -16,11 +16,13 @@ import {
 } from "@nextui-org/react";
 
 import Bookmark from "../../icons/Navbar/Bookmark";
+import { Link } from "react-router-dom";
 
 const BottomNav = () => {
   return (
     <div style={{ width: "100vh", bottom: "0", height: "70px", zIndex: "100" }}>
       <Card
+        hidden={false}
         style={{
           height: "70px",
           position: "fixed",
@@ -31,16 +33,22 @@ const BottomNav = () => {
       >
         <CardBody className="flex-row  justify-between items-center w-full gap-4">
           <button>
-            <Home />
+            <Link to="/">
+              <Home />
+            </Link>
           </button>{" "}
           <button>
             <Message />
           </button>{" "}
           <button>
-            <CreatPost />
+            <Link to="/CreatePost">
+              <CreatPost />
+            </Link>
           </button>{" "}
           <button>
-            <Explore />
+            <Link to="/Explore">
+              <Explore />
+            </Link>
           </button>
           <button>
             <Dropdown placement="top-end">

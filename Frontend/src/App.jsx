@@ -19,6 +19,7 @@ import LoginPage from "./assets/pages/LoginPage";
 import SignupPage from "./assets/pages/SignupPage";
 import UserProfilePage from "./assets/pages/UserProfilePage";
 import SettingPage from "./assets/pages/SettingPage";
+import { ExplorePage } from "./assets/pages/ExplorePage";
 
 
 export default function App() {
@@ -29,8 +30,9 @@ export default function App() {
         <NextThemesProvider attribute="class" defaultTheme="dark">
           {/* Your app here... */}
           <Routes>
-            <Route path="/UserFeedPage" element={<UserFeedPage />} />
+            <Route path="/" element={<UserFeedPage />} />
             <Route path="/CreatePost" element={<CreatePostPage />} />
+            <Route path="/Explore" element={<ExplorePage />} />
             <Route path="/ViewPost" element={<PostViewPage />} />
             <Route path="/Login" element={<LoginPage />} />
             <Route path="/Signup" element={<SignupPage />} />

@@ -1,4 +1,11 @@
-import { Card, CardBody, CardFooter, CardHeader } from "@nextui-org/react";
+import {
+  Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
+  Navbar,
+  NavbarBrand,
+} from "@nextui-org/react";
 import React from "react";
 import {
   Dropdown,
@@ -15,10 +22,11 @@ import { Explore } from "../../icons/Navbar/Explore";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGear } from "@fortawesome/free-solid-svg-icons";
 import Bookmark from "../../icons/Navbar/Bookmark";
+import { Link } from "react-router-dom";
 
 const SideNav = () => {
   return (
-    <div style={{ width: "80px", top: "0", height: "fit-content" }}>
+    <div style={{ width: "120px", top: "0", height: "fit-content" }}>
       <Card
         style={{ height: "100vh", position: "fixed" }}
         className=" py-4 flex-col justify-between items-center w-auto  "
@@ -56,19 +64,27 @@ const SideNav = () => {
         </CardHeader>
         <CardBody className="flex-col justify-center items-center w-auto gap-4">
           <button>
-            <Home />
+            <Link to="/">
+              <Home />
+            </Link>
           </button>{" "}
           <button>
             <Message />
           </button>{" "}
           <button>
-            <CreatPost />
+            <Link to="/CreatePost">
+              <CreatPost />
+            </Link>
           </button>{" "}
           <button>
-            <Explore />
+            <Link to="/Explore">
+              <Explore />
+            </Link>
           </button>
           <button>
-            <Bookmark />
+            <Link to="/UserProfile">
+              <Bookmark />
+            </Link>
           </button>
         </CardBody>
         <CardFooter className="flex-col justify-center items-center w-auto">

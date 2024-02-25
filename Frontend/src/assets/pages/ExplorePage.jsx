@@ -6,7 +6,7 @@ import { Spacer, Card } from "@nextui-org/react";
 import SideNav from "../components/globle_Components/SideNav";
 import UserFeedContent from "./SubPages/UserFeedContent";
 
-export const UserFeedPage = () => {
+export const ExplorePage = () => {
   return (
     <div className="flex-col">
       <div className="flex md:block">

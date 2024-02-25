@@ -7,7 +7,7 @@ const UserFeedContent = () => {
   return (
     <div>
         <TopNav />
-<Card className="flex-row flex-wrap gap-3  ">
+<Card className="flex-row flex-wrap gap-3  justify-center ">
   <PostCard />
   <PostCard />
   <PostCard />
