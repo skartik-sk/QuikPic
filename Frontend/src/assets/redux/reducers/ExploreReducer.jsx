@@ -38,4 +38,4 @@ export const ExploreReducers = createSlice({
 // Action creators are generated for each case reducer function
 // export const { increment, decrement, incrementByAmount } = counterSlice.actions
 
-export default ExploreReducers.reducer;
+export default ExploreReducers;
