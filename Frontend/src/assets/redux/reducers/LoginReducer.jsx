@@ -12,11 +12,14 @@ export const login = createAsyncThunk("userFeeds", async (payload) => {
   const url = "http://localhost:1234/login";
   const option = {
     method: "POST",
-    body: JSON.stringify({ username: payload.userName, password: payload.password }),
+    body: JSON.stringify({
+      username: payload.userName,
+      password: payload.password,
+    }),
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
     },
-    credentials: 'include',
+    credentials: "include",
   };
   const response = await fetch(url, option);
   return response.json();
@@ -45,4 +48,4 @@ export const loginReducers = createSlice({
 // Action creators are generated for each case reducer function
 // export const { increment, decrement, incrementByAmount } = counterSlice.actions
 
-export default loginReducers;
+export default loginReducers.reducer;

@@ -108,6 +108,7 @@ export const deletePost = async (req, res) => {
             },
             { new: true, useFindAndModify: false }
         );
+        
 
         res.json({ message: "Post deleted successfully" });
     } catch (error) {

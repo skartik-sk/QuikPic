@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHeart,
@@ -28,10 +28,29 @@ import {
 } from "@nextui-org/react";
 import { ThreeDot } from "../../icons/Navbar/ThreeDot";
 import Popupcard from "./Popupcard";
+import { useDispatch, useSelector } from "react-redux";
+import { bookmark, like } from "../../redux/reducers/PostCardReducer";
 
-const PostCard = () => {
-  const [liked, setLiked] = useState(false);
+const PostCard = ({ data }) => {
+  const dispatch = useDispatch();
   const [bookmarked, setBokmarked] = useState(false);
+  const [liked, setLiked] = useState(false);
+  //in complete
+  //! to add functionality to change the value of liked and bookmarked
+  // const data = useSelector((state) => state.postcard.liked);
+  const userId = localStorage.getItem("user");
+  console.log(userId);
+  console.log(data.likes);
+  console.log(data.likes.includes(userId));
+  if (data.likes.includes(userId) && liked == false) {
+    console.log("hello");
+    setLiked(true);
+  } else if (data.likes.includes(userId) == false && liked == true) {
+    setLiked(false);
+  }
+  
+  // const bookmarked = useSelector((state) => state.postcard.bookmarked);
+
   return (
     <div>
       <Card style={{ width: "325px" }} className="py-4 max-w-[340px] ">
@@ -81,10 +100,11 @@ const PostCard = () => {
             className=""
           >
             <Image
+              loading="false"
               width={300}
               height={200}
               alt="NextUI hero Image with delay"
-              src="https://app.requestly.io/delay/5000/https://nextui-docs-v2.vercel.app/images/hero-card-complete.jpeg"
+              src={data.image}
             />
           </button>
         </CardBody>
@@ -93,10 +113,10 @@ const PostCard = () => {
             <div className="flex gap-3">
               <button
                 onClick={(e) => {
-                  liked === true ? setLiked(false) : setLiked(true);
+                  dispatch(like({ id: data._id }));
                 }}
               >
-                {liked === true ? (
+                {liked == true ? (
                   <FontAwesomeIcon
                     icon={faHeart}
                     style={{ color: "#e32400", fontSize: "20px" }}
@@ -145,6 +165,7 @@ const PostCard = () => {
 
             <button
               onClick={(e) => {
+                dispatch(bookmark({ id: data._id }));
                 bookmarked === true ? setBokmarked(false) : setBokmarked(true);
               }}
             >
@@ -182,12 +203,7 @@ const PostCard = () => {
             // style={{ width: "300px" }}
             className="truncate text-default-400 "
           >
-            <div className="truncate w-[300px]">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo,
-              blanditiis et atque, autem sapiente corrupti a aut aspernatur
-              iusto minima neque quo eaque sint rerum laborum ullam voluptate
-              magnam cumque.
-            </div>
+            <div className="truncate w-[300px]">{data.caption}</div>
           </CardBody>
           <CardBody className="font-semibold text-default-400 text-small w-fit">
             3-months ago

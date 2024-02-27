@@ -24,11 +24,11 @@ const postSchema = new mongoose.Schema({
   },
   likes: [
     {
-      liker: {
+     
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
        
-      },
+     
     },
   ],
   createdBy: {

@@ -5,7 +5,7 @@ import cookie from "cookie-parser";
 import postRouter from "./Routing/post.js";
 import userFeedsRouter from "./Routing/user.js";
 import profile from './Routing/profile.js'
- 
+
 
 const app = express();
 

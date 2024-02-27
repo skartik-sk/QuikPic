@@ -20,7 +20,7 @@ export const login = async (req, res) => {
     res
       .status(200)
       .cookie("access_token", token,{ maxAge: 10000000 })
-      .json({ message: "Login successful" });
+      .json({user:user._id, message: "Login successful" });
   } catch (error) {
     res.status(500).json({ message: "Internal server error" });
   }

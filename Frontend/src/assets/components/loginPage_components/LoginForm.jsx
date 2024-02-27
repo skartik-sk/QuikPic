@@ -18,6 +18,7 @@ import { useTheme } from "next-themes";
 import { SunIcon } from "../../icons/Navbar/SunIcon";
 import { MoonIcon } from "../../icons/Navbar/Moonicon";
 import LoginReducer, { login } from "../../redux/reducers/LoginReducer";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
@@ -25,6 +26,8 @@ const LoginForm = () => {
   const [isInvalid, setIsInvalid] = useState(false);
   const { theme, setTheme } = useTheme();
   const dispatch = useDispatch();
+  const result = useSelector((state) => state.login.data);
+  const navigate = useNavigate();
   const handleChange = (event) => {
     setEmail(event.target.value);
     // console.log(email, password)
@@ -37,8 +40,10 @@ const LoginForm = () => {
     e.preventDefault();
 
     dispatch(login({ userName: email, password: password }));
-    // setEmail("");
-    // setPassword("");
+if(result.message ==="Login successful"){
+  localStorage.setItem("user", result.user);
+  navigate("/")
+}
   };
 
   //   const handleBlur = () => {

@@ -6,28 +6,31 @@ const initialState = {
   error: "",
   value: 0,
 };
-export const fetchFeed = createAsyncThunk("userFeeds", async () => {
-  const url = "http://localhost:1234/post/";
-  const option = { method: "GET" };
+export const fetchExplore = createAsyncThunk("Explore", async () => {
+  const url = "http://localhost:1234/post";
+  const option = { method: "GET", credentials: "include" };
   const response = await fetch(url, option);
   return response.json();
 });
-export const ExploreReducers = createSlice({
-  name: "userFeed",
+export const exploreReducers = createSlice({
+  name: "Explore",
   initialState,
   reducers: {
-    getFeed: (state, action) => {},
+    getExplore: (state, action) => {},
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchFeed.pending, (state) => {
+    builder.addCase(fetchExplore.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(fetchFeed.fulfilled, (state, action) => {
+    builder.addCase(fetchExplore.fulfilled, (state, action) => {
+      // console.log(action.payload, "action.payload");
+      // console.log(state.data, "state.data");
       state.loading = false;
       state.data = action.payload;
       state.error = "";
+      // console.log(state.data, "state.data");
     });
-    builder.addCase(fetchFeed.rejected, (state, action) => {
+    builder.addCase(fetchExplore.rejected, (state, action) => {
       state.loading = false;
       state.data = [];
       state.error = action.error.message;
@@ -37,5 +40,5 @@ export const ExploreReducers = createSlice({
 
 // Action creators are generated for each case reducer function
 // export const { increment, decrement, incrementByAmount } = counterSlice.actions
-
-export default ExploreReducers;
+export const { getExplore } = exploreReducers.actions;
+export default exploreReducers.reducer;

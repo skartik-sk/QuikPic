@@ -3,7 +3,7 @@ import upload from '../Middlewares/multer.js';
 import { deletePost, getAllPosts, getPostById, posting, updatePost } from '../Controllers/post/postController.js';
 import isAuth from '../Middlewares/isAuth.js';
 import { addComment, deleteComment } from '../Controllers/post/comment.js';
-import { addLikeToPost, unLikeToPost } from '../Controllers/post/like.js';
+import { addLikeToPost } from '../Controllers/post/like.js';
 import { getSavedPosts, savePost } from '../Controllers/post/savedPostController.js';
 
 const router = express.Router();
@@ -15,7 +15,7 @@ router.route('/:id').get(isAuth, getPostById);
 router.route('/:id/comment').put(isAuth, addComment);
 router.route('/:id/delcomment/:commentId').put(isAuth, deleteComment);
 router.route('/:id/like').put(isAuth, addLikeToPost);
-router.route('/:id/dislike').put(isAuth, unLikeToPost);
+// router.route('/:id/dislike').put(isAuth, unLikeToPost);
 
 // Save a post
 router.route('/:id/saveAPost').post(isAuth, savePost);
