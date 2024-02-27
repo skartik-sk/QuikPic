@@ -31,12 +31,25 @@ import {
 } from "@nextui-org/react";
 import { ThreeDot } from "../../icons/Navbar/ThreeDot";
 import Popupcard from "../globle_Components/Popupcard";
+import { useDispatch } from "react-redux";
+import { getPostByid,  commentToPost } from "../../redux/reducers/PostViewReducers";
+import { bookmark, like } from "../../redux/reducers/PostCardReducer";
 
-
-const ViewPostCardExpanded = ({ data,time }) => {
+const ViewPostCardExpanded = ({ data, time }) => {
+  const dispatch = useDispatch();
   const [isFollowed, setIsFollowed] = useState(false);
   const [liked, setLiked] = useState(false);
   const [bookmarked, setBokmarked] = useState(false);
+  const [comment, setComment] = useState("");
+  const handleChange = (e) => {
+    setComment(e.target.value);
+  };
+  const addComment = (e) => {
+    if (comment !== "") {
+      dispatch(commentToPost({ id: data._id, comment: comment }));
+      setComment("");
+    }
+  };
   return (
     <div>
       <Card
@@ -59,6 +72,7 @@ const ViewPostCardExpanded = ({ data,time }) => {
               <div className="flex gap-3">
                 <button
                   onClick={(e) => {
+                    dispatch(like({ id: data._id }));
                     liked === true ? setLiked(false) : setLiked(true);
                   }}
                 >
@@ -111,6 +125,7 @@ const ViewPostCardExpanded = ({ data,time }) => {
 
               <button
                 onClick={(e) => {
+                  dispatch(bookmark({ id: data._id }));
                   bookmarked === true
                     ? setBokmarked(false)
                     : setBokmarked(true);
@@ -133,19 +148,19 @@ const ViewPostCardExpanded = ({ data,time }) => {
             <CardBody className="flex-row justify-between ">
               <CardBody className="truncate p-0 ">
                 <div className="truncate w-[15px]">
-              {  data.likes !== undefined? "Be the first to like this post": `Liked by kartik and others`}
-                
+                  {data.likes !== undefined
+                    ? "Be the first to like this post"
+                    : `Liked by kartik and others`}
                 </div>
               </CardBody>
 
               <AvatarGroup isBordered max={2} size="sm">
-                {
-               data.likes !== undefined?
-data.likes.map((like, index) => (
-  <Avatar  src="https://i.pravatar.cc/150?u=a042581f4e29026024d" />
-)):null
-                }
-                  </AvatarGroup>
+                {data.likes !== undefined
+                  ? data.likes.map((like, index) => (
+                      <Avatar src="https://i.pravatar.cc/150?u=a042581f4e29026024d" />
+                    ))
+                  : null}
+              </AvatarGroup>
             </CardBody>
           </div>
         </div>
@@ -203,25 +218,38 @@ data.likes.map((like, index) => (
               {time}
             </CardBody>
             <Divider />
-            <Card className="max-w-[340px] ">
-              <CardHeader className="flex gap-4 justify-between align-top items-start">
-                <div className="flex ">
-                  <Avatar
-                    isBordered
-                    radius="full"
-                    size="sm"
-                    src="https://i.pravatar.cc/150?u=a042581f4e29026024d"
-                  />
-                </div>
-                <span style={{ width: "200px" }} className="text-default-500  ">
-                  Frontend developer and UI/UX enthusiast. Join me on this
-                  coding adventure!
-                </span>
-              </CardHeader>
+            <Card className="max-w-[340px]  ">
+              <div className="flex flex-col ">
+                {data.comments !== undefined
+                  ? data.comments.map((comment, index) => (
+                      <div>
+                        <CardHeader className="flex  gap-4 justify-between align-top items-start">
+                          <div className="flex ">
+                            <Avatar
+                              isBordered
+                              radius="full"
+                              size="sm"
+                              src="https://i.pravatar.cc/150?u=a042581f4e29026024d"
+                            />
+                          </div>
+                          <span
+                            style={{ width: "200px" }}
+                            className="text-default-500  "
+                          >
+                            {comment.comment}
+                          </span>
+                        </CardHeader>
+                        <Divider />
+                      </div>
+                    ))
+                  : null}
+              </div>
               <CardBody className="px-3 py-0 text-small text-default-400"></CardBody>
             </Card>
             <div className=" w-[340px] h-[240px] px-8 rounded-2xl flex justify-center items-center bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg">
               <Input
+                onChange={handleChange}
+                value={comment}
                 style={{ width: "300px" }}
                 placeholder="Add a comment"
                 radius="lg"
@@ -247,7 +275,7 @@ data.likes.map((like, index) => (
                   ],
                 }}
                 endContent={
-                  <button>
+                  <button onClick={addComment}>
                     <div>
                       <FontAwesomeIcon
                         icon={faPaperPlane}

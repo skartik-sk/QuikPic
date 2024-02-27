@@ -31,10 +31,27 @@ import {
 } from "@nextui-org/react";
 import { ThreeDot } from "../../icons/Navbar/ThreeDot";
 import Popupcard from "../globle_Components/Popupcard";
-const ViewPostCard = () => {
+import { useDispatch } from "react-redux";
+import { getPostByid,  commentToPost } from "../../redux/reducers/PostViewReducers";
+import { bookmark, like } from "../../redux/reducers/PostCardReducer";
+
+
+
+const ViewPostCard = ({ data, time }) => {
+  const dispatch = useDispatch();
   const [isFollowed, setIsFollowed] = useState(false);
   const [liked, setLiked] = useState(false);
   const [bookmarked, setBokmarked] = useState(false);
+  const [comment, setComment] = useState("");
+  const handleChange = (e) => {
+    setComment(e.target.value);
+  };
+  const addComment = (e) => {
+    if (comment !== "") {
+      dispatch(commentToPost({ id: data._id, comment: comment }));
+      setComment("");
+    }
+  };
   return (
     <div>
       <Card style={{ width: "325px" }} className="py-4 max-w-[340px] ">
@@ -87,8 +104,7 @@ const ViewPostCard = () => {
               width={300}
               height={200}
               alt="NextUI hero Image with delay"
-              src="https://app.requestly.io/delay/5000/https://nextui-docs-v2.vercel.app/images/hero-card-complete.jpeg"
-            />
+              src={data.image} />
           </button>
         </CardBody>
         <CardFooter className="flex-col items-start pb-0 pt-2 px-2 w-16 space-y-2 gap-4">
@@ -96,6 +112,8 @@ const ViewPostCard = () => {
             <div className="flex gap-3">
               <button
                 onClick={(e) => {
+                  dispatch(like({ id: data._id }));
+                 
                   liked === true ? setLiked(false) : setLiked(true);
                 }}
               >
@@ -148,6 +166,8 @@ const ViewPostCard = () => {
 
             <button
               onClick={(e) => {
+                dispatch(bookmark({ id: data._id }));
+              
                 bookmarked === true ? setBokmarked(false) : setBokmarked(true);
               }}
             >
@@ -167,52 +187,63 @@ const ViewPostCard = () => {
 
           <CardBody className="flex-row justify-between ">
             <CardBody className="truncate p-0 ">
-              <div className="truncate w-[15px]">
-                Liked by kartik and many others
-              </div>
+            <div className="truncate w-[15px]">
+                  {data.likes !== undefined
+                    ? "Be the first to like this post"
+                    : `Liked by kartik and others`}
+                </div>
             </CardBody>
 
-            <AvatarGroup isBordered max={3} size="sm">
-              <Avatar src="https://i.pravatar.cc/150?u=a042581f4e29026024d" />
-              <Avatar src="https://i.pravatar.cc/150?u=a04258a2462d826712d" />
-              <Avatar src="https://i.pravatar.cc/150?u=a042581f4e29026704d" />
-              <Avatar src="https://i.pravatar.cc/150?u=a04258114e29026302d" />
-              <Avatar src="https://i.pravatar.cc/150?u=a04258114e29026702d" />
-              <Avatar src="https://i.pravatar.cc/150?u=a04258114e29026708c" />
-            </AvatarGroup>
+            <AvatarGroup isBordered max={2} size="sm">
+                {data.likes !== undefined
+                  ? data.likes.map((like, index) => (
+                      <Avatar src="https://i.pravatar.cc/150?u=a042581f4e29026024d" />
+                    ))
+                  : null}
+              </AvatarGroup>
           </CardBody>
           <CardBody
             // style={{ width: "300px" }}
             className="text-default-400 py-0"
           >
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo,
-            blanditiis et atque, autem sapiente corrupti a aut aspernatur iusto
-            minima neque quo eaque sint rerum laborum ullam voluptate magnam
-            cumque.
+             {data.caption}
           </CardBody>
           <CardBody className="font-semibold text-default-400 text-small w-fit py-0">
-            3-months ago
+             {time}
           </CardBody>
           <Divider />
           <Card className="max-w-[340px]">
-            <CardHeader className="flex gap-4 justify-between align-top items-start">
-              <div className="flex ">
-                <Avatar
-                  isBordered
-                  radius="full"
-                  size="sm"
-                  src="https://i.pravatar.cc/150?u=a042581f4e29026024d"
-                />
+          <div className="flex flex-col ">
+                {data.comments !== undefined
+                  ? data.comments.map((comment, index) => (
+                      <div>
+                        <CardHeader className="flex  gap-4 justify-between align-top items-start">
+                          <div className="flex ">
+                            <Avatar
+                              isBordered
+                              radius="full"
+                              size="sm"
+                              src="https://i.pravatar.cc/150?u=a042581f4e29026024d"
+                            />
+                          </div>
+                          <span
+                            style={{ width: "200px" }}
+                            className="text-default-500  "
+                          >
+                            {comment.comment}
+                          </span>
+                        </CardHeader>
+                        <Divider />
+                      </div>
+                    ))
+                  : null}
               </div>
-              <span style={{ width: "200px" }} className="text-default-500  ">
-                Frontend developer and UI/UX enthusiast. Join me on this coding
-                adventure!
-              </span>
-            </CardHeader>
             <CardBody className="px-3 py-0 text-small text-default-400"></CardBody>
           </Card>
           <div className="w-[340px] h-[240px] px-8 rounded-2xl flex justify-center items-center bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg">
             <Input
+             onChange={handleChange}
+             value={comment}
               placeholder="Add a comment"
               radius="lg"
               classNames={{
@@ -237,7 +268,7 @@ const ViewPostCard = () => {
                 ],
               }}
               endContent={
-                <button>
+                <button onClick={addComment}>
                   <div>
                     <FontAwesomeIcon
                       icon={faPaperPlane}

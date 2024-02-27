@@ -6,9 +6,23 @@ const initialState = {
   error: "",
   value: 0,
 };
+
 export const getPostByid = createAsyncThunk("userFeeds", async (payload) => {
   const url = `http://localhost:1234/post/${payload.id}`;
   const option = { method: "GET", credentials: "include" };
+  const response = await fetch(url, option);
+  return response.json();
+});
+export const commentToPost = createAsyncThunk("comment", async (payload) => {
+  const url = `http://localhost:1234/post/${payload.id}/comment`;
+  const option = { method: "PUT",body: JSON.stringify({
+    comment: payload.comment,
+
+  }),
+  headers: {
+    "Content-Type": "application/json",
+  },
+  credentials: "include" };
   const response = await fetch(url, option);
   return response.json();
 });

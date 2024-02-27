@@ -137,7 +137,7 @@ const postviewPage = ()=>{
                   />
                 )}
               </button>
-              <button>
+              <button onClick={postviewPage}>
                 <FontAwesomeIcon
                   onMouseOver={(e) => {
                     e.target.style.color = "#C0C0C0";
