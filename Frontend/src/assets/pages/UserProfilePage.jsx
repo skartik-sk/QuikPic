@@ -5,24 +5,10 @@ import UserProfileContent from "./SubPages/UserProfileContent";
 
 const UserProfilePage = () => {
   return (
-    <div>
-      <div className="flex-col">
-        <div className="flex ">
-          <div
-            className="
-            md:flex"
-          >
-            <SideNav />
-          </div>
+   
 
           <UserProfileContent />
-        </div>
-
-        <div className="sticky bottom-0 md:!hidden">
-          <BottomNav />
-        </div>
-      </div>
-    </div>
+      
   );
 };
 

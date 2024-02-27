@@ -30,9 +30,13 @@ import { ThreeDot } from "../../icons/Navbar/ThreeDot";
 import Popupcard from "./Popupcard";
 import { useDispatch, useSelector } from "react-redux";
 import { bookmark, like } from "../../redux/reducers/PostCardReducer";
+import {
 
+  useNavigate,
+} from "react-router-dom";
 const PostCard = ({ data }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [bookmarked, setBokmarked] = useState(false);
   const [liked, setLiked] = useState(false);
   //in complete
@@ -50,7 +54,10 @@ const PostCard = ({ data }) => {
   }
   
   // const bookmarked = useSelector((state) => state.postcard.bookmarked);
+const postviewPage = ()=>{
+  navigate(`/postview/${data._id}`);
 
+}
   return (
     <div>
       <Card style={{ width: "325px" }} className="py-4 max-w-[340px] ">
@@ -95,9 +102,11 @@ const PostCard = ({ data }) => {
           style={{ width: "fit-content " }}
           className="overflow-visible py-2 w-fit"
         >
+
           <button
             style={{ width: "fit-content ", height: "fit-content" }}
             className=""
+            onClick={postviewPage}
           >
             <Image
               loading="false"

@@ -4,10 +4,19 @@ import PostCard from "../../components/globle_Components/PostCard";
 import { Card } from "@nextui-org/react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchExplore } from "../../redux/reducers/ExploreReducer";
+import { useNavigate } from "react-router-dom";
 const ExploreContent = () => {
-  const Data = useSelector((state) => state.explore.data);
-  console.log(Data);
+  const navigate = useNavigate();
+  const Responce = useSelector((state) => state.login.data.message);
 
+  //!todo to make a protective routing
+  // if (Responce === "Unauthorized" || Data === undefined) {
+    //   console.log("yoyo");
+    //   navigate("/Login");
+    // }
+    // console.log(Data);
+    
+    const Data = useSelector((state) => state.explore.data);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchExplore());

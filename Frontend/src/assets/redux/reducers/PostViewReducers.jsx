@@ -6,24 +6,24 @@ const initialState = {
   error: "",
   value: 0,
 };
-export const fetchFeed = createAsyncThunk("userFeeds", async () => {
-  const url = "http://localhost:1234/userFeed/";
+export const getPostByid = createAsyncThunk("userFeeds", async (payload) => {
+  const url = `http://localhost:1234/post/${payload.id}`;
   const option = { method: "GET", credentials: "include" };
   const response = await fetch(url, option);
   return response.json();
 });
 
-export const userFeedReducers = createSlice({
-  name: "userFeeds",
+export const postViewReducers = createSlice({
+  name: "postViewReducers",
   initialState,
   reducers: {
     getExplore: (state, action) => {},
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchFeed.pending, (state) => {
+    builder.addCase(getPostByid.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(fetchFeed.fulfilled, (state, action) => {
+    builder.addCase(getPostByid.fulfilled, (state, action) => {
       // console.log(action.payload, "action.payload");
       // console.log(state.data, "state.data");
       state.loading = false;
@@ -31,7 +31,7 @@ export const userFeedReducers = createSlice({
       state.error = "";
       // console.log(state.data, "state.data");
     });
-    builder.addCase(fetchFeed.rejected, (state, action) => {
+    builder.addCase(getPostByid.rejected, (state, action) => {
       state.loading = false;
       state.data = [];
       state.error = action.error.message;
@@ -41,5 +41,5 @@ export const userFeedReducers = createSlice({
 
 // Action creators are generated for each case reducer function
 // export const { increment, decrement, incrementByAmount } = counterSlice.actions
-export const { getExplore } = userFeedReducers.actions;
-export default userFeedReducers.reducer;
+export const { getExplore } = postViewReducers.actions;
+export default postViewReducers.reducer;

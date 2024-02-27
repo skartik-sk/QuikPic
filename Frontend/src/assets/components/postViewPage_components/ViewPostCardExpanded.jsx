@@ -31,7 +31,9 @@ import {
 } from "@nextui-org/react";
 import { ThreeDot } from "../../icons/Navbar/ThreeDot";
 import Popupcard from "../globle_Components/Popupcard";
-const ViewPostCardExpanded = () => {
+
+
+const ViewPostCardExpanded = ({ data,time }) => {
   const [isFollowed, setIsFollowed] = useState(false);
   const [liked, setLiked] = useState(false);
   const [bookmarked, setBokmarked] = useState(false);
@@ -48,7 +50,7 @@ const ViewPostCardExpanded = () => {
                 width={400}
                 height={500}
                 alt="NextUI hero Image with delay"
-                src="https://app.requestly.io/delay/5000/https://nextui-docs-v2.vercel.app/images/hero-card-complete.jpeg"
+                src={data.image}
               />
             </button>
           </CardBody>
@@ -131,18 +133,19 @@ const ViewPostCardExpanded = () => {
             <CardBody className="flex-row justify-between ">
               <CardBody className="truncate p-0 ">
                 <div className="truncate w-[15px]">
-                  Liked by kartik and many others
+              {  data.likes !== undefined? "Be the first to like this post": `Liked by kartik and others`}
+                
                 </div>
               </CardBody>
 
-              <AvatarGroup isBordered max={3} size="sm">
-                <Avatar src="https://i.pravatar.cc/150?u=a042581f4e29026024d" />
-                <Avatar src="https://i.pravatar.cc/150?u=a04258a2462d826712d" />
-                <Avatar src="https://i.pravatar.cc/150?u=a042581f4e29026704d" />
-                <Avatar src="https://i.pravatar.cc/150?u=a04258114e29026302d" />
-                <Avatar src="https://i.pravatar.cc/150?u=a04258114e29026702d" />
-                <Avatar src="https://i.pravatar.cc/150?u=a04258114e29026708c" />
-              </AvatarGroup>
+              <AvatarGroup isBordered max={2} size="sm">
+                {
+               data.likes !== undefined?
+data.likes.map((like, index) => (
+  <Avatar  src="https://i.pravatar.cc/150?u=a042581f4e29026024d" />
+)):null
+                }
+                  </AvatarGroup>
             </CardBody>
           </div>
         </div>
@@ -194,16 +197,13 @@ const ViewPostCardExpanded = () => {
               // style={{ width: "300px" }}
               className="text-default-400 py-0"
             >
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo,
-              blanditiis et atque, autem sapiente corrupti a aut aspernatur
-              iusto minima neque quo eaque sint rerum laborum ullam voluptate
-              magnam cumque.
+              {data.caption}
             </CardBody>
             <CardBody className="font-semibold text-default-400 text-small w-fit py-0">
-              3-months ago
+              {time}
             </CardBody>
             <Divider />
-            <Card className="max-w-[340px]">
+            <Card className="max-w-[340px] ">
               <CardHeader className="flex gap-4 justify-between align-top items-start">
                 <div className="flex ">
                   <Avatar
@@ -220,7 +220,7 @@ const ViewPostCardExpanded = () => {
               </CardHeader>
               <CardBody className="px-3 py-0 text-small text-default-400"></CardBody>
             </Card>
-            <div className="w-[340px] h-[240px] px-8 rounded-2xl flex justify-center items-center bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg">
+            <div className=" w-[340px] h-[240px] px-8 rounded-2xl flex justify-center items-center bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg">
               <Input
                 style={{ width: "300px" }}
                 placeholder="Add a comment"

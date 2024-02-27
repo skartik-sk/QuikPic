@@ -8,16 +8,9 @@ import UserFeedContent from "./SubPages/UserFeedContent";
 
 export const UserFeedPage = () => {
   return (
-    <div className="flex-col">
-      <div className="flex md:block">
-        <SideNav />
+
 
         <UserFeedContent />
-      </div>
 
-      <div className=" tablet:!hidden">
-        <BottomNav />
-      </div>
-    </div>
   );
 };

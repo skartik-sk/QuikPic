@@ -6,25 +6,21 @@ import TopNav from "../components/globle_Components/TopNav";
 
 const SettingPage = () => {
     return (
-        <div>
+        <div className="w-full">
             <div className="flex-col">
                 <TopNav />
 
                 <div className="flex max-w-full">
                     
-                    <div className="md:flex">
-                        <SideNav />
-                    </div>
+                   
                     
-                    <div style={{width:"100%"}}>
+                    <div >
                     <SettingNav />
                     </div>
 
                 </div>
 
-                <div className="sticky bottom-0 md:!hidden">
-                    <BottomNav />
-                </div>
+                
             </div>
         </div>
     )

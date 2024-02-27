@@ -15,6 +15,7 @@ import { Explore } from "../../icons/Navbar/Explore";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGear } from "@fortawesome/free-solid-svg-icons";
 import Bookmark from "../../icons/Navbar/Bookmark";
+import { Link } from "react-router-dom";
 const SideNav_expanded = () => {
   return (
     <div style={{ width: "250px", top: "0", height: "fit-content" }}>
@@ -58,28 +59,43 @@ const SideNav_expanded = () => {
           </div>
         </CardHeader>
         <CardBody className="flex-col justify-center items-start w-auto gap-4">
+      <Link to="/"> 
           <button className="flex flex-row  gap-4 ">
             <Home />
             <span className="text-xl">Home</span>
           </button>{" "}
+            </Link>
           <button className="flex flex-row  gap-4 ">
             <Message /> <span className="text-xl">Messages</span>
           </button>{" "}
+          <Link to="/CreatePost">
           <button className="flex flex-row  gap-4 ">
+             
+         
             <CreatPost /> <span className="text-xl">Create Post</span>
           </button>{" "}
+            </Link>
+          <Link to="/Explore">
           <button className="flex flex-row  gap-4 ">
+            
             <Explore /> <span className="text-xl">Explore</span>
           </button>
+            </Link>
+          <Link to="/UserProfile">
           <button className="flex flex-row  gap-4 ">
+           
             <Bookmark /> <span className="text-xl">Bookmark</span>
           </button>
+            </Link>
         </CardBody>
         <CardFooter className="flex-col justify-center items-center w-auto">
+          <Link to="/Setting">
+
           <button className="flex flex-row  gap-4 ">
             <FontAwesomeIcon icon={faGear} size="xl" />
             <span className="text-xl">Setting</span>
           </button>
+          </Link>
         </CardFooter>
       </Card>
     </div>
