@@ -19,6 +19,7 @@ import {
 import { UserFeedPage } from "./assets/pages/UserFeedPage";
 import React, { useState, useEffect } from "react";
 import CreatePostPage from "./assets/pages/CreatePostPage";
+import CreatePostPage2 from "./assets/pages/SubPages/CreatePostContent2";
 import PostViewPage from "./assets/pages/PostViewPage";
 import LoginPage from "./assets/pages/LoginPage";
 import SignupPage from "./assets/pages/SignupPage";

@@ -30,10 +30,7 @@ import { ThreeDot } from "../../icons/Navbar/ThreeDot";
 import Popupcard from "./Popupcard";
 import { useDispatch, useSelector } from "react-redux";
 import { bookmark, like } from "../../redux/reducers/PostCardReducer";
-import {
-
-  useNavigate,
-} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const PostCard = ({ data }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -46,18 +43,20 @@ const PostCard = ({ data }) => {
   console.log(userId);
   console.log(data.likes);
   console.log(data.likes.includes(userId));
-  if (data.likes.includes(userId) && liked == false) {
+  if (data.likes.includes(userId) && liked === false) {
     console.log("hello");
     setLiked(true);
-  } else if (data.likes.includes(userId) == false && liked == true) {
+  } else if (data.likes.includes(userId) == false && liked === true) {
     setLiked(false);
   }
-  
-  // const bookmarked = useSelector((state) => state.postcard.bookmarked);
-const postviewPage = ()=>{
-  navigate(`/postview/${data._id}`);
 
-}
+  // const bookmarked = useSelector((state) => state.postcard.bookmarked);
+  const postviewPage = () => {
+    navigate(`/postview/${data._id}`);
+  };
+
+  useEffect(() => {}, [liked, bookmarked]);
+
   return (
     <div>
       <Card style={{ width: "325px" }} className="py-4 max-w-[340px] ">
@@ -102,7 +101,6 @@ const postviewPage = ()=>{
           style={{ width: "fit-content " }}
           className="overflow-visible py-2 w-fit"
         >
-
           <button
             style={{ width: "fit-content ", height: "fit-content" }}
             className=""

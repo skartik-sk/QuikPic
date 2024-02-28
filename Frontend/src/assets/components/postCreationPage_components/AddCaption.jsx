@@ -12,6 +12,7 @@ import {
 import AddImgage from "../../icons/post/AddImgage";
 
 const AddCaption = () => {
+  
   return (
     <div>
       <div>

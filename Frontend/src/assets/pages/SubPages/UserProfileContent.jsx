@@ -8,7 +8,7 @@ const UserProfileContent = () => {
         <div className="w-full flex-col">
             <TopNav />
             <ProfileDetails />
-            <PostCollection />
+            {/* <PostCollection /> */}
         </div>
     )
 }
