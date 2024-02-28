@@ -19,6 +19,7 @@ import { SunIcon } from "../../icons/Navbar/SunIcon";
 import { MoonIcon } from "../../icons/Navbar/Moonicon";
 import LoginReducer, { login } from "../../redux/reducers/LoginReducer";
 import { useNavigate } from "react-router-dom";
+import ForgotPassword from "../../components/globle_Components/ForgotPassword.jsx";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
@@ -27,6 +28,7 @@ const LoginForm = () => {
   const { theme, setTheme } = useTheme();
   const dispatch = useDispatch();
   const result = useSelector((state) => state.login.data);
+  const loading = useSelector((state) => state.login.loading);
   const navigate = useNavigate();
   const handleChange = (event) => {
     setEmail(event.target.value);
@@ -42,9 +44,13 @@ const LoginForm = () => {
     dispatch(login({ userName: email, password: password }));
 if(result.message ==="Login successful"){
   localStorage.setItem("user", result.user);
-  navigate("/")
+  // navigate("/Explore")
 }
   };
+
+  if (loading === false) {
+    navigate("/Explore")
+}
 
   //   const handleBlur = () => {
   //     // Check if the email is valid when the user finishes writing
@@ -150,9 +156,10 @@ if(result.message ==="Login successful"){
             className="flex justify-end md:max-w-xs"
             style={{ paddingBottom: "1rem" }}
           >
-            <Link href="#" size="sm" underline="active">
+            <ForgotPassword />
+            {/* <Link href="../components/loginPage_components/ForgotPassword.jsx" size="sm" underline="active">
               Forgot Password
-            </Link>
+            </Link> */}
           </div>
 
           <div>

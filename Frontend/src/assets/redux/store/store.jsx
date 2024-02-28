@@ -6,6 +6,7 @@ import  userFeedReducers  from "../reducers/UserFeedReducers";
 import  postViewReducers  from "../reducers/PostViewReducers";
 import  createPostReducers  from "../reducers/CreatePostReducer";
 import  signupReducers  from "../reducers/SignupReducer";
+import  forgotpasswordReducers  from "../reducers/ForgotPasswordReducer";
 
 export const store = configureStore({
   reducer: {
@@ -16,5 +17,6 @@ export const store = configureStore({
     login: loginReducers,
     signup: signupReducers,
     postcard: PostCardReducer,
+    forgotpassword: forgotpasswordReducers,
   },
 });

@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from 'react';
+import { useSelector, useDispatch } from "react-redux";
 import { Input, Link, Divider, Button, Avatar, NavbarItem, Switch, Navbar } from "@nextui-org/react";
 import { MailIcon } from '../../icons/LoginSignupForm/MailIcon';
 import { EyeFilledIcon } from "../../icons/LoginSignupForm/EyeFilledIcon";
@@ -8,26 +9,66 @@ import { UsernameIcon } from "../../icons/LoginSignupForm/UsernameIcon";
 import { useTheme } from "next-themes";
 import { SunIcon } from "../../icons/Navbar/SunIcon";
 import { MoonIcon } from "../../icons/Navbar/Moonicon";
+import SignupReducer, { signup } from "../../redux/reducers/SignupReducer";
+import { useNavigate } from "react-router-dom";
 
 
 const SignupFormMobile = () => {
-    const [email, setEmail] = useState('');
-    const [isInvalid, setIsInvalid] = useState(false);
-    const { theme, setTheme } = useTheme();
+    // const [email, setEmail] = useState('');
+    // const [isInvalid, setIsInvalid] = useState(false);
+    // const { theme, setTheme } = useTheme();
 
-    const handleChange = (event) => {
+    // const handleChange = (event) => {
+    //     setEmail(event.target.value);
+    // };
+
+    // const handleBlur = () => {
+    //     // Check if the email is valid when the user finishes writing
+    //     const isValidEmail = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(email);
+    //     setIsInvalid(!isValidEmail);
+    // };
+
+    // const [isVisible, setIsVisible] = React.useState(false);
+
+    // const toggleVisibility = () => setIsVisible(!isVisible);
+
+    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [isInvalid, setIsInvalid] = useState(false);
+    const [isVisible, setIsVisible] = useState(false);
+    const { theme, setTheme } = useTheme();
+    const dispatch = useDispatch();
+    const result = useSelector((state) => state.signup.data);
+    const loading = useSelector((state) => state.signup.loading);
+    const navigate = useNavigate();
+
+    const handleUsernameChange = (event) => {
+        setUsername(event.target.value);
+    };
+
+    const handleEmailChange = (event) => {
         setEmail(event.target.value);
     };
 
-    const handleBlur = () => {
-        // Check if the email is valid when the user finishes writing
-        const isValidEmail = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(email);
-        setIsInvalid(!isValidEmail);
+    const handlePasswordChange = (event) => {
+        setPassword(event.target.value);
     };
 
-    const [isVisible, setIsVisible] = React.useState(false);
-
     const toggleVisibility = () => setIsVisible(!isVisible);
+    const Signup = (e) => {
+        e.preventDefault();
+
+        dispatch(signup({ username, email, password }));
+        if (result.message === "Signup successful") {
+            localStorage.setItem("user", result.user);
+            // navigate("/")
+        }
+    };
+
+    if (loading === false) {
+        navigate("/Explore")
+    }
 
     return (
         <div className="w-full flex flex-row">
@@ -69,6 +110,8 @@ const SignupFormMobile = () => {
                         variant="bordered"
                         placeholder="Enter your name"
                         className="md:max-w-xs"
+                        value={username}
+                        onChange={handleUsernameChange}
                         // value={username}
                         endContent={
                             <UsernameIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
@@ -82,8 +125,7 @@ const SignupFormMobile = () => {
                         placeholder="Enter your email"
                         className="md:max-w-xs"
                         value={email}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
+                        onChange={handleEmailChange}
                         endContent={
                             <MailIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
                         }
@@ -95,6 +137,8 @@ const SignupFormMobile = () => {
                         label="Password"
                         variant="bordered"
                         placeholder="Enter your password"
+                        onChange={handlePasswordChange}
+                        value={password}
                         endContent={
                             <button className="focus:outline-none" type="button" onClick={toggleVisibility}>
                                 {isVisible ? (
@@ -111,7 +155,7 @@ const SignupFormMobile = () => {
                     />
 
                     <div>
-                        <Button className="w-full md:max-w-xs" color="primary" variant="shadow">
+                        <Button  onClick={Signup} className="w-full md:max-w-xs" color="primary" variant="shadow">
                             Signup
                         </Button>
                     </div>
@@ -121,7 +165,7 @@ const SignupFormMobile = () => {
                     </div>
 
                     <div className="flex justify-center">
-                        <h3>Already have an account? <Link href="/Login" size="md" underline="active">Login</Link></h3>
+                        <h3>Already have an account? {" "}<Link href="/Login" size="md" underline="active">Login</Link></h3>
                     </div>
                 </div>
             </div>

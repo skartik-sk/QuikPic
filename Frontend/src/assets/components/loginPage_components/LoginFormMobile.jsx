@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from 'react';
+import { useSelector, useDispatch } from "react-redux";
 import { Input, Link, Divider, Button, Avatar, NavbarItem, Switch, Navbar } from "@nextui-org/react";
 import { MailIcon } from '../../icons/LoginSignupForm/MailIcon';
 import { EyeFilledIcon } from "../../icons/LoginSignupForm/EyeFilledIcon";
@@ -7,22 +8,59 @@ import { EyeSlashFilledIcon } from "../../icons/LoginSignupForm/EyeSlashFilledIc
 import { useTheme } from "next-themes";
 import { SunIcon } from "../../icons/Navbar/SunIcon";
 import { MoonIcon } from "../../icons/Navbar/Moonicon";
+import LoginReducer, { login } from "../../redux/reducers/LoginReducer";
+import { useNavigate } from "react-router-dom";
+import ForgotPassword from "../../components/globle_Components/ForgotPassword.jsx";
 
 
 const LoginFormMobile = () => {
-    const [email, setEmail] = useState('');
+    // const [email, setEmail] = useState('');
+    // const [isInvalid, setIsInvalid] = useState(false);
+    // const { theme, setTheme } = useTheme();
+
+    // const handleChange = (event) => {
+    //     setEmail(event.target.value);
+    // };
+
+    // const handleBlur = () => {
+    //     // Check if the email is valid when the user finishes writing
+    //     const isValidEmail = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(email);
+    //     setIsInvalid(!isValidEmail);
+    // };
+
+    // const [isVisible, setIsVisible] = React.useState(false);
+
+    // const toggleVisibility = () => setIsVisible(!isVisible);
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
     const [isInvalid, setIsInvalid] = useState(false);
     const { theme, setTheme } = useTheme();
-
+    const dispatch = useDispatch();
+    const result = useSelector((state) => state.login.data);
+    const loading = useSelector((state) => state.login.loading);
+    const navigate = useNavigate();
     const handleChange = (event) => {
         setEmail(event.target.value);
+        // console.log(email, password)
+    };
+    const handleChangepass = (event) => {
+        setPassword(event.target.value);
+        // console.log(email, password)
+    };
+    const Login = (e) => {
+        e.preventDefault();
+
+        dispatch(login({ userName: email, password: password }));
+        if (result.message === "Login successful") {
+            localStorage.setItem("user", result.user);
+            // navigate("/Explore")
+        }
     };
 
-    const handleBlur = () => {
-        // Check if the email is valid when the user finishes writing
-        const isValidEmail = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(email);
-        setIsInvalid(!isValidEmail);
-    };
+    if (loading === false) {
+        navigate("/Explore")
+    }
 
     const [isVisible, setIsVisible] = React.useState(false);
 
@@ -40,7 +78,7 @@ const LoginFormMobile = () => {
                 <div style={{ paddingLeft: "3rem", paddingRight: "3rem", paddingTop: "4rem" }} className="flex w-full h-screen flex-col md:flex-nowrap mb-2 md:mb-0 gap-4 ">
 
                     <div className="flex flex-row items-center px-8" style={{ marginBottom: "1.8rem", gap: ".8rem" }}>
-                        <Avatar src="https://i.pravatar.cc/150?u=a04258114e29026302d" size="md"  style={{width:"2.8rem", height:"2.2rem", borderRadius:"50%"}}/>
+                        <Avatar src="https://i.pravatar.cc/150?u=a04258114e29026302d" size="md" style={{ width: "2.8rem", height: "2.2rem", borderRadius: "50%" }} />
                         <h2>Quipify</h2>
                         <Navbar >
                             <NavbarItem>
@@ -63,14 +101,13 @@ const LoginFormMobile = () => {
                     </div>
 
                     <Input
-                        type="email"
-                        label="Email"
+                        type="username"
+                        label="Username"
                         variant="bordered"
                         placeholder="Enter your email"
                         className="md:max-w-xs"
                         value={email}
                         onChange={handleChange}
-                        onBlur={handleBlur}
                         endContent={
                             <MailIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
                         }
@@ -82,6 +119,8 @@ const LoginFormMobile = () => {
                         label="Password"
                         variant="bordered"
                         placeholder="Enter your password"
+                        onChange={handleChangepass}
+                        value={password}
                         endContent={
                             <button className="focus:outline-none" type="button" onClick={toggleVisibility}>
                                 {isVisible ? (
@@ -97,12 +136,12 @@ const LoginFormMobile = () => {
 
                     />
 
-                    <div className="flex justify-end md:max-w-xs" style={{ paddingBottom: "1rem" }}>
-                        <Link href="#" size="sm" underline="active">Forgot Password</Link>
+                    <div className="flex justify-end md:max-w-xs" style={{ paddingBottom: "1rem"}}>
+                    <ForgotPassword />
                     </div>
 
                     <div>
-                        <Button className="w-full md:max-w-xs" color="primary" variant="shadow">
+                        <Button onClick={Login} className="w-full md:max-w-xs" color="primary" variant="shadow">
                             Login
                         </Button>
                     </div>
@@ -112,7 +151,8 @@ const LoginFormMobile = () => {
                     </div>
 
                     <div className="flex justify-center">
-                        <h3>Don't have an account? <Link href="/Signup" size="md" underline="active">Signup</Link></h3>
+                        <h3>Don't have an account? {" "}
+                            <Link href="/Signup" size="md" underline="active">Signup</Link></h3>
                     </div>
                 </div>
             </div>
