@@ -1,14 +1,14 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  loading: true,
+  loading: false,
   data: [],
   error: "",
   value: 0,
 };
-export const createPost = createAsyncThunk("createPost", async () => {
+export const createPost = createAsyncThunk("createPost", async (payload) => {
   const url = "http://localhost:1234/post";
-  const option = { method: "GET", credentials: "include" };
+  const option = { method: "POST",body:payload, credentials: "include" };
   const response = await fetch(url, option);
   return response.json();
 });

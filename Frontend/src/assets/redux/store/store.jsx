@@ -4,7 +4,7 @@ import exploreReducers from "../reducers/ExploreReducer";
 import PostCardReducer from "../reducers/PostCardReducer";
 import  userFeedReducers  from "../reducers/UserFeedReducers";
 import  postViewReducers  from "../reducers/PostViewReducers";
-import  createPostReducers  from "../reducers/CreateReducer";
+import  createPostReducers  from "../reducers/CreatePostReducer";
 
 export const store = configureStore({
   reducer: {
