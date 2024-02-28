@@ -38,7 +38,7 @@ const SignupFormMobile = () => {
 
 
             <div className="flex-1 flex-col">
-                <div style={{ paddingLeft: "6rem", paddingRight: "6rem", paddingTop: "4rem" }} className="flex w-full h-screen flex-col md:flex-nowrap mb-2 md:mb-0 gap-4 ">
+                <div style={{ paddingLeft: "3rem", paddingRight: "3rem", paddingTop: "4rem" }} className="flex w-full h-screen flex-col md:flex-nowrap mb-2 md:mb-0 gap-4 ">
 
                     <div className="flex flex-row items-center px-8" style={{ marginBottom: "1.8rem", gap: ".8rem" }}>
                         <Avatar src="https://i.pravatar.cc/150?u=a04258114e29026302d" size="md"  style={{width:"2.8rem", height:"2.2rem", borderRadius:"50%"}}/>
@@ -121,7 +121,7 @@ const SignupFormMobile = () => {
                     </div>
 
                     <div className="flex justify-center">
-                        <h3>Already have an account? <Link href="#" size="md" underline="active">Login</Link></h3>
+                        <h3>Already have an account? <Link href="/Login" size="md" underline="active">Login</Link></h3>
                     </div>
                 </div>
             </div>

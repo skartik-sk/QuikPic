@@ -17,7 +17,7 @@ import {
   Button,
 } from "@nextui-org/react";
 import { UserFeedPage } from "./assets/pages/UserFeedPage";
-import React,{useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import CreatePostPage from "./assets/pages/CreatePostPage";
 import PostViewPage from "./assets/pages/PostViewPage";
 import LoginPage from "./assets/pages/LoginPage";
@@ -74,19 +74,19 @@ export default function App() {
       <NextUIProvider navigate={navigate}>
         <NextThemesProvider attribute="class" defaultTheme="dark">
           {/* Your app here... */}
-       
-            <Routes>
-              <Route path="/Login" element={<LoginPage />} />
-              <Route path="/Signup" element={<SignupPage />} />
-              <Route path="/" element= {<PageWithLayout component={UserFeedPage} />}/>
-        <Route path="/Explore" element={ <PageWithLayout component={ExplorePage} />} />
-        <Route path="/CreatePost" element={ <PageWithLayout component={CreatePostPage} />} />
-        <Route path="/ViewPost" element={ <PageWithLayout component={PostViewPage} />} />
-        <Route path="/UserProfile" element={ <PageWithLayout component={UserProfilePage} />} />
-        <Route path="/Setting" element={ <PageWithLayout component={SettingPage} />} />
-        <Route path="/postview/:id" element={ <PageWithLayout component={PostViewPage} />} />
-       
-              {/* <Route>
+
+          <Routes>
+            <Route path="/Login" element={<LoginPage />} />
+            <Route path="/Signup" element={<SignupPage />} />
+            <Route path="/" element={<PageWithLayout component={UserFeedPage} />} />
+            <Route path="/Explore" element={<PageWithLayout component={ExplorePage} />} />
+            <Route path="/CreatePost" element={<PageWithLayout component={CreatePostPage} />} />
+            <Route path="/ViewPost" element={<PageWithLayout component={PostViewPage} />} />
+            <Route path="/UserProfile" element={<PageWithLayout component={UserProfilePage} />} />
+            <Route path="/Setting" element={<PageWithLayout component={SettingPage} />} />
+            <Route path="/postview/:id" element={<PageWithLayout component={PostViewPage} />} />
+
+            {/* <Route>
                 <MainLayout>
                   <Routes>
                     <Route path="/" element={<UserFeedPage />} />
@@ -99,8 +99,8 @@ export default function App() {
                   </Routes>
                 </MainLayout>
               </Route> */}
-            </Routes>
-        
+          </Routes>
+
         </NextThemesProvider>
       </NextUIProvider>
     </>

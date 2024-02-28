@@ -64,7 +64,7 @@ if(result.message ==="Login successful"){
       <div className="flex flex-1 ">
         <img
           className="w-full h-full"
-          src="https://img.freepik.com/free-vector/flat-geometric-mosaic-pattern-design_23-2149265253.jpg?t=st=1708605617~exp=1708609217~hmac=fc3c7fa167553102f487104e1f666002f7ae4f1696bda2fe93b053c25d76507a&w=740"
+          src="https://img.freepik.com/free-vector/flat-geometric-mosaic-pattern-design_23-2149280518.jpg?w=740&t=st=1709113061~exp=1709113661~hmac=05739887c59d9362e9533c3d458ed51f08c520282d5b23d509f4c440a4c6c15c"
           alt=""
         />
       </div>

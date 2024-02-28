@@ -4,6 +4,7 @@ import exploreReducers from "../reducers/ExploreReducer";
 import PostCardReducer from "../reducers/PostCardReducer";
 import  userFeedReducers  from "../reducers/UserFeedReducers";
 import  postViewReducers  from "../reducers/PostViewReducers";
+import  signupReducers  from "../reducers/SignupReducer";
 
 export const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ export const store = configureStore({
     getbyid: postViewReducers,
     userfeed: userFeedReducers,
     login: loginReducers,
+    signup: signupReducers,
     postcard: PostCardReducer,
   },
 });
