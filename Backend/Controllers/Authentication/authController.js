@@ -42,7 +42,7 @@ export const signup = async (req, res) => {
     res
       .status(201)
       .cookie("access_token", token)
-      .json({ message: "Signup successful" });
+      .json({user: newUser._id, message: "Signup successful" });
   } catch (error) {
     res.status(500).json({ message: error });
   }
