@@ -74,10 +74,10 @@ userSchema.pre("save", async function (next) {
 userSchema.methods.Match_Password = async function (password) {
   return bcript.compare(password, this.password);
 };
+
 userSchema.methods.generateAuthToken = async function () {
   try {
     const token = jwt.sign({ _id: this._id }, process.env.SECREAT_KEY);
-
     return token;
   } catch (err) {
     console.log(err);

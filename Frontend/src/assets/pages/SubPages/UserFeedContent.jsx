@@ -1,12 +1,11 @@
-
-import TopNav from '../../components/globle_Components/TopNav'
-import PostCard from '../../components/globle_Components/PostCard'
-import { Card } from '@nextui-org/react'
+import TopNav from "../../components/globle_Components/TopNav";
+import PostCard from "../../components/globle_Components/PostCard";
+import { Card } from "@nextui-org/react";
 import React, { useEffect } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { fetchFeed } from '../../redux/reducers/UserFeedReducers';
+import { fetchFeed } from "../../redux/reducers/UserFeedReducers";
 const UserFeedContent = () => {
   const Data = useSelector((state) => state.userfeed.data);
   const dispatch = useDispatch();
@@ -15,16 +14,19 @@ const UserFeedContent = () => {
   }, []);
   return (
     <div>
-        <TopNav />
-<Card className="flex-row flex-wrap gap-3  justify-center ">
-{Data.map((item) => {
-          console.log(item);
-          return <PostCard key={item._id} data={item} />;
-        })}
-  
-</Card>
+      <TopNav />
+      <Card className="flex-row flex-wrap gap-3  justify-center ">
+        {Data === undefined ? (
+          <div>Kisi ko follow kar lo yar</div>
+        ) : (
+          Data.map((item) => {
+            console.log(item);
+            return <PostCard key={item._id} data={item} />;
+          })
+        )}
+      </Card>
     </div>
-  )
-}
+  );
+};
 
-export default UserFeedContent
+export default UserFeedContent;

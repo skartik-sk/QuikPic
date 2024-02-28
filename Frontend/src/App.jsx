@@ -19,6 +19,7 @@ import {
 import { UserFeedPage } from "./assets/pages/UserFeedPage";
 import React,{useState, useEffect } from "react";
 import CreatePostPage from "./assets/pages/CreatePostPage";
+import CreatePostPage2 from "./assets/pages/SubPages/CreatePostContent2";
 import PostViewPage from "./assets/pages/PostViewPage";
 import LoginPage from "./assets/pages/LoginPage";
 import SignupPage from "./assets/pages/SignupPage";
@@ -81,6 +82,7 @@ export default function App() {
               <Route path="/" element= {<PageWithLayout component={UserFeedPage} />}/>
         <Route path="/Explore" element={ <PageWithLayout component={ExplorePage} />} />
         <Route path="/CreatePost" element={ <PageWithLayout component={CreatePostPage} />} />
+        <Route path="/CreatePost2" element={ <PageWithLayout component={CreatePostPage2} />} />
         <Route path="/ViewPost" element={ <PageWithLayout component={PostViewPage} />} />
         <Route path="/UserProfile" element={ <PageWithLayout component={UserProfilePage} />} />
         <Route path="/Setting" element={ <PageWithLayout component={SettingPage} />} />

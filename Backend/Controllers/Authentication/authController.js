@@ -1,13 +1,13 @@
 import User from "../../Models/userModel.js";
-import nodemailer from 'nodemailer';
-import jwt, { decode } from 'jsonwebtoken';
+import nodemailer from "nodemailer";
+import jwt, { decode } from "jsonwebtoken";
 import UserModel from "../../Models/userModel.js";
 import bcrypt from "bcrypt";
 
 export const login = async (req, res) => {
   try {
     const { username, password } = req.body;
-    console.log(username, password)
+    console.log(username, password);
     const user = await User.findOne({ username });
     if (!user) {
       return res.status(404).json({ message: "User not found" });
@@ -19,14 +19,12 @@ export const login = async (req, res) => {
     const token = await user.generateAuthToken();
     res
       .status(200)
-      .cookie("access_token", token,{ maxAge: 10000000 })
-      .json({user:user._id, message: "Login successful" });
+      .cookie("access_token", token, { maxAge: 10000000 })
+      .json({ user: user._id, message: "Login successful" });
   } catch (error) {
     res.status(500).json({ message: "Internal server error" });
   }
 };
-
-
 
 export const signup = async (req, res) => {
   try {
