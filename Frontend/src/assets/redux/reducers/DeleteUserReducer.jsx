@@ -6,18 +6,18 @@ const initialState = {
     error: "kuh",
     value: 0,
 };
-export const logout = createAsyncThunk("user/logout", async () => {
+export const deleteuser = createAsyncThunk("user/deleteuser", async () => {
     //   console.log(payload.userName, payload.password);
     try {
-        const response = await fetch("http://localhost:1234/logout", {
-            method: "GET",
+        const response = await fetch("http://localhost:1234/user/deleteProfile", {
+            method: "DELETE",
             credentials: "include",
 
         });
         //   const response = await fetch(url, option);
         //   return response.json();
         if (!response.ok) {
-            throw new Error("Failed to logout");
+            throw new Error("Failed to delete the profile");
         }
 
         return response.json();
@@ -26,20 +26,20 @@ export const logout = createAsyncThunk("user/logout", async () => {
     }
 });
 
-export const logoutReducers = createSlice({
-    name: "logoutReducers",
+export const deleteuserReducers = createSlice({
+    name: "deleteuserReducers",
     initialState,
 
     extraReducers: (builder) => {
-        builder.addCase(logout.pending, (state) => {
+        builder.addCase(deleteuser.pending, (state) => {
             state.loading = true;
         });
-        builder.addCase(logout.fulfilled, (state, action) => {
+        builder.addCase(deleteuser.fulfilled, (state, action) => {
             state.loading = false;
             state.data = action.payload;
             state.error = "";
         });
-        builder.addCase(logout.rejected, (state, action) => {
+        builder.addCase(deleteuser.rejected, (state, action) => {
             state.loading = false;
             state.data = [];
             state.error = action.error.message;
@@ -50,4 +50,4 @@ export const logoutReducers = createSlice({
 // Action creators are generated for each case reducer function
 // export const { increment, decrement, incrementByAmount } = counterSlice.actions
 
-export default logoutReducers.reducer;
+export default deleteuserReducers.reducer;

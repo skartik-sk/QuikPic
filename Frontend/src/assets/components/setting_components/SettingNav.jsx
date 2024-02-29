@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import EditProfile from "../../components/UserProfile_components/EditProfile.jsx";
 import Help from "../../components/setting_components/Help.jsx";
-import Logout from "../../components/setting_components/Logout.jsx";
+import DeleteUser from "../../components/setting_components/DeleteUser.jsx";
 import { EditDocumentIcon } from "../../icons/Setting/EditDocumentIcon.jsx";
 import { DeleteDocumentIcon } from "../../icons/Setting/DeleteDocumentIcon.jsx";
 import { ResetPasswordIcon } from "../../icons/Setting/ResetPasswordIcon.jsx";
@@ -19,8 +19,8 @@ import {
   useDisclosure,
 } from "@nextui-org/react";
 import { logout } from "../../redux/reducers/LogoutReducer";
-import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 const SettingNav = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -28,6 +28,7 @@ const SettingNav = () => {
   const navigateTo = useNavigate();
   const iconClasses =
     "text-xl text-default-500 pointer-events-none flex-shrink-0";
+  
   // const {onOpen} = useDisclosure();
 
   // State to track active section
@@ -37,20 +38,20 @@ const SettingNav = () => {
     dispatch(logout())
       .then(() => {
         // Redirect or perform any other action after successful logout
-        navigateTo("/Login")
+        navigateTo("/Signup")
         console.log("User logged out successfully!");
       })
       .catch((error) => {
         // Handle logout error
         console.error("Logout error:", error);
       });
-  
+
     // Close the modal
     onOpenChange(false);
   };
-  
+
   return (
-    <div className="flex" style={{ gap: "6rem",width: "100%"  }}>
+    <div className="flex" style={{ gap: "6rem", width: "100%" }}>
       <div >
         <ListboxWrapper>
           <Listbox variant="flat" aria-label="Listbox menu with descriptions">
@@ -139,7 +140,7 @@ const SettingNav = () => {
         </ListboxWrapper>
       </div>
 
-      <div style={{width:"full"}}>
+      <div style={{ width: "full" }}>
         {/* Render content based on active section */}
         {activeSection === "edit" && (
           <div>
@@ -159,7 +160,11 @@ const SettingNav = () => {
             <Help />
           </div>
         )}
-        {activeSection === "delete" && <div>Delete Content Goes Here</div>}
+        {activeSection === "delete" && (
+          <div>
+            <DeleteUser />
+          </div>
+        )}
       </div>
     </div>
   );
