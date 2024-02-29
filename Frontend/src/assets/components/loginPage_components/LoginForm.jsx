@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   Input,
@@ -42,24 +42,28 @@ const LoginForm = () => {
     e.preventDefault();
 
     dispatch(login({ userName: email, password: password }));
-if(result.message ==="Login successful"){
-  localStorage.setItem("user", result.user);
-  // navigate("/Explore")
-}
-  };
+    // if(result.message ==="Login successful"){
+    //   localStorage.setItem("user", result.user);
+      // navigate("/Explore")
+    // }
+      };
 
-  if (loading === false) {
-    navigate("/Explore")
-}
-
-  //   const handleBlur = () => {
-  //     // Check if the email is valid when the user finishes writing
-  //     const isValidEmail =
-  //       /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(
-  //         email
-  //       );
-  //     setIsInvalid(!isValidEmail);
-  //   };
+  //     if (loading === false) {
+  //       navigate("/Explore")
+  // }
+  React.useEffect(() => {
+    if (result && result.message === "Login successful") {
+      localStorage.setItem("user", result.user);
+      navigate("/Explore");
+    }
+  }, [result, navigate]);
+  // useEffect(() => {
+  //   if (result?.message === "Login successful" && !localStorage.getItem("user")) {
+  //     localStorage.setItem("user", result.user);
+  //     navigate("/Explore");
+  //   }
+  // }, [result, navigate]);
+  
 
   const [isVisible, setIsVisible] = React.useState(false);
 

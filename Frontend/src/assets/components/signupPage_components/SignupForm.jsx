@@ -78,6 +78,12 @@ const SignupForm = () => {
     if (loading === false) {
         navigate("/Explore")
     }
+    // React.useEffect(() => {
+    //     if (result && result.message === "Signup successful") {
+    //       localStorage.setItem("user", result.user);
+    //       navigate("/Login");
+    //     }
+    //   }, [result, navigate]);
 
     return (
         <div className="w-full flex flex-row">

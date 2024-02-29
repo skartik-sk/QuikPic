@@ -18,9 +18,14 @@ import {
   Button,
   useDisclosure,
 } from "@nextui-org/react";
+import { logout } from "../../redux/reducers/LogoutReducer";
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const SettingNav = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const dispatch = useDispatch();
+  const navigateTo = useNavigate();
   const iconClasses =
     "text-xl text-default-500 pointer-events-none flex-shrink-0";
   // const {onOpen} = useDisclosure();
@@ -28,9 +33,25 @@ const SettingNav = () => {
   // State to track active section
   const [activeSection, setActiveSection] = useState(null);
 
+  const handleLogout = () => {
+    dispatch(logout())
+      .then(() => {
+        // Redirect or perform any other action after successful logout
+        navigateTo("/Login")
+        console.log("User logged out successfully!");
+      })
+      .catch((error) => {
+        // Handle logout error
+        console.error("Logout error:", error);
+      });
+  
+    // Close the modal
+    onOpenChange(false);
+  };
+  
   return (
-    <div className="flex" style={{ gap: "6rem" }}>
-      <div style={{ width: "25%" }}>
+    <div className="flex" style={{ gap: "6rem",width: "100%"  }}>
+      <div >
         <ListboxWrapper>
           <Listbox variant="flat" aria-label="Listbox menu with descriptions">
             <ListboxItem
@@ -76,11 +97,11 @@ const SettingNav = () => {
                         <Button
                           color="danger"
                           variant="light"
-                          onPress={onClose}
+                          onClick={onClose}
                         >
                           No, Just Kidding!
                         </Button>
-                        <Button color="primary" onPress={onClose}>
+                        <Button color="primary" onClick={handleLogout}>
                           Yes, Log me out!
                         </Button>
                       </ModalFooter>
@@ -118,7 +139,7 @@ const SettingNav = () => {
         </ListboxWrapper>
       </div>
 
-      <div style={{ width: "100%" }}>
+      <div style={{width:"full"}}>
         {/* Render content based on active section */}
         {activeSection === "edit" && (
           <div>
@@ -128,11 +149,11 @@ const SettingNav = () => {
         {activeSection === "reset" && (
           <div>Reset Password Content Goes Here</div>
         )}
-        {activeSection === "logout" && (
+        {/* {activeSection === "logout" && (
           <div>
             <Logout />
           </div>
-        )}
+        )} */}
         {activeSection === "help" && (
           <div>
             <Help />

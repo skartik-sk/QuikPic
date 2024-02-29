@@ -7,6 +7,8 @@ import  postViewReducers  from "../reducers/PostViewReducers";
 import  createPostReducers  from "../reducers/CreatePostReducer";
 import  signupReducers  from "../reducers/SignupReducer";
 import  forgotpasswordReducers  from "../reducers/ForgotPasswordReducer";
+import  logoutReducers  from "../reducers/LogoutReducer";
+// import authReducers from "../reducers/AuthReducer";
 
 export const store = configureStore({
   reducer: {
@@ -18,5 +20,7 @@ export const store = configureStore({
     signup: signupReducers,
     postcard: PostCardReducer,
     forgotpassword: forgotpasswordReducers,
+    logout: logoutReducers,
+    // auth: authReducers,
   },
 });

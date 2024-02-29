@@ -6,6 +6,8 @@ import {
   Routes,
   useNavigate,
 } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { Navigate } from "react-router-dom";
 import {
   Spinner,
   RadioGroup,
@@ -61,11 +63,16 @@ function MainLayout({ children }) {
   );
 }
 function PageWithLayout({ component: Component }) {
+  // const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+
   return (
     <MainLayout>
       <Component />
     </MainLayout>
-  );
+  ) 
+  // : (
+  //   <Navigate to="/Login" replace />
+  // );
 }
 
 export default function App() {
@@ -101,6 +108,8 @@ export default function App() {
                 </MainLayout>
               </Route> */}
           </Routes>
+
+
 
         </NextThemesProvider>
       </NextUIProvider>

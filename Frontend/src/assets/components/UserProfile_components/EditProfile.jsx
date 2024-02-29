@@ -3,7 +3,7 @@ import { Badge, Avatar, Input, Textarea, Button } from "@nextui-org/react";
 
 const EditProfile = () => {
     return (
-        <div className="w-full flex flex-col" style={{ gap: "3.5rem", paddingRight:"15rem", marginBottom:"3rem" }}>
+        <div className="flex flex-col" style={{ gap: "3.5rem", paddingRight:"15rem", marginBottom:"3rem", width:"155%" }}>
             <div>
                 <h2 style={{ fontSize: "1.5rem", fontWeight: "bolder"}}>Edit Profile</h2>
             </div>
