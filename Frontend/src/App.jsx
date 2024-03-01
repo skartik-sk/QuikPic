@@ -65,21 +65,18 @@ function MainLayout({ children }) {
 }
 function PageWithLayout({ component: Component }) {
   // const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(me());
-  }, []);
+
   const navigate = useNavigate();
   const state = useSelector((state) => state.me);
   const data = useSelector((state) => state.me.data.message);
   const userId = useSelector((state) => state.me.data._id);
   console.log(data);
-  useEffect(() => {
-    console.log(state);
-    if (data === "Unauthorized") {
-      navigate("/Login");
-    }
-  }, [data, navigate]);
+  // useEffect(() => {
+  //   console.log(state);
+  //   if (data == undefined) {
+  //     navigate("/Login");
+  //   }
+  // }, [data]);
   return (
     <MainLayout>
       <Component />
@@ -91,6 +88,10 @@ function PageWithLayout({ component: Component }) {
 }
 
 export default function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(me());
+  }, []);
   const navigate = useNavigate();
 
   return (
