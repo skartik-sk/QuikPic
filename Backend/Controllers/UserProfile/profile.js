@@ -6,14 +6,18 @@ import cloudinary from "../../Utils/coudney.js";
 // Controller function to get user profile
 export const getUserProfile = async (req, res) => {
   try {
-    console.log(res.user.id._id)
+    if(res.statusCode === 401){
+      
+      return res.status(404).json({ msg: 'User not found' });
+     
+    }
     const userProfile = await UserModel.findById( res.user.id._id );
     
     if (!userProfile) {
       return res.status(404).json({ msg: 'User profile not found' });
-    }
+    } 
     
-    res.json(userProfile);
+    res.status(200).json(userProfile);
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server Error');

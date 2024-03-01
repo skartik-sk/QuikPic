@@ -31,6 +31,7 @@ import Popupcard from "./Popupcard";
 import { useDispatch, useSelector } from "react-redux";
 import { bookmark, like } from "../../redux/reducers/PostCardReducer";
 import { useNavigate } from "react-router-dom";
+import { fetchExplore } from "../../redux/reducers/ExploreReducer";
 const PostCard = ({ data }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -39,23 +40,30 @@ const PostCard = ({ data }) => {
   //in complete
   //! to add functionality to change the value of liked and bookmarked
   // const data = useSelector((state) => state.postcard.liked);
-  const userId = localStorage.getItem("user");
+  const userId = useSelector((state) => state.me.data._id);
+  const bookmarkedPosts = useSelector((state) => state.me.data.savedPosts);
   console.log(userId);
   console.log(data.likes);
   console.log(data.likes.includes(userId));
   if (data.likes.includes(userId) && liked === false) {
-    console.log("hello");
+  
     setLiked(true);
   } else if (data.likes.includes(userId) == false && liked === true) {
     setLiked(false);
   }
+  if (bookmarkedPosts.includes(userId) && bookmarked === false) {
+    setBokmarked(true);
+  } else if (bookmarkedPosts.includes(userId) == false && bookmarked === true) {
+    setBokmarked(false);
+  }
+  
 
   // const bookmarked = useSelector((state) => state.postcard.bookmarked);
   const postviewPage = () => {
     navigate(`/postview/${data._id}`);
   };
 
-  useEffect(() => {}, [liked, bookmarked]);
+  
 
   return (
     <div>
@@ -121,6 +129,7 @@ const PostCard = ({ data }) => {
               <button
                 onClick={(e) => {
                   dispatch(like({ id: data._id }));
+                  dispatch(fetchExplore());
                 }}
               >
                 {liked == true ? (
@@ -172,9 +181,12 @@ const PostCard = ({ data }) => {
 
             <button
               onClick={(e) => {
+
                 dispatch(bookmark({ id: data._id }));
-                bookmarked === true ? setBokmarked(false) : setBokmarked(true);
-              }}
+                dispatch(fetchExplore());
+
+           
+                  }}
             >
               {bookmarked === true ? (
                 <FontAwesomeIcon

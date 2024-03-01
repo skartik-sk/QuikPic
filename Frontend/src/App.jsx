@@ -1,12 +1,12 @@
 import { ThemeProvider as NextThemesProvider } from "next-themes";
-import { NextUIProvider } from "@nextui-org/react";
+import { NextUIProvider, user } from "@nextui-org/react";
 import {
   BrowserRouter as Router,
   Route,
   Routes,
   useNavigate,
 } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 import {
   Spinner,
@@ -31,6 +31,7 @@ import { ExplorePage } from "./assets/pages/ExplorePage";
 import SideNav from "./assets/components/globle_Components/SideNav";
 import SideNav_expanded from "./assets/components/globle_Components/SideNav_expanded";
 import BottomNav from "./assets/components/globle_Components/BottomNav";
+import { me } from "./assets/redux/reducers/MeReducer";
 
 function MainLayout({ children }) {
   function useWindowWidth() {
@@ -64,12 +65,26 @@ function MainLayout({ children }) {
 }
 function PageWithLayout({ component: Component }) {
   // const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(me());
+  }, []);
+  const navigate = useNavigate();
+  const state = useSelector((state) => state.me);
+  const data = useSelector((state) => state.me.data.message);
+  const userId = useSelector((state) => state.me.data._id);
+  console.log(data);
+  useEffect(() => {
+    console.log(state);
+    if (data === "Unauthorized") {
+      navigate("/Login");
+    }
+  }, [data, navigate]);
   return (
     <MainLayout>
       <Component />
     </MainLayout>
-  ) 
+  );
   // : (
   //   <Navigate to="/Login" replace />
   // );
@@ -77,6 +92,7 @@ function PageWithLayout({ component: Component }) {
 
 export default function App() {
   const navigate = useNavigate();
+
   return (
     <>
       <NextUIProvider navigate={navigate}>
@@ -86,13 +102,34 @@ export default function App() {
           <Routes>
             <Route path="/Login" element={<LoginPage />} />
             <Route path="/Signup" element={<SignupPage />} />
-            <Route path="/" element={<PageWithLayout component={UserFeedPage} />} />
-            <Route path="/Explore" element={<PageWithLayout component={ExplorePage} />} />
-            <Route path="/CreatePost" element={<PageWithLayout component={CreatePostPage} />} />
-            <Route path="/ViewPost" element={<PageWithLayout component={PostViewPage} />} />
-            <Route path="/UserProfile" element={<PageWithLayout component={UserProfilePage} />} />
-            <Route path="/Setting" element={<PageWithLayout component={SettingPage} />} />
-            <Route path="/postview/:id" element={<PageWithLayout component={PostViewPage} />} />
+            <Route
+              path="/"
+              element={<PageWithLayout component={UserFeedPage} />}
+            />
+            <Route
+              path="/Explore"
+              element={<PageWithLayout component={ExplorePage} />}
+            />
+            <Route
+              path="/CreatePost"
+              element={<PageWithLayout component={CreatePostPage} />}
+            />
+            <Route
+              path="/ViewPost"
+              element={<PageWithLayout component={PostViewPage} />}
+            />
+            <Route
+              path="/UserProfile"
+              element={<PageWithLayout component={UserProfilePage} />}
+            />
+            <Route
+              path="/Setting"
+              element={<PageWithLayout component={SettingPage} />}
+            />
+            <Route
+              path="/postview/:id"
+              element={<PageWithLayout component={PostViewPage} />}
+            />
 
             {/* <Route>
                 <MainLayout>
@@ -108,9 +145,6 @@ export default function App() {
                 </MainLayout>
               </Route> */}
           </Routes>
-
-
-
         </NextThemesProvider>
       </NextUIProvider>
     </>

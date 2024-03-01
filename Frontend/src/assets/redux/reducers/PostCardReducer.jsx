@@ -35,6 +35,7 @@ export const bookmark = createAsyncThunk("bookmark", async (payload) => {
     credentials: "include",
   };
   const response = await fetch(url, option);
+  console.log(response.json());
   return response.json();
 });
 export const PostCardReducer = createSlice({

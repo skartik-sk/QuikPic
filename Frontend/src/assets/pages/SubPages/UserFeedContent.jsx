@@ -16,7 +16,7 @@ const UserFeedContent = () => {
     <div>
       <TopNav />
       <Card className="flex-row flex-wrap gap-3  justify-center ">
-        {Data === undefined ? (
+        {Data.length <1 ? (
           <div>Kisi ko follow kar lo yar</div>
         ) : (
           Data.map((item) => {
