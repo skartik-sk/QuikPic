@@ -51,7 +51,7 @@ const LoginForm = () => {
   //     if (loading === false) {
   //       navigate("/Explore")
   // }
-  React.useEffect(() => {
+  useEffect(() => {
     if (result && result.message === "Login successful") {
       localStorage.setItem("user", result.user);
       navigate("/Explore");
