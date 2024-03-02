@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { fetchFeed } from "../../redux/reducers/UserFeedReducers";
 const UserFeedContent = () => {
   const Data = useSelector((state) => state.userfeed.data);
+  console.log(Data)
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchFeed());

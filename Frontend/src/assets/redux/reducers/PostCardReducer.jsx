@@ -23,6 +23,19 @@ export const like = createAsyncThunk("like", async (payload) => {
   const response = await fetch(url, option);
   return response.json();
 });
+export const delPost = createAsyncThunk("delPost", async (payload) => {
+  const id = payload.id;
+  const url = `http://localhost:1234/post/${id}`;
+  const option = {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  };
+  const response = await fetch(url, option);
+  return response.json();
+});
 export const bookmark = createAsyncThunk("bookmark", async (payload) => {
   const id = payload.id;
   const url = `http://localhost:1234/post/${id}/saveAPost`;
@@ -36,6 +49,20 @@ export const bookmark = createAsyncThunk("bookmark", async (payload) => {
   const response = await fetch(url, option);
   return response.json();
 });
+export const follow = createAsyncThunk("follow", async (payload) => {
+  const id = payload.id;
+  const url = `http://localhost:1234/userFeed/follow/${id}`;
+  const option = {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  };
+  const response = await fetch(url, option);
+  return response.json();
+});
+
 export const PostCardReducer = createSlice({
   name: "PostCardReducer",
   initialState,
@@ -78,6 +105,16 @@ export const PostCardReducer = createSlice({
       state.loading = false;
       state.data = [];
       state.error = action.error.message;
+    });
+    //! todo to be complete
+    builder.addCase(follow.pending, (state) => {
+
+    });
+    builder.addCase(follow.fulfilled, (state, action) => {
+     
+    });
+    builder.addCase(follow.rejected, (state, action) => {
+      
     });
   },
 });

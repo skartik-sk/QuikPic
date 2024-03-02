@@ -26,7 +26,6 @@ const ExploreContent = () => {
       <TopNav />
       <Card className="flex-row flex-wrap gap-3  justify-center  ">
         {Data.map((item) => {
-          console.log(item);
           return <PostCard key={item._id} data={item} />;
         })}
       </Card>

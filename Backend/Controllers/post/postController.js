@@ -54,8 +54,11 @@ export const getPostById = async (req, res) => {
 export const getAllPosts = async (req, res) => {
   try {
     // Code to fetch all posts
-    const posts = await Post.find();
-    res.json(posts);
+  
+    const populatedPosts = await Post.find().populate('createdBy', 'username profileImage bio followers following');
+    
+    res.json(populatedPosts);
+
   } catch (error) {
     res.status(500).json({ error: "Internal server error" });
   }

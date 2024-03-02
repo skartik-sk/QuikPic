@@ -6,7 +6,7 @@ import {
   Navbar,
   NavbarBrand,
 } from "@nextui-org/react";
-import React from "react";
+import React,{useState,useEffect} from "react";
 import {
   Dropdown,
   DropdownTrigger,
@@ -23,8 +23,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGear } from "@fortawesome/free-solid-svg-icons";
 import Bookmark from "../../icons/Navbar/Bookmark";
 import { Link } from "react-router-dom";
-
+import { useDispatch, useSelector } from "react-redux";
 const SideNav = () => {
+  const data = useSelector((state) => state.me.data);
+const getProfile = () => {
+  if (data.profileImage == "") {
+    return "https://www.pngall.com/wp-content/uploads/5/User-Profile-PNG-Image.png";
+  } else {
+    return data.profileImage;
+  }
+};
   return (
     <div style={{ width: "120px", top: "0", height: "fit-content" }}>
       <Card
@@ -39,7 +47,7 @@ const SideNav = () => {
                   isBordered
                   as="button"
                   className="transition-transform"
-                  src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
+                  src={getProfile()}
                 />
               </DropdownTrigger>
               <DropdownMenu aria-label="Profile Actions" variant="flat">

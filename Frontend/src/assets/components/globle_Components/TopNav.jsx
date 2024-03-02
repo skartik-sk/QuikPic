@@ -31,7 +31,6 @@ const TopNav = () => {
       <NavbarContent justify="end">
         <NavbarItem>
           <Input
-            isClearable
             radius="lg"
             classNames={{
               label: "text-black/50 dark:text-white/90",
@@ -58,7 +57,24 @@ const TopNav = () => {
             startContent={
               <SearchIcon className="text-black/50 mb-0.5 dark:text-white/90 text-slate-400 pointer-events-none flex-shrink-0" />
             }
-          />
+            endContent={
+              <div className="flex items-center">
+                <label className="sr-only" htmlFor="currency">
+                  Currency
+                </label>
+                <select
+                  className="outline-none border-0 bg-transparent text-default-400 text-small"
+                  id="currency"
+                  name="currency"
+                >
+                  <option>UserName</option>
+                  <option>Bio</option>
+                  <option>Caption</option>
+                </select>
+              </div>
+            }
+            type="text"
+          ></Input>
         </NavbarItem>
 
         <NavbarItem>

@@ -15,7 +15,6 @@ import {
   AvatarGroup,
   Avatar,
   Dropdown,
-  Link,
   DropdownTrigger,
   DropdownMenu,
   DropdownItem,
@@ -26,10 +25,11 @@ import {
   User,
   Spacer,
 } from "@nextui-org/react";
+import { Link } from "react-router-dom";
 import { ThreeDot } from "../../icons/Navbar/ThreeDot";
 import Popupcard from "./Popupcard";
 import { useDispatch, useSelector } from "react-redux";
-import { bookmark, like } from "../../redux/reducers/PostCardReducer";
+import { bookmark, delPost, like } from "../../redux/reducers/PostCardReducer";
 import { useNavigate } from "react-router-dom";
 import { me } from "../../redux/reducers/MeReducer";
 import { fetchExplore } from "../../redux/reducers/ExploreReducer";
@@ -44,7 +44,7 @@ const PostCard = ({ data }) => {
   const userId = useSelector((state) => state.me.data._id);
   const bookmarkedPosts = useSelector((state) => state.me.data.savedPosts);
   console.log(userId);
-  console.log(bookmarkedPosts)
+  console.log(bookmarkedPosts);
   // useEffect(() => {
   //   dispatch(me());
   //   dispatch(fetchExplore());
@@ -62,14 +62,28 @@ const PostCard = ({ data }) => {
   // } else if (bookmarkedPosts.includes(data._id) == false && bookmarked === true) {
   //   setBokmarked(false);
   // }
-  
 
   // const bookmarked = useSelector((state) => state.postcard.bookmarked);
   const postviewPage = () => {
     navigate(`/postview/${data._id}`);
   };
 
-  
+  const [isCreated, setIsCreator] = useState(false);
+  useEffect(() => {
+    if (data.createdBy._id === userId) {
+      setIsCreator(true);
+    } else {
+      setIsCreator(false);
+    }
+  }, [data.createdBy._id, userId]);
+
+  const getProfile = () => {
+    if (data.createdBy.profileImage == "") {
+      return "https://www.pngall.com/wp-content/uploads/5/User-Profile-PNG-Image.png";
+    } else {
+      return data.createdBy.profileImage;
+    }
+  };
 
   return (
     <div>
@@ -82,16 +96,15 @@ const PostCard = ({ data }) => {
             <PopoverTrigger>
               <User
                 as="button"
-                name="Zoe Lang"
-                description="Product Designer"
+                name={data.createdBy.username}
                 className="transition-transform"
                 avatarProps={{
-                  src: "https://i.pravatar.cc/150?u=a04258114e29026702d",
+                  src: getProfile(),
                 }}
               />
             </PopoverTrigger>
             <PopoverContent className="p-1">
-              <Popupcard />
+              <Popupcard data={data.createdBy} />
             </PopoverContent>
           </Popover>
 
@@ -102,12 +115,32 @@ const PostCard = ({ data }) => {
               </button>
             </DropdownTrigger>
             <DropdownMenu variant="faded" aria-label="Static Actions">
-              <DropdownItem key="new">New file</DropdownItem>
-              <DropdownItem key="copy">Copy link</DropdownItem>
-              <DropdownItem key="edit">Edit file</DropdownItem>
-              <DropdownItem key="delete" className="text-danger" color="danger">
-                Delete file
+              <DropdownItem key="new">
+                <Link to="/CreatePost">Create Post</Link>
               </DropdownItem>
+
+              <DropdownItem key="copy">Repost</DropdownItem>
+              {isCreated ? (
+                <DropdownItem key="copy">Edit Post</DropdownItem>
+              ) : null}
+              {isCreated ? (
+                <DropdownItem
+                  key="delete"
+                  className="text-danger"
+                  color="danger"
+                  onClick={(e) => {dispatch(delPost({ id: data._id })); dispatch(fetchExplore());}}
+                >
+                  Delete Post
+                </DropdownItem>
+              ) : (
+                <DropdownItem
+                  key="delete"
+                  className="text-danger"
+                  color="danger"
+                >
+                  Report Post
+                </DropdownItem>
+              )}
             </DropdownMenu>
           </Dropdown>
         </CardHeader>
@@ -187,11 +220,10 @@ const PostCard = ({ data }) => {
 
             <button
               onClick={(e) => {
-
                 dispatch(bookmark({ id: data._id }));
-                dispatch(me())
+                dispatch(me());
                 dispatch(fetchExplore());
-                  }}
+              }}
             >
               {bookmarkedPosts.includes(data._id) ? (
                 <FontAwesomeIcon

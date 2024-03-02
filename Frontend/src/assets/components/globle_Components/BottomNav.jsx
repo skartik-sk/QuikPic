@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import { CreatPost } from "../../icons/Navbar/creatPost";
 import { Explore } from "../../icons/Navbar/Explore";
 import { Message } from "../../icons/Navbar/Message";
@@ -17,8 +17,16 @@ import {
 
 import Bookmark from "../../icons/Navbar/Bookmark";
 import { Link } from "react-router-dom";
-
+import { useDispatch, useSelector } from "react-redux";
 const BottomNav = () => {
+const data = useSelector((state) => state.me.data);
+const getProfile = () => {
+  if (data.profileImage == "") {
+    return "https://www.pngall.com/wp-content/uploads/5/User-Profile-PNG-Image.png";
+  } else {
+    return data.profileImage;
+  }
+};
   return (
     <div style={{ width: "100vh", bottom: "0", height: "70px", zIndex: "100" }}>
       <Card
@@ -57,7 +65,7 @@ const BottomNav = () => {
                   isBordered
                   as="button"
                   className="transition-transform"
-                  src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
+                  src={getProfile()}
                 />
               </DropdownTrigger>
               <DropdownMenu aria-label="Profile Actions" variant="flat">
