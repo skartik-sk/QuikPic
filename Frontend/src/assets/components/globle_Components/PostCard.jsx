@@ -31,31 +31,37 @@ import Popupcard from "./Popupcard";
 import { useDispatch, useSelector } from "react-redux";
 import { bookmark, like } from "../../redux/reducers/PostCardReducer";
 import { useNavigate } from "react-router-dom";
+import { me } from "../../redux/reducers/MeReducer";
 import { fetchExplore } from "../../redux/reducers/ExploreReducer";
 const PostCard = ({ data }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [bookmarked, setBokmarked] = useState(false);
-  const [liked, setLiked] = useState(false);
+  // const [bookmarked, setBokmarked] = useState(false);
+  // const [liked, setLiked] = useState(false);
   //in complete
   //! to add functionality to change the value of liked and bookmarked
   // const data = useSelector((state) => state.postcard.liked);
   const userId = useSelector((state) => state.me.data._id);
   const bookmarkedPosts = useSelector((state) => state.me.data.savedPosts);
   console.log(userId);
-  console.log(data.likes);
-  console.log(data.likes.includes(userId));
-  if (data.likes.includes(userId) && liked === false) {
-  
-    setLiked(true);
-  } else if (data.likes.includes(userId) == false && liked === true) {
-    setLiked(false);
-  }
-  if (bookmarkedPosts.includes(userId) && bookmarked === false) {
-    setBokmarked(true);
-  } else if (bookmarkedPosts.includes(userId) == false && bookmarked === true) {
-    setBokmarked(false);
-  }
+  console.log(bookmarkedPosts)
+  // useEffect(() => {
+  //   dispatch(me());
+  //   dispatch(fetchExplore());
+  // }, [data]);
+  // console.log(data.likes);
+  // console.log(data.likes.includes(userId));
+  // if (data.likes.includes(userId) && liked === false) {
+  //   setLiked(true);
+  // } else if (data.likes.includes(userId) == false && liked === true) {
+  //   setLiked(false);
+  // }
+
+  // if (bookmarkedPosts.includes(data._id) && bookmarked === false) {
+  //   setBokmarked(true);
+  // } else if (bookmarkedPosts.includes(data._id) == false && bookmarked === true) {
+  //   setBokmarked(false);
+  // }
   
 
   // const bookmarked = useSelector((state) => state.postcard.bookmarked);
@@ -132,7 +138,7 @@ const PostCard = ({ data }) => {
                   dispatch(fetchExplore());
                 }}
               >
-                {liked == true ? (
+                {data.likes.includes(userId) ? (
                   <FontAwesomeIcon
                     icon={faHeart}
                     style={{ color: "#e32400", fontSize: "20px" }}
@@ -183,12 +189,11 @@ const PostCard = ({ data }) => {
               onClick={(e) => {
 
                 dispatch(bookmark({ id: data._id }));
+                dispatch(me())
                 dispatch(fetchExplore());
-
-           
                   }}
             >
-              {bookmarked === true ? (
+              {bookmarkedPosts.includes(data._id) ? (
                 <FontAwesomeIcon
                   icon={faBookmark}
                   style={{ color: "#FFD43B", fontSize: "20px" }}

@@ -53,7 +53,7 @@ const LoginForm = () => {
   // }
   useEffect(() => {
     if (result && result.message === "Login successful") {
-      localStorage.setItem("user", result.user);
+      // localStorage.setItem("user", result.user);
       navigate("/Explore");
     }
   }, [result, navigate]);

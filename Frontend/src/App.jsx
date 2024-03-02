@@ -66,11 +66,11 @@ function MainLayout({ children }) {
 function PageWithLayout({ component: Component }) {
   // const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
-  const navigate = useNavigate();
-  const state = useSelector((state) => state.me);
-  const data = useSelector((state) => state.me.data.message);
-  const userId = useSelector((state) => state.me.data._id);
-  console.log(data);
+  // const navigate = useNavigate();
+  // const state = useSelector((state) => state.me);
+  // const data = useSelector((state) => state.me.data.message);
+  // const userId = useSelector((state) => state.me.data._id);
+  // console.log(data);
   // useEffect(() => {
   //   console.log(state);
   //   if (data == undefined) {
@@ -93,7 +93,7 @@ export default function App() {
     dispatch(me());
   }, []);
   const navigate = useNavigate();
-
+const isAuthenticated = useSelector((state) => state.me.isAuth);
   return (
     <>
       <NextUIProvider navigate={navigate}>
@@ -105,31 +105,31 @@ export default function App() {
             <Route path="/Signup" element={<SignupPage />} />
             <Route
               path="/"
-              element={<PageWithLayout component={UserFeedPage} />}
+              element={isAuthenticated?<PageWithLayout component={UserFeedPage} />:<LoginPage />}
             />
             <Route
               path="/Explore"
-              element={<PageWithLayout component={ExplorePage} />}
+              element={isAuthenticated?<PageWithLayout component={ExplorePage} />:<LoginPage />}
             />
             <Route
               path="/CreatePost"
-              element={<PageWithLayout component={CreatePostPage} />}
+              element={isAuthenticated?<PageWithLayout component={CreatePostPage} />:<LoginPage />}
             />
             <Route
               path="/ViewPost"
-              element={<PageWithLayout component={PostViewPage} />}
+              element={isAuthenticated?<PageWithLayout component={PostViewPage} />:<LoginPage />}
             />
             <Route
               path="/UserProfile"
-              element={<PageWithLayout component={UserProfilePage} />}
+              element={isAuthenticated?<PageWithLayout component={UserProfilePage} />:<LoginPage />}
             />
             <Route
               path="/Setting"
-              element={<PageWithLayout component={SettingPage} />}
+              element={isAuthenticated?<PageWithLayout component={SettingPage} />:<LoginPage />}
             />
             <Route
               path="/postview/:id"
-              element={<PageWithLayout component={PostViewPage} />}
+              element={isAuthenticated?<PageWithLayout component={PostViewPage} />:<LoginPage />}
             />
 
             {/* <Route>

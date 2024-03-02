@@ -2,10 +2,10 @@ import { user } from "@nextui-org/theme";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  loading: true,
+  loading: false,
+  isAuth: false,
   data: [],
   error: "",
-  value: 0,
 };
 export const me = createAsyncThunk("me", async () => {
   const url = "http://localhost:1234/user/profile";
@@ -31,6 +31,10 @@ export const MeReducer = createSlice({
     builder.addCase(me.fulfilled, (state, action) => {
       state.loading = false;
       state.data = action.payload;
+      if (action.payload.message == "Unauthorized"){
+        state.isAuth = false;
+      } 
+      else{state.isAuth = true;}
       state.error = "";
     });
     builder.addCase(me.rejected, (state, action) => {

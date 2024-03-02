@@ -24,7 +24,6 @@ export const like = createAsyncThunk("like", async (payload) => {
   return response.json();
 });
 export const bookmark = createAsyncThunk("bookmark", async (payload) => {
-  console.log(payload.id);
   const id = payload.id;
   const url = `http://localhost:1234/post/${id}/saveAPost`;
   const option = {
@@ -35,7 +34,6 @@ export const bookmark = createAsyncThunk("bookmark", async (payload) => {
     credentials: "include",
   };
   const response = await fetch(url, option);
-  console.log(response.json());
   return response.json();
 });
 export const PostCardReducer = createSlice({
