@@ -10,8 +10,8 @@ const Help = () => {
 
             <div>
                 <h3 style={{fontSize:"1.1rem"}}>Contact Email</h3>
-                <Link isExternal href="https://github.com/nextui-org/nextui">
-                    https://github.com/nextui-org/nextui
+                <Link isExternal href="startup.knowflow@gmail.com">
+                    startup.knowflow@gmail.com
                 </Link>
             </div>
 

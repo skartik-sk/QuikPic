@@ -21,6 +21,7 @@ import {
 import { logout } from "../../redux/reducers/LogoutReducer";
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import ForgotPassword from "../globle_Components/ForgotPassword.jsx";
 
 const SettingNav = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -148,7 +149,9 @@ const SettingNav = () => {
           </div>
         )}
         {activeSection === "reset" && (
-          <div>Reset Password Content Goes Here</div>
+          <div>
+            <h1 style={{fontSize:"1rem"}}>To reset your password....Click here <ForgotPassword/></h1>
+          </div>
         )}
         {/* {activeSection === "logout" && (
           <div>
