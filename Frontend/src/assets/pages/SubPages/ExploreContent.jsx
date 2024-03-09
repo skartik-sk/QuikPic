@@ -11,12 +11,12 @@ const ExploreContent = () => {
 
   //!todo to make a protective routing
   // if (Responce === "Unauthorized" || Data === undefined) {
-    //   console.log("yoyo");
-    //   navigate("/Login");
-    // }
-    // console.log(Data);
-    
-    const Data = useSelector((state) => state.explore.data);
+  //   console.log("yoyo");
+  //   navigate("/Login");
+  // }
+  // console.log(Data);
+
+  const Data = useSelector((state) => state.explore.data);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchExplore());
