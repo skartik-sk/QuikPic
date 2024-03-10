@@ -9,7 +9,7 @@ export const addComment = async (req, res) => {
   try {
     const post = await Post.findById(postId);
     post.comments.push({ comment: comment, commenter: userId });
-
+ 
     await post.save();
 
     res.status(200).json(post);

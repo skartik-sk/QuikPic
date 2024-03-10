@@ -52,7 +52,7 @@ const CreatePostContent = () => {
     }
     setValue(100);
     const formData = new FormData();
-
+console.log(acceptedFiles[0])
     formData.append("photo", acceptedFiles[0]);
     formData.append("caption", caption);
     console.log(formData);
@@ -136,7 +136,7 @@ const CreatePostContent = () => {
                     className="flex flex-col py-4 justify-center align-middle items-center"
                   >
                     <div {...getRootProps()}>
-                      <input  type="file"  accept="image/png, image/jpeg"  {...getInputProps()} />
+                      <input  type="file"  accept=".png, .jpg, .jpeg" {...getInputProps()} />
                       {isDragActive ? (
                         <p>Drop the files here ...</p>
                       ) : (

@@ -11,7 +11,7 @@ const router = express.Router();
 
 //Route for get user profile
 router.route("/profile").get(isAuth, getUserProfile);
-
+ 
 //Route for update user profile
 router.route("/updateProfile").post(isAuth,upload.single('userphoto'), updateUserProfile);
 

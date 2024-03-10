@@ -29,13 +29,11 @@ export const fetchUserProfile = createAsyncThunk(
 export const updateProfile = createAsyncThunk(
   "user/updateProfile",
   async (formData) => {
+    console.log(formData)
     const url = "http://localhost:1234/user/updateProfile";
     const option = {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
+      body: formData,
       credentials: "include",
     };
     const response = await fetch(url, option);

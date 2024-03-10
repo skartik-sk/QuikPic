@@ -7,6 +7,7 @@ const initialState = {
   value: 0,
 };
 export const createPost = createAsyncThunk("createPost", async (payload) => {
+  console.log(payload)
   const url = "http://localhost:1234/post";
   const option = { method: "POST",body:payload, credentials: "include" };
   const response = await fetch(url, option);

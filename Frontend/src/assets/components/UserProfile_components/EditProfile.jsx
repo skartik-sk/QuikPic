@@ -2,12 +2,18 @@ import React, { useState } from "react";
 import { Badge, Avatar, Input, Textarea, Button } from "@nextui-org/react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateProfile } from "../../redux/reducers/UpdateUserReducer";
+// import { set } from "mongoose";
 
 const EditProfile = () => {
 
     const dispatch = useDispatch();
     const data = useSelector((state) => state.me.data);
-    const [preview, setPreview] = useState(data.profileImage || "https://www.pngall.com/wp-content/uploads/5/User-Profile-PNG-Image.png");
+    const [img,setImg] = useState(null)
+    const [username,setUsername] = useState(data.username || null)
+    const [email,setEmail] = useState(data.username || null)
+    const [bio,setBio] = useState(data.username || null)
+    const [gender,setGender] = useState(data.username || null)
+      const [preview, setPreview] = useState(data.profileImage || "https://www.pngall.com/wp-content/uploads/5/User-Profile-PNG-Image.png");
     const [formData, setFormData] = useState({
         username: data.username || "",
         email: data.email || "",
@@ -27,13 +33,21 @@ const EditProfile = () => {
     const handleImageChange = (e) => {
         const file = e.target.files[0];
         // console.log(file);
+        setImg(file)
         setFormData({ ...formData, profileImage: file });
         setPreview(URL.createObjectURL(file));
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(updateProfile(formData));
+        const test = new FormData();
+        test.append("username", formData.username);
+        test.append("email", formData.email);
+        test.append("userphoto",img );
+        test.append("bio", formData.bio);
+        test.append("gender",formData.gender);
+
+        dispatch(updateProfile(test));
     };
 
     return (
@@ -74,7 +88,7 @@ const EditProfile = () => {
                         <input
                             id="profileImageInput"
                             type="file"
-                            name="profileImage"
+                            name="userphoto"
                             accept=".png, .jpg, .jpeg"
                             onChange={handleImageChange}
                             style={{ display: "none" }}
@@ -90,8 +104,8 @@ const EditProfile = () => {
                                 label="Username"
                                 labelPlacement="outside"
                                 placeholder="Enter your name"
-                                value={formData.username}
-                                onChange={handleChange}
+                                value={username}
+                                onChange={()=>{setUsername(e.target.value)}}
 
                             />
                         </div>
@@ -104,8 +118,8 @@ const EditProfile = () => {
                                 label="Email"
                                 labelPlacement="outside"
                                 placeholder="Enter your email"
-                                value={formData.email}
-                                onChange={handleChange}
+                                value={email}
+                                onChange={()=>{setEmail(e.target.value)}}
                             />
                         </div>
                         <div className="flex w-full flex-wrap items-end md:flex-nowrap mb-6 md:mb-0 gap-4">
@@ -117,8 +131,8 @@ const EditProfile = () => {
                                 label="Gender"
                                 labelPlacement="outside"
                                 placeholder="Type your gender"
-                                value={formData.gender}
-                                onChange={handleChange}
+                                value={gender}
+                                onChange={()=>{setGender(e.target.value)}}
                             />
                         </div>
                         <div>
@@ -129,8 +143,8 @@ const EditProfile = () => {
                                 name="bio"
                                 labelPlacement="outside"
                                 placeholder="Tell us about yourself"
-                                value={formData.bio}
-                                onChange={handleChange}
+                                value={bio}
+                                onChange={()=>{setBio(e.target.value)}}
                                 type="text"
                             />
                         </div>
