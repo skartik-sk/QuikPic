@@ -9,10 +9,10 @@ const EditProfile = () => {
     const dispatch = useDispatch();
     const data = useSelector((state) => state.me.data);
     const [img,setImg] = useState(null)
-    const [username,setUsername] = useState(data.username || null)
-    const [email,setEmail] = useState(data.username || null)
-    const [bio,setBio] = useState(data.username || null)
-    const [gender,setGender] = useState(data.username || null)
+    // const [username,setUsername] = useState(data.username || null)
+    // const [email,setEmail] = useState(data.email || null)
+    // const [bio,setBio] = useState(data.bio || null)
+    // const [gender,setGender] = useState(data.gender || null)
       const [preview, setPreview] = useState(data.profileImage || "https://www.pngall.com/wp-content/uploads/5/User-Profile-PNG-Image.png");
     const [formData, setFormData] = useState({
         username: data.username || "",
@@ -41,7 +41,7 @@ const EditProfile = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         const test = new FormData();
-        test.append("username", formData.username);
+        test.append("username",formData.username );
         test.append("email", formData.email);
         test.append("userphoto",img );
         test.append("bio", formData.bio);
@@ -104,8 +104,8 @@ const EditProfile = () => {
                                 label="Username"
                                 labelPlacement="outside"
                                 placeholder="Enter your name"
-                                value={username}
-                                onChange={()=>{setUsername(e.target.value)}}
+                                value={formData.username}
+                                onChange={handleChange}
 
                             />
                         </div>
@@ -118,8 +118,8 @@ const EditProfile = () => {
                                 label="Email"
                                 labelPlacement="outside"
                                 placeholder="Enter your email"
-                                value={email}
-                                onChange={()=>{setEmail(e.target.value)}}
+                                value={formData.email}
+                                onChange={handleChange}
                             />
                         </div>
                         <div className="flex w-full flex-wrap items-end md:flex-nowrap mb-6 md:mb-0 gap-4">
@@ -131,8 +131,8 @@ const EditProfile = () => {
                                 label="Gender"
                                 labelPlacement="outside"
                                 placeholder="Type your gender"
-                                value={gender}
-                                onChange={()=>{setGender(e.target.value)}}
+                                value={formData.gender}
+                                onChange={handleChange}
                             />
                         </div>
                         <div>
@@ -143,8 +143,8 @@ const EditProfile = () => {
                                 name="bio"
                                 labelPlacement="outside"
                                 placeholder="Tell us about yourself"
-                                value={bio}
-                                onChange={()=>{setBio(e.target.value)}}
+                                value={formData.bio}
+                                onChange={handleChange}
                                 type="text"
                             />
                         </div>
