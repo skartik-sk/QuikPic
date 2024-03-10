@@ -1,76 +1,153 @@
-import React from "react";
+import React, { useState } from "react";
 import { Badge, Avatar, Input, Textarea, Button } from "@nextui-org/react";
+import { useDispatch, useSelector } from "react-redux";
+import { updateProfile } from "../../redux/reducers/UpdateUserReducer";
 
 const EditProfile = () => {
+
+    const dispatch = useDispatch();
+    const data = useSelector((state) => state.me.data);
+    const [preview, setPreview] = useState(data.profileImage || "https://www.pngall.com/wp-content/uploads/5/User-Profile-PNG-Image.png");
+    const [formData, setFormData] = useState({
+        username: data.username || "",
+        email: data.email || "",
+        gender: data.gender || "",
+        bio: data.bio || "",
+        profileImage: null,
+    });
+
+    // const getProfile = () => {
+    //     return data.profileImage || "https://www.pngall.com/wp-content/uploads/5/User-Profile-PNG-Image.png";
+    // };
+
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        // console.log(file);
+        setFormData({ ...formData, profileImage: file });
+        setPreview(URL.createObjectURL(file));
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        dispatch(updateProfile(formData));
+    };
+
     return (
-        <div className="flex flex-col" style={{ gap: "3.5rem", paddingRight:"15rem", marginBottom:"3rem", width:"155%" }}>
+        <div className="flex flex-col" style={{ gap: "3.5rem", paddingRight: "15rem", marginBottom: "3rem", width: "155%" }}>
             <div>
-                <h2 style={{ fontSize: "1.5rem", fontWeight: "bolder"}}>Edit Profile</h2>
+                <h2 style={{ fontSize: "1.5rem", fontWeight: "bolder" }}>Edit Profile</h2>
             </div>
 
-            <div className="flex items-center justify-center">
-                <Badge content="new" color="primary" size="sm">
+            {/* <Badge content="new" color="primary" size="sm">
                     <Avatar
                         style={{ width: "100px", height: "100px" }}
                         isBordered
                         radius="md"
                         color="primary"
                         size="lg"
-                        src="https://i.pravatar.cc/300?u=a042581f4e29026709d"
+                        src={getProfile()}
                     />
                 </Badge>
-            </div>
+                <Button
+                    color="primary"
+                    variant="shadow"
+                    style={{ paddingLeft: "1.5rem", paddingRight: "1.5rem" }}
+                    textValue="Submit"
+                    >
+                    Save
+                </Button> */}
 
             <div>
-                <div className="flex flex-col" style={{ gap: "2rem" }}>
-                    <div className="flex w-full flex-wrap items-end md:flex-nowrap mb-6 md:mb-0 gap-4">
-                        <Input
-                            variant="faded"
-                            key="outside"
-                            type="username"
-                            label="Username"
-                            labelPlacement="outside"
-                            placeholder="Enter your name"
+                <form onSubmit={handleSubmit}>
+                    <div className="flex justify-between flex-row" style={{marginBottom:"1rem"}}>
+                        <label htmlFor="profileImageInput">
+                            <img
+                                src={preview}
+                                alt="Profile Preview"
+                                style={{ width: "150px" , height: "100px", cursor: "pointer" }}
+                            />
+                        </label>
+                        <input
+                            id="profileImageInput"
+                            type="file"
+                            name="profileImage"
+                            accept=".png, .jpg, .jpeg"
+                            onChange={handleImageChange}
+                            style={{ display: "none" }}
                         />
                     </div>
-                    <div className="flex w-full flex-wrap items-end md:flex-nowrap mb-6 md:mb-0 gap-4">
-                        <Input
-                            variant="faded"
-                            key="outside"
-                            type="email"
-                            label="Email"
-                            labelPlacement="outside"
-                            placeholder="Enter your email"
-                        />
-                    </div>
-                    <div className="flex w-full flex-wrap items-end md:flex-nowrap mb-6 md:mb-0 gap-4">
-                        <Input
-                            variant="faded"
-                            key="outside"
-                            type="gender"
-                            label="Gender"
-                            labelPlacement="outside"
-                            placeholder="Type your gender"
-                        />
-                    </div>
-                    <div>
-                        <Textarea
-                            key="outside"
-                            variant="faded"
-                            label="Bio"
-                            labelPlacement="outside"
-                            placeholder="Tell us about yourself"
-                        />
-                    </div>
-                </div>
-            </div>
+                    <div className="flex flex-col" style={{ gap: "2rem" }}>
+                        <div className="flex w-full flex-wrap items-end md:flex-nowrap mb-6 md:mb-0 gap-4">
+                            <Input
+                                variant="faded"
+                                key="outside"
+                                type="text" // Changed type to text
+                                name="username" // Added name attribute
+                                label="Username"
+                                labelPlacement="outside"
+                                placeholder="Enter your name"
+                                value={formData.username}
+                                onChange={handleChange}
 
-            <div className="flex justify-end">
-                <Button color="primary" variant="shadow" style={{paddingLeft:"1.5rem", paddingRight:"1.5rem"}}>
-                    Submit
-                </Button>
-            </div>
-        </div>
+                            />
+                        </div>
+                        <div className="flex w-full flex-wrap items-end md:flex-nowrap mb-6 md:mb-0 gap-4">
+                            <Input
+                                variant="faded"
+                                key="outside"
+                                type="email" // Changed type to email
+                                name="email" // Added name attribute
+                                label="Email"
+                                labelPlacement="outside"
+                                placeholder="Enter your email"
+                                value={formData.email}
+                                onChange={handleChange}
+                            />
+                        </div>
+                        <div className="flex w-full flex-wrap items-end md:flex-nowrap mb-6 md:mb-0 gap-4">
+                            <Input
+                                variant="faded"
+                                key="outside"
+                                type="text" // Changed type to text
+                                name="gender" // Added name attribute
+                                label="Gender"
+                                labelPlacement="outside"
+                                placeholder="Type your gender"
+                                value={formData.gender}
+                                onChange={handleChange}
+                            />
+                        </div>
+                        <div>
+                            <Textarea
+                                key="outside"
+                                variant="faded"
+                                label="Bio"
+                                name="bio"
+                                labelPlacement="outside"
+                                placeholder="Tell us about yourself"
+                                value={formData.bio}
+                                onChange={handleChange}
+                                type="text"
+                            />
+                        </div>
+                    </div>
+
+                    <div className="flex justify-end" style= {{marginTop:"1rem"}}>
+                        <Button onClick={handleSubmit}
+                            color="primary"
+                            variant="shadow"
+                            style={{ paddingLeft: "1.5rem", paddingRight: "1.5rem" }}
+                            textValue="Submit">
+                            Submit
+                        </Button>
+                    </div>
+                </form>
+            </div >
+        </div >
     )
 }
 
