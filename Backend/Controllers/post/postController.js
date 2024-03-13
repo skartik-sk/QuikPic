@@ -40,8 +40,17 @@ export const posting = async (req, res) => {
 export const getPostById = async (req, res) => {
   try {
     const postId = req.params.id;
+    console.log(postId);
     // Code to fetch a post with the specified ID
-    const post = await Post.findById(postId);
+  const post = await Post.findById(postId)
+    .populate('createdBy', 'username profileImage bio followers following')
+    .populate({
+      path: 'comments',
+      populate: {
+        path: 'commenter',
+        select: 'username profileImage bio followers following',
+      },
+    });
     if (!post) {
       return res.status(404).json({ error: "Post not found" });
     }

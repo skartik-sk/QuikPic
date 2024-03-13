@@ -6,45 +6,8 @@ import ViewPostCardExpanded from "../../components/postViewPage_components/ViewP
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getPostByid } from "../../redux/reducers/PostViewReducers";
-
-const PostViewCentent = () => {
-  const data = useSelector((state) => state.getbyid.data);
-
-  function calculateTimeDifference(postCreationDate) {
-    const currentDate = new Date();
-    const postDate = new Date(postCreationDate);
-  
-    const differenceInMilliseconds = currentDate - postDate;
-  
-    const differenceInDays = Math.floor(
-      differenceInMilliseconds / (1000 * 60 * 60 * 24)
-    );
-    const differenceInHours = Math.floor(
-      (differenceInMilliseconds / (1000 * 60 * 60)) % 24
-    );
-    console.log(`${differenceInDays} days and ${differenceInHours} hours ago`)
-  if(differenceInDays===0){
-    return `${differenceInHours} hours ago`;
-  }
-  else if(differenceInHours ===0){
-    return `${differenceInDays} days ago`;
-  }
-  else{
-
-    return `${differenceInDays} days and ${differenceInHours} hours ago`;
-  }
-  }
-  const time = calculateTimeDifference(data.createdAt)
-
-
-
-  
-  const id = useParams();
-const dispatch = useDispatch();
-useEffect(() => {
-  dispatch(getPostByid(id));
-}, []);
-
+import { PorgressBar  } from "../../components/postCreationPage_components/PorgressBar";
+import {Progress} from "@nextui-org/react";
 function useWindowWidth() {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
@@ -56,12 +19,76 @@ function useWindowWidth() {
 
   return windowWidth;
 }
+
+function calculateTimeDifference(postCreationDate) {
+  const currentDate = new Date();
+  const postDate = new Date(postCreationDate);
+
+  const differenceInMilliseconds = currentDate - postDate;
+
+  const differenceInDays = Math.floor(
+    differenceInMilliseconds / (1000 * 60 * 60 * 24)
+  );
+  const differenceInHours = Math.floor(
+    (differenceInMilliseconds / (1000 * 60 * 60)) % 24
+  );
+  console.log(`${differenceInDays} days and ${differenceInHours} hours ago`)
+if(differenceInDays===0){
+  return `${differenceInHours} hours ago`;
+}
+else if(differenceInHours ===0){
+  return `${differenceInDays} days ago`;
+}
+else{
+
+  return `${differenceInDays} days and ${differenceInHours} hours ago`;
+}
+}
+function Loding({ id }) {
+  // const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const dispatch = useDispatch();
+  // const navigate = useNavigate();
+  // const state = useSelector((state) => state.me);
+  // const data = useSelector((state) => state.me.data.message);
+  // const userId = useSelector((state) => state.me.data._id);
+  // console.log(data);
+  useEffect(() => {
+    dispatch(getPostByid(id));
+  }, []);
+  return (
+    <>
+   <Progress
+            size="sm"
+            isIndeterminate
+            aria-label="Loading..."
+            className="max-w-md"
+          />
+    </>
+  );
+  // : (
+  //   <Navigate to="/Login" replace />
+  // );
+}
+const PostViewCentent =  () => {
+  const data = useSelector((state) => state.getbyid.data);
+  const {id} = useParams();
+  console.log(id);
+const dispatch = useDispatch();
+useEffect(() => {
+  console.log(id);
+  dispatch(getPostByid(id));
+  
+}, []);
+ const time = calculateTimeDifference(data.createdAt)
+ console.log(data);
+ console.log(data.error);
 const windowWidth = useWindowWidth();
   return (
     <div className="w-full flex-col">
       <TopNav />
-      <div className="flex flex-row justify-center">
 
+{data == undefined || data.error  || data.length <= 1 ? <Loding id ={id}/> : 
+      <div className="flex flex-row justify-center">
 
           {windowWidth > 768 && windowWidth < 1024 ? < ViewPostCardTab data={data} time = {time} /> : null}
           {windowWidth > 1024 ? <ViewPostCardExpanded data={data} time = {time}  /> : null}
@@ -70,7 +97,7 @@ const windowWidth = useWindowWidth();
 
 
 
-      </div>
+      </div>}
     </div>
   );
 };
