@@ -72,7 +72,7 @@ const getProfile = () => {
         </CardHeader>
         <CardBody className="flex-col justify-center items-center w-auto gap-4">
           <button>
-            <Link to="/">
+            <Link to="/Home">
               <Home />
             </Link>
           </button>{" "}
@@ -97,7 +97,10 @@ const getProfile = () => {
         </CardBody>
         <CardFooter className="flex-col justify-center items-center w-auto">
           <button>
+            <Link to="/Setting">
+
             <FontAwesomeIcon icon={faGear} size="xl" />
+            </Link>
           </button>
         </CardFooter>
       </Card>

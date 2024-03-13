@@ -11,6 +11,8 @@ import { MoonIcon } from "../../icons/Navbar/Moonicon";
 import LoginReducer, { login } from "../../redux/reducers/LoginReducer";
 import { useNavigate } from "react-router-dom";
 import ForgotPassword from "../../components/globle_Components/ForgotPassword.jsx";
+import { me } from "../../redux/reducers/MeReducer.jsx";
+import { fetchFeed } from "../../redux/reducers/UserFeedReducers.jsx";
 
 
 const LoginFormMobile = () => {
@@ -48,19 +50,14 @@ const LoginFormMobile = () => {
         setPassword(event.target.value);
         // console.log(email, password)
     };
-    const Login = (e) => {
-        e.preventDefault();
+    const Login = async(e) => {
+   
 
-        dispatch(login({ userName: email, password: password }));
-        if (result.message === "Login successful") {
-            localStorage.setItem("user", result.user);
-            // navigate("/Explore")
-        }
+       await dispatch(login({ userName: email, password: password }));
+       dispatch(me())
+       dispatch(fetchFeed())
+       navigate("/Home");
     };
-
-    if (loading === false) {
-        navigate("/Explore")
-    }
 
     const [isVisible, setIsVisible] = React.useState(false);
 

@@ -52,6 +52,16 @@ const ViewPostCard = ({ data, time }) => {
       setComment("");
     }
   };
+  const liking = async () => {
+    await dispatch(like({ id: data._id }));
+    // dispatch(me());
+    dispatch(fetchExplore());
+  }; 
+  const bookmarking = async () => {
+    await dispatch(bookmark({ id: data._id }));
+    dispatch(me());
+    dispatch(fetchExplore());
+  };
   return (
     <div>
       <Card style={{ width: "325px" }} className="py-4 max-w-[340px] ">

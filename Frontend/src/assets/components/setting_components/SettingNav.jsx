@@ -22,6 +22,7 @@ import { logout } from "../../redux/reducers/LogoutReducer";
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import ForgotPassword from "../globle_Components/ForgotPassword.jsx";
+import { me } from "../../redux/reducers/MeReducer.jsx";
 
 const SettingNav = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -35,17 +36,15 @@ const SettingNav = () => {
   // State to track active section
   const [activeSection, setActiveSection] = useState(null);
 
-  const handleLogout = () => {
-    dispatch(logout())
-      .then(() => {
+  const handleLogout = async() => {
+    await dispatch(logout())
+      
         // Redirect or perform any other action after successful logout
+        await dispatch(me());
         navigateTo("/Signup")
         console.log("User logged out successfully!");
-      })
-      .catch((error) => {
-        // Handle logout error
-        console.error("Logout error:", error);
-      });
+  
+    
 
     // Close the modal
     onOpenChange(false);
