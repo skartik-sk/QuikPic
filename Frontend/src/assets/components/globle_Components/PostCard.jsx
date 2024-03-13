@@ -6,6 +6,8 @@ import {
   faBookmark,
   faPaperPlane,
 } from "@fortawesome/free-solid-svg-icons";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import {
   Card,
   CardHeader,
@@ -25,7 +27,7 @@ import {
   User,
   Spacer,
 } from "@nextui-org/react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { ThreeDot } from "../../icons/Navbar/ThreeDot";
 import Popupcard from "./Popupcard";
 import { useDispatch, useSelector } from "react-redux";
@@ -33,9 +35,12 @@ import { bookmark, delPost, like } from "../../redux/reducers/PostCardReducer";
 import { useNavigate } from "react-router-dom";
 import { me } from "../../redux/reducers/MeReducer";
 import { fetchExplore } from "../../redux/reducers/ExploreReducer";
+import { fetchFeed } from "../../redux/reducers/UserFeedReducers";
 const PostCard = ({ data }) => {
   const dispatch = useDispatch();
+  const notify = () => toast("URL copied to clipboard");
   const navigate = useNavigate();
+  const location = useLocation();
   // const [bookmarked, setBokmarked] = useState(false);
   // const [liked, setLiked] = useState(false);
   //in complete
@@ -45,25 +50,29 @@ const PostCard = ({ data }) => {
   const bookmarkedPosts = useSelector((state) => state.me.data.savedPosts);
   console.log(userId);
   console.log(bookmarkedPosts);
-  // useEffect(() => {
-  //   dispatch(me());
-  //   dispatch(fetchExplore());
-  // }, [data]);
-  // console.log(data.likes);
-  // console.log(data.likes.includes(userId));
-  // if (data.likes.includes(userId) && liked === false) {
-  //   setLiked(true);
-  // } else if (data.likes.includes(userId) == false && liked === true) {
-  //   setLiked(false);
-  // }
-
-  // if (bookmarkedPosts.includes(data._id) && bookmarked === false) {
-  //   setBokmarked(true);
-  // } else if (bookmarkedPosts.includes(data._id) == false && bookmarked === true) {
-  //   setBokmarked(false);
-  // }
-
-  // const bookmarked = useSelector((state) => state.postcard.bookmarked);
+  const shareUrl = () => {
+    let url = window.location.href + `postview/${data._id}`;
+    navigator.clipboard.writeText(url);
+    notify();
+  };
+  const liking = async () => {
+    await dispatch(like({ id: data._id }));
+    // dispatch(me());
+    if (location.pathname === '/Home') {
+      dispatch(fetchFeed());
+    } else if (location.pathname === '/Explore') {
+      dispatch(fetchExplore());
+    }
+  }; 
+  const bookmarking = async () => {
+    await dispatch(bookmark({ id: data._id }));
+    dispatch(me());
+    if (location.pathname === '/Home') {
+      dispatch(fetchFeed());
+    } else if (location.pathname === '/Explore') {
+      dispatch(fetchExplore());
+    }
+  };
   const postviewPage = () => {
     navigate(`/postview/${data._id}`);
   };
@@ -86,7 +95,8 @@ const PostCard = ({ data }) => {
   };
 
   return (
-    <div>
+    <div className="h-fit">
+       <ToastContainer />
       <Card style={{ width: "325px" }} className="py-4 max-w-[340px] ">
         <CardHeader
           // style={{ width: "310px" }}
@@ -128,7 +138,10 @@ const PostCard = ({ data }) => {
                   key="delete"
                   className="text-danger"
                   color="danger"
-                  onClick={(e) => {dispatch(delPost({ id: data._id })); dispatch(fetchExplore());}}
+                  onClick={(e) => {
+                    dispatch(delPost({ id: data._id }));
+                    dispatch(fetchExplore());
+                  }}
                 >
                   Delete Post
                 </DropdownItem>
@@ -148,12 +161,13 @@ const PostCard = ({ data }) => {
           style={{ width: "fit-content " }}
           className="overflow-visible py-2 w-fit"
         >
-          <button
+          <button 
             style={{ width: "fit-content ", height: "fit-content" }}
             className=""
             onClick={postviewPage}
           >
-            <Image
+            
+            <Image 
               loading="false"
               width={300}
               height={200}
@@ -165,12 +179,7 @@ const PostCard = ({ data }) => {
         <CardFooter className="flex-col items-start pb-0 pt-2 px-2 w-16 space-y-2">
           <CardBody className="flex-row justify-between">
             <div className="flex gap-3">
-              <button
-                onClick={(e) => {
-                  dispatch(like({ id: data._id }));
-                  dispatch(fetchExplore());
-                }}
-              >
+              <button onClick={liking}>
                 {data.likes.includes(userId) ? (
                   <FontAwesomeIcon
                     icon={faHeart}
@@ -200,7 +209,7 @@ const PostCard = ({ data }) => {
                   }}
                 />
               </button>
-              <button>
+              <button onClick={shareUrl}>
                 <FontAwesomeIcon
                   icon={faPaperPlane}
                   onMouseOver={(e) => {
@@ -219,11 +228,7 @@ const PostCard = ({ data }) => {
             </div>
 
             <button
-              onClick={(e) => {
-                dispatch(bookmark({ id: data._id }));
-                dispatch(me());
-                dispatch(fetchExplore());
-              }}
+              onClick={bookmarking}
             >
               {bookmarkedPosts.includes(data._id) ? (
                 <FontAwesomeIcon

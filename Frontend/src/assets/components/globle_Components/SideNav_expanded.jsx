@@ -68,7 +68,7 @@ const SideNav_expanded = () => {
           </div>
         </CardHeader>
         <CardBody className="flex-col justify-center items-start w-auto gap-4">
-          <Link to="/">
+          <Link to="/Home">
             <button className="flex flex-row  gap-4 ">
               <Home />
               <span className="text-xl">Home</span>

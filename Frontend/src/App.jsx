@@ -1,27 +1,15 @@
 import { ThemeProvider as NextThemesProvider } from "next-themes";
-import { NextUIProvider, user } from "@nextui-org/react";
+import { NextUIProvider } from "@nextui-org/react";
 import {
-  BrowserRouter as Router,
   Route,
   Routes,
   useNavigate,
 } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
-import {
-  Spinner,
-  RadioGroup,
-  Radio,
-  Switch,
-  Card,
-  CardFooter,
-  Image,
-  Button,
-} from "@nextui-org/react";
 import { UserFeedPage } from "./assets/pages/UserFeedPage";
 import React, { useState, useEffect } from "react";
 import CreatePostPage from "./assets/pages/CreatePostPage";
-import CreatePostPage2 from "./assets/pages/SubPages/CreatePostContent2";
 import PostViewPage from "./assets/pages/PostViewPage";
 import LoginPage from "./assets/pages/LoginPage";
 import SignupPage from "./assets/pages/SignupPage";
@@ -92,8 +80,9 @@ export default function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(me());
-  }, []);
+  }, [dispatch]);
   const navigate = useNavigate();
+  
 const isAuthenticated = useSelector((state) => state.me.isAuth);
   return (
     <>
@@ -102,11 +91,11 @@ const isAuthenticated = useSelector((state) => state.me.isAuth);
           {/* Your app here... */}
 
           <Routes>
-            <Route path="/Login" element={<LoginPage />} />
+            {/* <Route path="/Login" element={<LoginPage />} /> */}
             <Route path="/Signup" element={<SignupPage />} />
             <Route
               path="/"
-              element={isAuthenticated?<PageWithLayout component={UserFeedPage} />:<LoginPage />}
+              element={isAuthenticated?<Navigate to="/Explore" replace />:<LoginPage />}
             />
             <Route
               path="/resetPassword/:id/:token"
@@ -115,6 +104,9 @@ const isAuthenticated = useSelector((state) => state.me.isAuth);
             <Route
               path="/Explore"
               element={isAuthenticated?<PageWithLayout component={ExplorePage} />:<LoginPage />}
+            /><Route
+              path="/Home"
+              element={isAuthenticated?<PageWithLayout component={UserFeedPage} />:<LoginPage />}
             />
             <Route
               path="/CreatePost"
