@@ -46,7 +46,6 @@ const EditProfile = () => {
         test.append("userphoto",img );
         test.append("bio", formData.bio);
         test.append("gender",formData.gender);
-
         dispatch(updateProfile(test));
     };
 

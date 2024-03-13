@@ -20,7 +20,7 @@ function MainLayout({ children }) {
       <div className=" w-full">
         <div className="flex md:block">
           {windowWidth < 899 ? <SignupFormMobile /> : null}
-          {windowWidth > 900 ? <SignupForm /> : null}
+          {windowWidth > 898 ? <SignupForm /> : null}
 
           {/* {children} */}
         </div>

@@ -6,9 +6,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchExplore } from "../../redux/reducers/ExploreReducer";
 import { useNavigate } from "react-router-dom";
 const ExploreContent = () => {
-  const navigate = useNavigate();
-  const Responce = useSelector((state) => state.login.data.message);
-
   //!todo to make a protective routing
   // if (Responce === "Unauthorized" || Data === undefined) {
   //   console.log("yoyo");

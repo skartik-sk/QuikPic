@@ -7,7 +7,7 @@ export const getPost = async (req, res) => {
     const userId = res.user.id._id.toString();
     const user = await UserModel.findById(userId);
     const following = user.following;
-    const posts = await Post.find({ createdBy: { $in: following } });
+    const posts = await Post.find({ createdBy: { $in: following } }).populate('createdBy', 'username profileImage bio followers following');
     res.json(posts);
   } catch (error) {
     res.status(500).json({ error: "Internal server error" });

@@ -11,6 +11,8 @@ import { SunIcon } from "../../icons/Navbar/SunIcon";
 import { MoonIcon } from "../../icons/Navbar/Moonicon";
 import SignupReducer, { signup } from "../../redux/reducers/SignupReducer";
 import { useNavigate } from "react-router-dom";
+import { me } from "../../redux/reducers/MeReducer";
+import { fetchFeed } from "../../redux/reducers/UserFeedReducers";
 
 
 const SignupForm = () => {
@@ -65,19 +67,22 @@ const SignupForm = () => {
     };
 
     const toggleVisibility = () => setIsVisible(!isVisible);
-    const Signup = (e) => {
-        e.preventDefault();
+    const Signup = async (e) => {
+ 
 
-        dispatch(signup({ username, email, password }));
-        if (result.message === "Signup successful") {
-            localStorage.setItem("user", result.user);
-            // navigate("/")
-        }
+       await dispatch(signup({ username, email, password }));
+       dispatch(me())
+       dispatch(fetchFeed())
+       navigate("/Home");
+        // if (result.message === "Signup successful") {
+        //     localStorage.setItem("user", result.user);
+        //     // navigate("/")
+        // }
     };
 
-    if (loading === false) {
-        navigate("/Explore")
-    }
+    // if (loading === false) {
+    //     navigate("/Explore")
+    // }
     // React.useEffect(() => {
     //     if (result && result.message === "Signup successful") {
     //       localStorage.setItem("user", result.user);
@@ -186,7 +191,7 @@ const SignupForm = () => {
                     </div>
 
                     <div className="flex justify-center">
-                        <h3>Already have an account? {" "}<Link href="/Login" size="md" underline="active">Login</Link></h3>
+                        <h3>Already have an account? {" "}<Link href="/" size="md" underline="active">Login</Link></h3>
                     </div>
                 </div>
             </div>
