@@ -41,7 +41,7 @@ const BottomNav = () => {
       >
         <CardBody className="flex-row  justify-between items-center w-full gap-4">
           <button>
-            <Link to="/">
+            <Link to="/Home">
               <Home />
             </Link>
           </button>{" "}

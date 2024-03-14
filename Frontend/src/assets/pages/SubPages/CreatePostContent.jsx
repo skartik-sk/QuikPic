@@ -15,7 +15,6 @@ import {
 import { useNavigate } from "react-router-dom";
 import TopNav from "../../components/globle_Components/TopNav";
 import { PorgressBar } from "../../components/postCreationPage_components/PorgressBar";
-import AddCaption from "../../components/postCreationPage_components/AddCaption";
 import AddImgage from "../../icons/post/AddImgage";
 import { createPost } from "../../redux/reducers/CreatePostReducer";
 const CreatePostContent = () => {
