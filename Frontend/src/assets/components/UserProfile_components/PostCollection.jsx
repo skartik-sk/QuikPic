@@ -2,7 +2,7 @@ import React,{useEffect, useState} from "react";
 import { Divider, Tab, Tabs, Card, CardBody  } from "@nextui-org/react";
 import PostCard from "../../components/globle_Components/PostCard";
 import {useSelector} from 'react-redux'
-import { set } from "mongoose";
+
 const PostCollection = () => {
     let tabs = [
         {
