@@ -62,22 +62,7 @@ export const createPostReducers = createSlice({
       state.data = [];
       state.error = action.error.message;
     });
-    builder.addCase(editPost.pending, (state) => {
-      state.loading = true;
-    });
-    builder.addCase(editPost.fulfilled, (state, action) => {
-      // console.log(action.payload, "action.payload");
-      // console.log(state.data, "state.data");
-      state.loading = false;
-      state.data = action.payload;
-      state.error = "";
-      // console.log(state.data, "state.data");
-    });
-    builder.addCase(editPost.rejected, (state, action) => {
-      state.loading = false;
-      state.data = [];
-      state.error = action.error.message;
-    });
+   
   },
 });
 

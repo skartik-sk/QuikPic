@@ -26,11 +26,11 @@ const TopNav = () => {
     >
       <NavbarBrand style={{ maxWidth: "none" }}>
         {/* <AcmeLogo /> */}
-        <p className="font-bold text-inherit">Social Media</p>
+        <p className="font-bold text-inherit">Quipify</p>
       </NavbarBrand>
       <NavbarContent justify="end">
         <NavbarItem>
-          <Input
+          {/* <Input
             radius="lg"
             classNames={{
               label: "text-black/50 dark:text-white/90",
@@ -74,7 +74,7 @@ const TopNav = () => {
               </div>
             }
             type="text"
-          ></Input>
+          ></Input> */}
         </NavbarItem>
 
         <NavbarItem>
