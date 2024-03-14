@@ -76,7 +76,10 @@ const PostCard = ({ data }) => {
   const postviewPage = () => {
     navigate(`/postview/${data._id}`);
   };
-
+const delpost = async () => {
+  await dispatch(delPost({ id: data._id }));
+  dispatch(fetchExplore());
+}
   const [isCreated, setIsCreator] = useState(false);
   useEffect(() => {
     if (data.createdBy._id === userId) {
@@ -131,17 +134,19 @@ const PostCard = ({ data }) => {
 
               <DropdownItem key="copy">Repost</DropdownItem>
               {isCreated ? (
-                <DropdownItem key="copy">Edit Post</DropdownItem>
+                <DropdownItem key="edit">
+                  <Link to={`/EditPost/${data._id}`}>
+
+                  Edit Post
+                  </Link>
+                  </DropdownItem>
               ) : null}
               {isCreated ? (
                 <DropdownItem
                   key="delete"
                   className="text-danger"
                   color="danger"
-                  onClick={(e) => {
-                    dispatch(delPost({ id: data._id }));
-                    dispatch(fetchExplore());
-                  }}
+                  onClick={delpost}
                 >
                   Delete Post
                 </DropdownItem>

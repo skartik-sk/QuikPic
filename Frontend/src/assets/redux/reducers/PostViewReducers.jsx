@@ -7,8 +7,9 @@ const initialState = {
   value: 0,
 };
 
-export const getPostByid = createAsyncThunk("userFeeds", async (payload) => {
-  const url = `http://localhost:1234/post/${payload.id}`;
+export const getPostByid = createAsyncThunk("getpostByid", async (payload) => {
+  console.log(payload);
+  const url = `http://localhost:1234/post/${payload}`;
   const option = { method: "GET", credentials: "include" };
   const response = await fetch(url, option);
   return response.json();

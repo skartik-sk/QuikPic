@@ -21,11 +21,12 @@ const UserFeedContent = () => {
    // doSomeing();
     dispatch(fetchFeed());
   }, []);
+  console.log(Data.length);
   return (
     <div className="w-full">
       <TopNav />
       <Card className="flex-row flex-wrap gap-3  justify-center ">
-        {Data.length <= 1 || Data === undefined ? (
+        {Data.length <= 1 || Data === undefined || Data.length == undefined ? (
           <div>Kisi ko follow kar lo yar</div>
         ) : (
           Data.map((item) => {

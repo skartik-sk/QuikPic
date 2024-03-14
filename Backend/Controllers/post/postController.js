@@ -40,8 +40,17 @@ export const posting = async (req, res) => {
 export const getPostById = async (req, res) => {
   try {
     const postId = req.params.id;
+    console.log(postId);
     // Code to fetch a post with the specified ID
-    const post = await Post.findById(postId);
+  const post = await Post.findById(postId)
+    .populate('createdBy', 'username profileImage bio followers following')
+    .populate({
+      path: 'comments',
+      populate: {
+        path: 'commenter',
+        select: 'username profileImage bio followers following',
+      },
+    });
     if (!post) {
       return res.status(404).json({ error: "Post not found" });
     }
@@ -50,7 +59,6 @@ export const getPostById = async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 };
-
 export const getAllPosts = async (req, res) => {
   try {
     // Code to fetch all posts
@@ -66,11 +74,14 @@ export const getAllPosts = async (req, res) => {
 
 export const updatePost = async (req, res) => {
   try {
-    const { caption } = req.body;
-    const postId = req.params.id;
 
+    console.log({"pura":req.body});
+    const { caption } = req.body; // Destructure the caption from req.body
+    const postId = req.params.id;
+    console.log({"arere":postId});
+    console.log({"cationp":caption});
     const postData = await Post.findById(postId);
-    
+
     if (res.user.id._id.toString() !== postData.createdBy._id.toString()) {
       return res.status(403).json({ error: "Unauthorized" });
     }
