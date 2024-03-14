@@ -34,10 +34,6 @@ const Popupcard = ({ data }) => {
   useEffect(() => {
     // Check if the user is already followed
     const checkFollowStatus = () => {
-      // Your logic to check if the user is already followed
-      // For example, you can check if the user's ID is present in the followers array
-
-      // Set the value of isFollowed accordingly
       setIsFollowed(data.followers.includes(data._id));
     };
 
