@@ -43,10 +43,10 @@ export const getSavedPostsReducers = createSlice({
       state.SavedPostsdata = [];
       state.error = action.error.message;
     });
-    builder.addCase(getSavedPosts.pending, (state) => {
+    builder.addCase(getUserPost.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(getSavedPosts.fulfilled, (state, action) => {
+    builder.addCase(getUserPost.fulfilled, (state, action) => {
       // console.log(action.payload, "action.payload");
       // console.log(state.data, "state.data");
       state.loading = false;
@@ -54,7 +54,7 @@ export const getSavedPostsReducers = createSlice({
       state.error = "";
       // console.log(state.data, "state.data");
     });
-    builder.addCase(getSavedPosts.rejected, (state, action) => {
+    builder.addCase(getUserPost.rejected, (state, action) => {
       state.loading = false;
       state.SavedPostsdata = [];
       state.error = action.error.message;
