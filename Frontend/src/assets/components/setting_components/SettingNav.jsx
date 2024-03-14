@@ -58,9 +58,9 @@ const SettingNav = () => {
   const windowWidth = useWindowWidth();
 
   return (
-    <div className="flex" style={{ gap: "4rem", width: "100%" }}>
+    <div className="flex" style={{ gap: "3rem", width: "100%" }}>
       <div >
-          {windowWidth > 767 ?  <ListboxWrapper>
+          {windowWidth > 767 ?  <ListboxWrapper style={{width:"100%"}}>
           <Listbox variant="flat" aria-label="Listbox menu with descriptions">
             <ListboxItem
               key="edit"
@@ -171,13 +171,13 @@ const SettingNav = () => {
             >
 
               <Modal
-                className="absolute top-1/2  "
+                className="absolute top-1/2"
                 isOpen={isOpen}
                 onOpenChange={onOpenChange}
                 isDismissable={false}
                 isKeyboardDismissDisabled={true}
               >
-                <ModalContent>
+                <ModalContent >
                   {(onClose) => (
                     <>
                       <ModalHeader className="flex flex-col gap-1">
@@ -231,7 +231,7 @@ const SettingNav = () => {
        
       </div>
 
-      <div style={{ width: "40%" }}>
+      <div style={{ width: "60%" }}>
         {/* Render content based on active section */}
         {activeSection === "edit" && (
           <div>
