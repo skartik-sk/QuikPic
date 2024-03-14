@@ -67,7 +67,7 @@ const LoginFormMobile = () => {
         <div className="w-full flex flex-row">
 
             <div className=" hidden md:flex flex-1 ">
-                <img className="w-full h-full" src="https://img.freepik.com/free-vector/flat-geometric-mosaic-pattern-design_23-2149265253.jpg?t=st=1708605617~exp=1708609217~hmac=fc3c7fa167553102f487104e1f666002f7ae4f1696bda2fe93b053c25d76507a&w=740" alt="" />
+                <img className="w-full h-full" src="https://img.freepik.com/free-vector/flat-geometric-mosaic-pattern-design_23-2149280518.jpg?w=740&t=st=1710430511~exp=1710431111~hmac=8d193bc87a8b38ac8ed8eb269063b0fa4f1702803458650247b43f7237f6a416" alt="" />
             </div>
 
 
@@ -76,7 +76,7 @@ const LoginFormMobile = () => {
 
                     <div className="flex flex-row items-center px-8" style={{ marginBottom: "1.8rem", gap: ".8rem" }}>
                         <Avatar src="https://i.pravatar.cc/150?u=a04258114e29026302d" size="md" style={{ width: "2.8rem", height: "2.2rem", borderRadius: "50%" }} />
-                        <h2>Quipify</h2>
+                        <h2>QuikPic</h2>
                         <Navbar >
                             <NavbarItem>
                                 <Switch

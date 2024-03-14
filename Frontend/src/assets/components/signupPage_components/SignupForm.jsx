@@ -94,16 +94,16 @@ const SignupForm = () => {
         <div className="w-full flex flex-row">
 
             <div className="flex flex-1 ">
-                <img className="w-full h-full bg-cover" src="https://img.freepik.com/free-vector/flat-geometric-mosaic-pattern-design_23-2149280518.jpg?w=740&t=st=1709113061~exp=1709113661~hmac=05739887c59d9362e9533c3d458ed51f08c520282d5b23d509f4c440a4c6c15c" alt="" />
+                <img className="w-full h-full bg-cover" src="https://img.freepik.com/free-vector/flat-geometric-mosaic-pattern-design_23-2149280518.jpg?w=740&t=st=1710430511~exp=1710431111~hmac=8d193bc87a8b38ac8ed8eb269063b0fa4f1702803458650247b43f7237f6a416" alt="" />
             </div>
 
 
             <div className="flex-1 flex-col">
-                <div style={{ paddingLeft: "6rem", paddingRight: "6rem", paddingTop: "4rem" }} className="flex w-full h-screen flex-col md:flex-nowrap mb-2 md:mb-0 gap-4 ">
+                <div style={{ paddingLeft: "6rem", paddingRight: "6rem", paddingTop: "2rem" }} className="flex w-full h-screen flex-col md:flex-nowrap mb-2 md:mb-0 gap-4 ">
 
                     <div className="flex flex-row items-center px-8" style={{ marginBottom: "1.8rem", gap: ".8rem" }}>
-                        <Avatar src="https://i.pravatar.cc/150?u=a04258114e29026302d" size="md" style={{ width: "2.8rem", height: "2.2rem", borderRadius: "50%" }} />
-                        <h2>Quipify</h2>
+                        <Avatar src="https://i.pravatar.cc/150?u=a04258114e29026302d" size="md" style={{ width: "2.5rem", height: "2.2rem", borderRadius: "50%" }} />
+                        <h2 className="text-[1.3rem] font-bold">QuikPic</h2>
                         <div >
                             <Navbar >
                                 <NavbarItem>
