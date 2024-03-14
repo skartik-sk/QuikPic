@@ -9,7 +9,7 @@ const initialState = {
 export const logout = createAsyncThunk("user/logout", async () => {
     //   console.log(payload.userName, payload.password);
     try {
-        const response = await fetch("http://localhost:1234/logout", {
+        const response = await fetch("https://quikpic-backend.onrender.com/logout", {
             method: "GET",
             credentials: "include",
 

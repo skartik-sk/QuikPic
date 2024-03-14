@@ -10,14 +10,14 @@ const initialState = {
 
 export const getPostByid = createAsyncThunk("getpostByid", async (payload) => {
   console.log(payload);
-  const url = `http://localhost:1234/post/${payload}`;
+  const url = `https://quikpic-backend.onrender.com/post/${payload}`;
 
   const option = { method: "GET", credentials: "include" };
   const response = await fetch(url, option);
   return response.json();
 });
 export const commentToPost = createAsyncThunk("comment", async (payload) => {
-  const url = `http://localhost:1234/post/${payload.id}/comment`;
+  const url = `https://quikpic-backend.onrender.com/post/${payload.id}/comment`;
   const option = { method: "PUT",body: JSON.stringify({
     comment: payload.comment,
 

@@ -8,7 +8,7 @@ const initialState = {
 };
 
 export const signup = createAsyncThunk("user/signup", async (payload) => {
-  const url = "http://localhost:1234/signup"; 
+  const url = "https://quikpic-backend.onrender.com/signup"; 
   const options = {
     method: "POST",
     body: JSON.stringify(payload),

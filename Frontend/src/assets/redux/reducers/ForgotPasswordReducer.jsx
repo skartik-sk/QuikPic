@@ -9,7 +9,7 @@ const initialState = {
 export const forgotPassword = createAsyncThunk(
   "user/forgotPassword",
   async (email) => {
-    const url = "http://localhost:1234/forgotPassword";
+    const url = "https://quikpic-backend.onrender.com/forgotPassword";
     const options = {
       method: "POST",
       headers: {

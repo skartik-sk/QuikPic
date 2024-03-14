@@ -12,7 +12,7 @@ const initialState = {
 export const like = createAsyncThunk("like", async (payload) => {
   console.log(payload.id);
   const id = payload.id;
-  const url = `http://localhost:1234/post/${id}/like`;
+  const url = `https://quikpic-backend.onrender.com/post/${id}/like`;
   const option = {
     method: "PUT",
     headers: {
@@ -25,7 +25,7 @@ export const like = createAsyncThunk("like", async (payload) => {
 });
 export const delPost = createAsyncThunk("delPost", async (payload) => {
   const id = payload.id;
-  const url = `http://localhost:1234/post/${id}`;
+  const url = `https://quikpic-backend.onrender.com/post/${id}`;
   const option = {
     method: "DELETE",
     headers: {
@@ -38,7 +38,7 @@ export const delPost = createAsyncThunk("delPost", async (payload) => {
 });
 export const bookmark = createAsyncThunk("bookmark", async (payload) => {
   const id = payload.id;
-  const url = `http://localhost:1234/post/${id}/saveAPost`;
+  const url = `https://quikpic-backend.onrender.com/post/${id}/saveAPost`;
   const option = {
     method: "POST",
     headers: {
@@ -51,7 +51,7 @@ export const bookmark = createAsyncThunk("bookmark", async (payload) => {
 });
 export const follow = createAsyncThunk("follow", async (payload) => {
   const id = payload.id;
-  const url = `http://localhost:1234/userFeed/follow/${id}`;
+  const url = `https://quikpic-backend.onrender.com/userFeed/follow/${id}`;
   const option = {
     method: "PUT",
     headers: {

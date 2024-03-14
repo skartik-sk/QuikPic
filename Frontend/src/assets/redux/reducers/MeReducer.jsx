@@ -8,7 +8,7 @@ const initialState = {
   error: "",
 };
 export const me = createAsyncThunk("me", async () => {
-  const url = "http://localhost:1234/user/profile";
+  const url = "https://quikpic-backend.onrender.com/user/profile";
   const option = {
     method: "GET",
     headers: {

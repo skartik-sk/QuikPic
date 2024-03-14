@@ -9,7 +9,7 @@ const initialState = {
 };
 export const login = createAsyncThunk("userFeeds", async (payload) => {
   console.log(payload.userName, payload.password);
-  const url = "http://localhost:1234/login";
+  const url = "https://quikpic-backend.onrender.com/login";
   const option = {
     method: "POST",
     body: JSON.stringify({
