@@ -14,9 +14,11 @@ export const getSavedPosts = createAsyncThunk("getSavedPosts", async () => {
   return response.json();
 });
 export const getUserPost = createAsyncThunk("getUserPost", async () => {
-  const url = "http://localhost:1234/post/getUserPost";
+  console.log("me agaya");
+  const url = "http://localhost:1234/post/getUserPosts";
   const option = { method: "POST", credentials: "include" };
   const response = await fetch(url, option);
+  //console.log(response.json());
   return response.json();
 });
 

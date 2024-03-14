@@ -7,11 +7,30 @@ import {
   CardFooter,
   CardHeader,
 } from "@nextui-org/react";
+import { Link, useLocation } from "react-router-dom";
+
 import { useDispatch, useSelector } from "react-redux";
 import { follow } from "../../redux/reducers/PostCardReducer";
+import { me } from "../../redux/reducers/MeReducer";
+import { fetchFeed } from "../../redux/reducers/UserFeedReducers";
+import { fetchExplore } from "../../redux/reducers/ExploreReducer";
+import { getUserPost } from "../../redux/reducers/getSavedPostsReducer";
 const Popupcard = ({ data }) => {
   const [isFollowed, setIsFollowed] = useState(false);
   const dispatch = useDispatch();
+  const location = useLocation();
+  const tofollow = async() => {
+   await dispatch(follow({ id: data._id }))
+  dispatch(me())
+  if (location.pathname === '/Home') {
+    dispatch(fetchFeed());
+  } else if (location.pathname === '/Explore') {
+    dispatch(fetchExplore());
+  }
+  else if (location.pathname === '/UserProfile') {
+    dispatch(getUserPost());
+  }
+  }
   useEffect(() => {
     // Check if the user is already followed
     const checkFollowStatus = () => {
@@ -31,6 +50,7 @@ const Popupcard = ({ data }) => {
       return data.profileImage;
     }
   };
+  const userid  = useSelector((state) => state.me.data._id);
   const [Followers, setFollowers] = useState(data.followers.length);
   const [Following, setFollowing] = useState(data.following.length);
   return (
@@ -46,17 +66,17 @@ const Popupcard = ({ data }) => {
         </div>
         <Button
           className={
-            isFollowed
+            data.followers.includes(userid)
               ? "bg-transparent text-foreground border-default-200"
               : ""
           }
           color="primary"
           radius="full"
           size="sm"
-          variant={isFollowed ? "bordered" : "solid"}
-          onPress={() => dispatch(follow({ id: data._id }))}
+          variant={data.followers.includes(userid) ? "bordered" : "solid"}
+          onPress={tofollow}
         >
-          {isFollowed ? "Unfollow" : "Follow"}
+          {data.followers.includes(userid) ? "Unfollow" : "Follow"}
         </Button>
       </CardHeader>
       <CardBody className="px-3 py-0">

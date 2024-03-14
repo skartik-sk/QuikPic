@@ -36,7 +36,9 @@ import { useNavigate } from "react-router-dom";
 import { me } from "../../redux/reducers/MeReducer";
 import { fetchExplore } from "../../redux/reducers/ExploreReducer";
 import { fetchFeed } from "../../redux/reducers/UserFeedReducers";
+import { getUserPost } from "../../redux/reducers/getSavedPostsReducer";
 const PostCard = ({ data }) => {
+  console.log(data);
   const dispatch = useDispatch();
   const notify = () => toast("URL copied to clipboard");
   const navigate = useNavigate();
@@ -48,8 +50,8 @@ const PostCard = ({ data }) => {
   // const data = useSelector((state) => state.postcard.liked);
   const userId = useSelector((state) => state.me.data._id);
   const bookmarkedPosts = useSelector((state) => state.me.data.savedPosts);
-  console.log(userId);
-  console.log(bookmarkedPosts);
+  // console.log(userId);
+  // console.log(bookmarkedPosts);
   const shareUrl = () => {
     let url = window.location.href + `postview/${data._id}`;
     navigator.clipboard.writeText(url);
@@ -63,6 +65,9 @@ const PostCard = ({ data }) => {
     } else if (location.pathname === '/Explore') {
       dispatch(fetchExplore());
     }
+    else if (location.pathname === '/UserProfile') {
+      dispatch(getUserPost());
+    }
   }; 
   const bookmarking = async () => {
     await dispatch(bookmark({ id: data._id }));
@@ -71,6 +76,9 @@ const PostCard = ({ data }) => {
       dispatch(fetchFeed());
     } else if (location.pathname === '/Explore') {
       dispatch(fetchExplore());
+    }
+    else if (location.pathname === '/UserProfile') {
+      dispatch(getUserPost());
     }
   };
   const postviewPage = () => {
@@ -82,6 +90,9 @@ const delpost = async () => {
     dispatch(fetchFeed());
   } else if (location.pathname === '/Explore') {
     dispatch(fetchExplore());
+  }
+  else if (location.pathname === '/UserProfile') {
+    dispatch(getUserPost());
   }
 }
   const [isCreated, setIsCreator] = useState(false);

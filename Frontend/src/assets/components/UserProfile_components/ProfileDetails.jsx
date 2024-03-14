@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import { Image, Button } from "@nextui-org/react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 const ProfileDetails = () => {
   const data = useSelector((state) => state.me.data);
 
@@ -54,7 +55,10 @@ console.log(data);
         <div className="flex flex-row items-center justify-between">
           <h2>{data.username}</h2>
           <Button color="primary" size="sm">
+            <Link to = "/Setting">
+
             Edit Profile
+            </Link>
           </Button>
         </div>
 
