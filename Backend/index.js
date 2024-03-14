@@ -17,5 +17,8 @@ app.use("/",userRouter);
 app.use("/post",postRouter); 
 app.use("/userFeed",userFeedsRouter); 
 app.use("/user",profile);
+app.get("/",(req,res)=>{
+    res.send("server is live");
+})
 
 export default app;
