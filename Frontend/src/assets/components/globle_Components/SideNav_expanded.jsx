@@ -7,6 +7,11 @@ import {
   DropdownItem,
   Avatar,
   User,
+  Modal, ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Button
 } from "@nextui-org/react";
 import { Home } from "../../icons/Navbar/Home";
 import { Message } from "../../icons/Navbar/Message";
@@ -17,8 +22,11 @@ import { faGear } from "@fortawesome/free-solid-svg-icons";
 import Bookmark from "../../icons/Navbar/Bookmark";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+
 const SideNav_expanded = () => {
+
   const data = useSelector((state) => state.me.data);
+
   const getProfile = () => {
     if (data.profileImage == "") {
       return "https://www.pngall.com/wp-content/uploads/5/User-Profile-PNG-Image.png";
@@ -26,6 +34,21 @@ const SideNav_expanded = () => {
       return data.profileImage;
     }
   };
+
+  const dispatch = useDispatch();
+    const [showLogoutModal, setShowLogoutModal] = useState(false);
+    const handleLogout = async () => {
+      await dispatch(logout())
+
+      // Redirect or perform any other action after successful logout
+      await dispatch(me());
+      navigateTo("/Signup")
+      console.log("User logged out successfully!");
+     // Close the modal
+      setShowLogoutModal(false);
+    };
+
+
   return (
     <div style={{ width: "250px", top: "0", height: "fit-content" }}>
       <Card
@@ -47,27 +70,54 @@ const SideNav_expanded = () => {
                   name={data.username}
                 />
               </DropdownTrigger>
-              <DropdownMenu aria-label="User Actions" variant="flat">
-                <DropdownItem key="profile" className="h-14 gap-2">
+              <DropdownMenu aria-label="Profile Actions" variant="flat">
+                <DropdownItem key="profile">
                   <Link to="/UserProfile">
 
-                  <p className="font-bold">Signed in as</p>
-                  <p className="font-bold">@tonyreichert</p>
+                    <p className="font-semibold">Signed in as {data.username}</p>
+                    {/* <p className="font-semibold"></p> */}
                   </Link>
                 </DropdownItem>
-                <DropdownItem key="settings">My Settings</DropdownItem>
-                <DropdownItem key="team_settings">Team Settings</DropdownItem>
-                <DropdownItem key="analytics">Analytics</DropdownItem>
-                <DropdownItem key="system">System</DropdownItem>
-                <DropdownItem key="configurations">Configurations</DropdownItem>
-                <DropdownItem key="help_and_feedback">
-                  Help & Feedback
+                <DropdownItem key="settings">
+                  <Link to="/Setting">
+
+                    My Settings
+                  </Link>
                 </DropdownItem>
-                <DropdownItem key="logout" color="danger">
+                <DropdownItem
+                  key="logout"
+                  color="danger"
+                  onClick={() => setShowLogoutModal(true)}
+                >
                   Log Out
                 </DropdownItem>
               </DropdownMenu>
             </Dropdown>
+      <Modal
+        className="absolute top-1/2"
+        isOpen={showLogoutModal}
+        onOpenChange={setShowLogoutModal}
+        isDismissable={false}
+        isKeyboardDismissDisabled={true}
+      >
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalHeader className="flex flex-col gap-1">
+                Oh no! You are leaving........Are you sure?
+              </ModalHeader>
+              <ModalFooter>
+                <Button color="danger" variant="light" onClick={() => setShowLogoutModal(false)}>
+                  No, Just Kidding!
+                </Button>
+                <Button color="primary" onClick={handleLogout}>
+                  Yes, Log me out!
+                </Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
           </div>
         </CardHeader>
         <CardBody className="flex-col justify-center items-start w-auto gap-4">
@@ -78,7 +128,7 @@ const SideNav_expanded = () => {
             </button>{" "}
           </Link>
           <button className="flex flex-row  gap-4 ">
-            <Message /> <span className="text-xl">Messages</span>
+            <Message /> <span className="text-xl">Coming Soon..</span>
           </button>{" "}
           <Link to="/CreatePost">
             <button className="flex flex-row  gap-4 ">

@@ -6,7 +6,7 @@ import {
   Navbar,
   NavbarBrand,
 } from "@nextui-org/react";
-import React,{useState,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import {
   Dropdown,
   DropdownTrigger,
@@ -14,6 +14,12 @@ import {
   DropdownItem,
   Avatar,
   User,
+  Modal, 
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Button
 } from "@nextui-org/react";
 import { Home } from "../../icons/Navbar/Home";
 import { Message } from "../../icons/Navbar/Message";
@@ -24,15 +30,28 @@ import { faGear } from "@fortawesome/free-solid-svg-icons";
 import Bookmark from "../../icons/Navbar/Bookmark";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+
 const SideNav = () => {
   const data = useSelector((state) => state.me.data);
-const getProfile = () => {
-  if (data.profileImage == "") {
-    return "https://www.pngall.com/wp-content/uploads/5/User-Profile-PNG-Image.png";
-  } else {
-    return data.profileImage;
-  }
-};
+  const dispatch = useDispatch();
+    const [showLogoutModal, setShowLogoutModal] = useState(false);
+    const handleLogout = async () => {
+      await dispatch(logout())
+
+      // Redirect or perform any other action after successful logout
+      await dispatch(me());
+      navigateTo("/Signup")
+      console.log("User logged out successfully!");
+     // Close the modal
+      setShowLogoutModal(false);
+    };
+  const getProfile = () => {
+      if (data.profileImage == "") {
+      return "https://www.pngall.com/wp-content/uploads/5/User-Profile-PNG-Image.png";
+    } else {
+      return data.profileImage;
+    }
+  };
   return (
     <div style={{ width: "120px", top: "0", height: "fit-content" }}>
       <Card
@@ -51,28 +70,55 @@ const getProfile = () => {
                 />
               </DropdownTrigger>
               <DropdownMenu aria-label="Profile Actions" variant="flat">
-                <DropdownItem key="profile" className="h-14 gap-2">
+                <DropdownItem key="profile">
                   <Link to="/UserProfile">
 
-                  <p className="font-semibold">Signed in as</p>
-                  <p className="font-semibold">zoey@example.com</p>
+                    <p className="font-semibold">Signed in as {data.username}</p>
+                    {/* <p className="font-semibold"></p> */}
                   </Link>
                 </DropdownItem>
-                <DropdownItem key="settings">My Settings</DropdownItem>
-                <DropdownItem key="team_settings">Team Settings</DropdownItem>
-                <DropdownItem key="analytics">Analytics</DropdownItem>
-                <DropdownItem key="system">System</DropdownItem>
-                <DropdownItem key="configurations">Configurations</DropdownItem>
-                <DropdownItem key="help_and_feedback">
-                  Help & Feedback
+                <DropdownItem key="settings">
+                  <Link to="/Setting">
+
+                    My Settings
+                  </Link>
                 </DropdownItem>
-                <DropdownItem key="logout" color="danger">
+                <DropdownItem
+                  key="logout"
+                  color="danger"
+                  onClick={() => setShowLogoutModal(true)}
+                >
                   Log Out
                 </DropdownItem>
               </DropdownMenu>
             </Dropdown>
-          </div>
-        </CardHeader>
+      <Modal
+        className="absolute top-1/2"
+        isOpen={showLogoutModal}
+        onOpenChange={setShowLogoutModal}
+        isDismissable={false}
+        isKeyboardDismissDisabled={true}
+      >
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalHeader className="flex flex-col gap-1">
+                Oh no! You are leaving........Are you sure?
+              </ModalHeader>
+              <ModalFooter>
+                <Button color="danger" variant="light" onClick={() => setShowLogoutModal(false)}>
+                  No, Just Kidding!
+                </Button>
+                <Button color="primary" onClick={handleLogout}>
+                  Yes, Log me out!
+                </Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
+    </div>
+        </CardHeader >
         <CardBody className="flex-col justify-center items-center w-auto gap-4">
           <button>
             <Link to="/Home">
@@ -106,8 +152,8 @@ const getProfile = () => {
             </Link>
           </button>
         </CardFooter>
-      </Card>
-    </div>
+      </Card >
+    </div >
   );
 };
 

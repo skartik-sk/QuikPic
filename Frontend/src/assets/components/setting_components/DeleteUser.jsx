@@ -28,7 +28,7 @@ const DeleteUser = () => {
     };
     return (
         <>
-            <div className="w-full flex flex-col" style={{ gap: "1.5rem", paddingRight: "15rem", marginBottom: "3rem" }}>
+            <div className="w-full flex flex-col" style={{ gap: "1.5rem",  marginBottom: "3rem" }}>
                 <div>
                     <h2 style={{ fontSize: "1.5rem", fontWeight: "bolder" }}>Delete Account</h2>
                 </div>

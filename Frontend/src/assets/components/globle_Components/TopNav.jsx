@@ -26,7 +26,7 @@ const TopNav = () => {
     >
       <NavbarBrand style={{ maxWidth: "none" }}>
         {/* <AcmeLogo /> */}
-        <p className="font-bold text-inherit">Quipify</p>
+        <p className="font-bold text-inherit text-xl">QuikPic</p>
       </NavbarBrand>
       <NavbarContent justify="end">
         <NavbarItem>
