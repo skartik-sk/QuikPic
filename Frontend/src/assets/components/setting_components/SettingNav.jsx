@@ -58,7 +58,7 @@ const SettingNav = () => {
   const windowWidth = useWindowWidth();
 
   return (
-    <div className="flex" style={{ gap: "6rem", width: "100%" }}>
+    <div className="flex" style={{ gap: "4rem", width: "100%" }}>
       <div >
           {windowWidth > 767 ?  <ListboxWrapper>
           <Listbox variant="flat" aria-label="Listbox menu with descriptions">

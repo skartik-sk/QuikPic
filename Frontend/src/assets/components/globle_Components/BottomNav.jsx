@@ -73,7 +73,7 @@ const BottomNav = () => {
                   <Link to="/UserProfile">
                     
                   <p className="font-semibold">Signed in as</p>
-                  <p className="font-semibold">zoey@example.com</p>
+                  <p className="font-semibold">{data.username}</p>
                   </Link>
                 </DropdownItem>
                 <DropdownItem key="settings">
