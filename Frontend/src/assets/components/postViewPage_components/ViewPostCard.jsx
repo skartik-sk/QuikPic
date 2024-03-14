@@ -29,9 +29,11 @@ import {
   Divider,
   button,
 } from "@nextui-org/react";
+
 import {Link, useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
+
 import { ThreeDot } from "../../icons/Navbar/ThreeDot";
 import Popupcard from "../globle_Components/Popupcard";
 import { useDispatch } from "react-redux";
@@ -155,12 +157,14 @@ const ViewPostCard = ({ data, time }) => {
 
               <DropdownItem key="copy">Repost</DropdownItem>
               {isCreated ? (
+
                 <DropdownItem key="edit">
                                  <Link to={`/EditPost/${data._id}`}>
 
 Edit Post
 </Link>
                   </DropdownItem>
+
               ) : null}
               {isCreated ? (
                 <DropdownItem
