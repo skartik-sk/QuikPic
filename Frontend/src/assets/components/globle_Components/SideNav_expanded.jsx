@@ -49,8 +49,11 @@ const SideNav_expanded = () => {
               </DropdownTrigger>
               <DropdownMenu aria-label="User Actions" variant="flat">
                 <DropdownItem key="profile" className="h-14 gap-2">
+                  <Link to="/UserProfile">
+
                   <p className="font-bold">Signed in as</p>
                   <p className="font-bold">@tonyreichert</p>
+                  </Link>
                 </DropdownItem>
                 <DropdownItem key="settings">My Settings</DropdownItem>
                 <DropdownItem key="team_settings">Team Settings</DropdownItem>

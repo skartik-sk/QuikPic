@@ -123,7 +123,7 @@ console.log(acceptedFiles[0])
                 </CardBody>
               </Card>
             ) : (
-              <Card className="max-w-[400px]">
+              <Card style={{marginBottom:"3rem"}} className="max-w-[400px]">
                 <CardHeader className="justify-center">
                   <div className="flex items-center justify-center">
                     <span>Add Image</span>

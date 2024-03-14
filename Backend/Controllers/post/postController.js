@@ -74,14 +74,12 @@ export const getAllPosts = async (req, res) => {
 
 export const updatePost = async (req, res) => {
   try {
-
     console.log({"pura":req.body});
-    const { caption } = req.body; // Destructure the caption from req.body
+    const  caption  = req.body;
     const postId = req.params.id;
-    console.log({"arere":postId});
-    console.log({"cationp":caption});
-    const postData = await Post.findById(postId);
 
+    const postData = await Post.findById(postId);
+    
     if (res.user.id._id.toString() !== postData.createdBy._id.toString()) {
       return res.status(403).json({ error: "Unauthorized" });
     }
@@ -118,14 +116,21 @@ export const deletePost = async (req, res) => {
         await UserModel.findByIdAndUpdate(
             res.user.id._id,
             {
-                $pullAll: { post: postId },
+                $pull: { post: postId },
             },
             { new: true, useFindAndModify: false }
         );
         
+        await UserModel.updateMany(
+          {},
+          {
+              $pull: { savedPosts: postId },
+          },
+          { new: true, useFindAndModify: false }
+      );
 
         res.json({ message: "Post deleted successfully" });
     } catch (error) {
-        res.status(500).json({ error: "Internal server error" });
+        res.status(500).json({ error: error.message || "Internal server error"});
     }
 };

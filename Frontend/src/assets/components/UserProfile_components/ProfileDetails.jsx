@@ -27,6 +27,7 @@ const ProfileDetails = () => {
   const [Followers, setFollowers] = useState(data.followers.length);
   const [Following, setFollowing] = useState(data.following.length);
   const [post, setPost] = useState(data.post.length);
+console.log(data);
   return (
     <div
       style={{

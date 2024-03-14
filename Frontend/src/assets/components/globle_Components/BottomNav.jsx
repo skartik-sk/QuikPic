@@ -70,8 +70,11 @@ const BottomNav = () => {
               </DropdownTrigger>
               <DropdownMenu aria-label="Profile Actions" variant="flat">
                 <DropdownItem key="profile" className="h-14 gap-2">
+                  <Link to="/UserProfile">
+                    
                   <p className="font-semibold">Signed in as</p>
                   <p className="font-semibold">zoey@example.com</p>
+                  </Link>
                 </DropdownItem>
                 <DropdownItem key="settings">
                   <Link to= "/Setting">
