@@ -12,6 +12,7 @@ import deleteuserReducers from "../reducers/DeleteUserReducer";
 import MeReducer from "../reducers/MeReducer";
 import resetpasswordReducers from "../reducers/ResetPasswordReducer";
 import updateuserReducers from "../reducers/UpdateUserReducer";
+import getSavedPostsReducers from "../reducers/getSavedPostsReducer";
 // import authReducers from "../reducers/AuthReducer";
 
 export const store = configureStore({
@@ -29,6 +30,7 @@ export const store = configureStore({
     deleteuser: deleteuserReducers,
     resetpassword: resetpasswordReducers,
     updateuser: updateuserReducers,
+    getSavedPost: getSavedPostsReducers,
     // fetchUserProfile: updateuserReducers,
     // auth: authReducers,
   },

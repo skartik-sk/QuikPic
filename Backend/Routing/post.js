@@ -1,6 +1,6 @@
 import express from 'express';
 import upload from '../Middlewares/multer.js';
-import { deletePost, getAllPosts, getPostById, posting, updatePost } from '../Controllers/post/postController.js';
+import { deletePost, getAllPosts, getPostById, getUserPost, posting, updatePost } from '../Controllers/post/postController.js';
 import isAuth from '../Middlewares/isAuth.js';
 import { addComment, deleteComment } from '../Controllers/post/comment.js';
 import { addLikeToPost } from '../Controllers/post/like.js';
@@ -22,5 +22,6 @@ router.route('/:id/saveAPost').post(isAuth, savePost);
 
 // Retrieve saved posts for a user
 router.route('/getSavedPosts').post(isAuth,getSavedPosts);
+router.route('/getUserPosts').post(isAuth,getUserPost);
 
 export default router;

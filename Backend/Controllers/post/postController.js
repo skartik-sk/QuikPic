@@ -2,6 +2,7 @@ import cloudinary from "../../Utils/coudney.js";
 import postModel from "../../Models/postModel.js";
 import UserModel from "../../Models/userModel.js";
 import Post from "../../Models/postModel.js";
+import e from "express";
 
 export const posting = async (req, res) => {
   try {
@@ -132,5 +133,35 @@ export const deletePost = async (req, res) => {
         res.json({ message: "Post deleted successfully" });
     } catch (error) {
         res.status(500).json({ error: error.message || "Internal server error"});
+    }
+};
+export const getUserPost = async (req, res) => {
+  try {
+    const userId = res.user.id._id;
+    console.log("hih");
+    console.log(userId);
+    const user = await UserModel.findById(userId)
+      .populate({
+        path: 'post',
+        populate: {
+          path: 'createdBy',
+          select: 'username profileImage bio followers following',
+        },
+      })
+      .populate({
+        path: 'savedPosts',
+        populate: {
+          path: 'createdBy',
+          select: 'username profileImage bio followers following',
+        },
+      });
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    
+    }
+    res.json(user);
+  }
+    catch (error) {
+      res.status(500).json({ error: error.message || "Internal server error" });
     }
 };
