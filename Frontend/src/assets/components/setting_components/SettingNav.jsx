@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import EditProfile from "../../components/UserProfile_components/EditProfile.jsx";
 import Help from "../../components/setting_components/Help.jsx";
 import DeleteUser from "../../components/setting_components/DeleteUser.jsx";
@@ -30,12 +30,7 @@ const SettingNav = () => {
   const navigateTo = useNavigate();
   const iconClasses =
     "text-xl text-default-500 pointer-events-none flex-shrink-0";
-  
-  // const {onOpen} = useDisclosure();
-
-  // State to track active section
   const [activeSection, setActiveSection] = useState(null);
-
   const handleLogout = async() => {
     await dispatch(logout())
       
@@ -49,11 +44,23 @@ const SettingNav = () => {
     // Close the modal
     onOpenChange(false);
   };
+  function useWindowWidth() {
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+    useEffect(() => {
+      const handleResize = () => setWindowWidth(window.innerWidth);
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
+    return windowWidth;
+  }
+  const windowWidth = useWindowWidth();
 
   return (
     <div className="flex" style={{ gap: "6rem", width: "100%" }}>
       <div >
-        <ListboxWrapper>
+          {windowWidth > 767 ?  <ListboxWrapper>
           <Listbox variant="flat" aria-label="Listbox menu with descriptions">
             <ListboxItem
               key="edit"
@@ -137,10 +144,94 @@ const SettingNav = () => {
               Delete Account
             </ListboxItem>
           </Listbox>
-        </ListboxWrapper>
+        </ListboxWrapper> : null}
+          {windowWidth < 768 ? <ListboxWrapper>
+          <Listbox variant="flat" aria-label="Listbox menu with descriptions">
+            <ListboxItem
+              key="edit"
+ startContent={<EditDocumentIcon className={iconClasses} />}
+              onClick={() => setActiveSection("edit")}
+            >
+
+            </ListboxItem>
+
+            <ListboxItem
+              key="reset"
+              startContent={<ResetPasswordIcon className={iconClasses} />}
+              onClick={() => setActiveSection("reset")}
+            >
+
+            </ListboxItem>
+
+            <ListboxItem
+              key="logout"
+
+              startContent={<LogoutIcon className={iconClasses} />}
+              onPress={onOpen}
+            >
+
+              <Modal
+                className="absolute top-1/2  "
+                isOpen={isOpen}
+                onOpenChange={onOpenChange}
+                isDismissable={false}
+                isKeyboardDismissDisabled={true}
+              >
+                <ModalContent>
+                  {(onClose) => (
+                    <>
+                      <ModalHeader className="flex flex-col gap-1">
+                        Oh no! You are leaving........Are you sure?
+                      </ModalHeader>
+
+                      <ModalFooter>
+                        <Button
+                          color="danger"
+                          variant="light"
+                          onClick={onClose}
+                        >
+                          No, Just Kidding!
+                        </Button>
+                        <Button color="primary" onClick={handleLogout}>
+                          Yes, Log me out!
+                        </Button>
+                      </ModalFooter>
+                    </>
+                  )}
+                </ModalContent>
+              </Modal>
+            </ListboxItem>
+
+            <ListboxItem
+              key="help"
+              showDivider
+
+              startContent={<HelpIcon className={iconClasses} />}
+              onClick={() => setActiveSection("help")}
+            >
+
+            </ListboxItem>
+
+            <ListboxItem
+              key="delete"
+              className="text-danger"
+              color="danger"
+              startContent={
+                <DeleteDocumentIcon
+                  className={cn(iconClasses, "text-danger")}
+                />
+              }
+              onClick={() => setActiveSection("delete")}
+            >
+             
+            </ListboxItem>
+          </Listbox>
+        </ListboxWrapper> : null}
+
+       
       </div>
 
-      <div style={{ width: "full" }}>
+      <div style={{ width: "40%" }}>
         {/* Render content based on active section */}
         {activeSection === "edit" && (
           <div>

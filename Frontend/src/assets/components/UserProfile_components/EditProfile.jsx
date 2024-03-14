@@ -50,7 +50,7 @@ const EditProfile = () => {
     };
 
     return (
-        <div className="flex flex-col" style={{ gap: "3.5rem", paddingRight: "15rem", marginBottom: "3rem", width: "155%" }}>
+        <div className="flex flex-col" style={{ gap: "3.5rem",  marginBottom: "3rem", width: "100%" }}>
             <div>
                 <h2 style={{ fontSize: "1.5rem", fontWeight: "bolder" }}>Edit Profile</h2>
             </div>
@@ -74,7 +74,7 @@ const EditProfile = () => {
                     Save
                 </Button> */}
 
-            <div>
+         
                 <form onSubmit={handleSubmit}>
                     <div className="flex justify-between flex-row" style={{marginBottom:"1rem"}}>
                         <label htmlFor="profileImageInput">
@@ -159,7 +159,7 @@ const EditProfile = () => {
                         </Button>
                     </div>
                 </form>
-            </div >
+           
         </div >
     )
 }
