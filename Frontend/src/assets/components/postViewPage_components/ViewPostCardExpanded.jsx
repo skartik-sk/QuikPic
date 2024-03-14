@@ -15,7 +15,7 @@ import {
   AvatarGroup,
   Avatar,
   Dropdown,
-  Link,
+
   DropdownTrigger,
   DropdownMenu,
   DropdownItem,
@@ -35,7 +35,9 @@ import { useDispatch } from "react-redux";
 import { getPostByid,  commentToPost } from "../../redux/reducers/PostViewReducers";
 import { bookmark, like } from "../../redux/reducers/PostCardReducer";
 import { ToastContainer, toast } from 'react-toastify';
-import { useNavigate, useLocation } from "react-router-dom";
+
+import {Link, useLocation, useNavigate } from "react-router-dom";
+
 import { useSelector } from "react-redux";
 import { me } from "../../redux/reducers/MeReducer";
 import { useEffect } from "react";

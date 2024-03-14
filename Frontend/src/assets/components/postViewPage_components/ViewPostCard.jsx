@@ -15,7 +15,7 @@ import {
   AvatarGroup,
   Avatar,
   Dropdown,
-  Link,
+
   DropdownTrigger,
   DropdownMenu,
   DropdownItem,
@@ -29,7 +29,8 @@ import {
   Divider,
   button,
 } from "@nextui-org/react";
-import { useLocation, useNavigate } from "react-router-dom";
+
+import {Link, useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 
@@ -156,10 +157,14 @@ const ViewPostCard = ({ data, time }) => {
 
               <DropdownItem key="copy">Repost</DropdownItem>
               {isCreated ? (
-                <DropdownItem key="edit"><Link to={`/EditPost/${data._id}`}>
 
-                  Edit Post
-                  </Link></DropdownItem>
+                <DropdownItem key="edit">
+                                 <Link to={`/EditPost/${data._id}`}>
+
+Edit Post
+</Link>
+                  </DropdownItem>
+
               ) : null}
               {isCreated ? (
                 <DropdownItem

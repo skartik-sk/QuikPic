@@ -4,6 +4,7 @@ const initialState = {
   loading: false,
   data: [],
   error: "",
+  caption: "",
   value: 0,
 };
 export const createPost = createAsyncThunk("createPost", async (payload) => {
@@ -16,7 +17,10 @@ export const createPost = createAsyncThunk("createPost", async (payload) => {
 export const editPost = createAsyncThunk("editpost", async (payload) => {
   console.log(payload)
   const url = `http://localhost:1234/post/${payload._id}/caption`;
-  const option = { method: "PUT",body:payload.data, credentials: "include" };
+
+
+  const option = { method: "PUT", body: JSON.stringify(payload), credentials: "include",headers: { 'Content-Type': 'application/json' }, };
+
   const response = await fetch(url, option);
   return response.json();
 });
@@ -39,6 +43,21 @@ export const createPostReducers = createSlice({
       // console.log(state.data, "state.data");
     });
     builder.addCase(createPost.rejected, (state, action) => {
+      state.loading = false;
+      state.data = [];
+      state.error = action.error.message;
+    });builder.addCase(editPost.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(editPost.fulfilled, (state, action) => {
+      // console.log(action.payload, "action.payload");
+      // console.log(state.data, "state.data");
+      state.loading = false;
+      state.data = action.payload;
+      state.error = "";
+      // console.log(state.data, "state.data");
+    });
+    builder.addCase(editPost.rejected, (state, action) => {
       state.loading = false;
       state.data = [];
       state.error = action.error.message;
