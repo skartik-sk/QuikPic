@@ -36,7 +36,7 @@ console.log(data);
         flex: "row",
         display: "flex",
         justifyContent: "center",
-        gap: "8rem",
+      
       }}
     >
       <div className="flex-1">
