@@ -36,7 +36,7 @@ const CreatePostContent = () => {
   const [next, setNext] = useState(false);
   const [value, setValue] = useState(0);
   const [caption, setCaption] = useState();
-  const handleOnSubmit = () => {
+  const handleOnSubmit = async () => {
     if (acceptedFiles[0] === undefined) {
       alert("Please select an image");
       setNext(false);
@@ -55,7 +55,8 @@ console.log(acceptedFiles[0])
     formData.append("photo", acceptedFiles[0]);
     formData.append("caption", caption);
     console.log(formData);
-    dispatch(createPost(formData));
+   await  dispatch(createPost(formData));
+    navigate("/Home");
   };
   const handleOnBack = () => {
     setNext(false);

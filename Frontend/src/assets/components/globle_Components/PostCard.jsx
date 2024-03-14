@@ -78,7 +78,11 @@ const PostCard = ({ data }) => {
   };
 const delpost = async () => {
   await dispatch(delPost({ id: data._id }));
-  dispatch(fetchExplore());
+  if (location.pathname === '/Home') {
+    dispatch(fetchFeed());
+  } else if (location.pathname === '/Explore') {
+    dispatch(fetchExplore());
+  }
 }
   const [isCreated, setIsCreator] = useState(false);
   useEffect(() => {
