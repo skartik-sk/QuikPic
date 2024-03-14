@@ -40,7 +40,7 @@ export const getSavedPostsReducers = createSlice({
     });
     builder.addCase(getSavedPosts.rejected, (state, action) => {
       state.loading = false;
-      state.SavedPostsdata = [];
+      state.UserPostdata = [];
       state.error = action.error.message;
     });
     builder.addCase(getUserPost.pending, (state) => {
@@ -50,13 +50,13 @@ export const getSavedPostsReducers = createSlice({
       // console.log(action.payload, "action.payload");
       // console.log(state.data, "state.data");
       state.loading = false;
-      state.SavedPostsdata = action.payload;
+      state.UserPostdata = action.payload;
       state.error = "";
       // console.log(state.data, "state.data");
     });
     builder.addCase(getUserPost.rejected, (state, action) => {
       state.loading = false;
-      state.SavedPostsdata = [];
+      state.UserPostdata = [];
       state.error = action.error.message;
     });
   },
