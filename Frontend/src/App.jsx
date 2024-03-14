@@ -21,7 +21,10 @@ import SideNav_expanded from "./assets/components/globle_Components/SideNav_expa
 import BottomNav from "./assets/components/globle_Components/BottomNav";
 import { me } from "./assets/redux/reducers/MeReducer";
 import ResetPasswordPage from "./assets/pages/ResetPasswordPage";
-import EditPost from "./assets/pages/SubPages/EditPost";
+
+import EditPostPage from "./assets/pages/EditPostPage";
+
+
 
 function MainLayout({ children }) {
   function useWindowWidth() {
@@ -112,6 +115,10 @@ const isAuthenticated = useSelector((state) => state.me.isAuth);
             <Route
               path="/CreatePost"
               element={isAuthenticated?<PageWithLayout component={CreatePostPage} />:<LoginPage />}
+            />
+            <Route
+              path="/EditPost/:id"
+              element={isAuthenticated?<PageWithLayout component={EditPostPage} />:<LoginPage />}
             />
             <Route
               path="/ViewPost"
