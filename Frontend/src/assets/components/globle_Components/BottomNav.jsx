@@ -46,7 +46,7 @@ const BottomNav = () => {
     setShowLogoutModal(false);
   };
 
-  const data = useSelector((state) => state.me.data);
+  // const data = useSelector((state) => state.me.data);
   const getProfile = () => {
     if (data.profileImage == "") {
       return "https://www.pngall.com/wp-content/uploads/5/User-Profile-PNG-Image.png";
