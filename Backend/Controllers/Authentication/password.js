@@ -29,7 +29,7 @@ export const forgotPassword = async (req, res) => {
         from: process.env.EMAIL_USERNAME,
         to: email,
         subject: 'Password Reset Link',
-        html: `<p>Please click this <a href="http://localhost:5173/resetPassword/${user._id}/${token}">link</a> to reset your password.</p>`
+        html: `<p>Please click this <a href="https://main--quikpikweb.netlify.app/resetPassword/${user._id}/${token}">link</a> to reset your password.</p>`
       };
   
       transporter.sendMail(mailOptions, (error, info) => {
