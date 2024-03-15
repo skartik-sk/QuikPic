@@ -25,6 +25,8 @@ import Bookmark from "../../icons/Navbar/Bookmark";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/reducers/LogoutReducer";
+import { me } from "../../redux/reducers/MeReducer.jsx";
+// import { useNavigate } from 'react-router-dom';
 
 const BottomNav = () => {
 
