@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { Button, useDisclosure } from "@nextui-org/react";
 import { deleteuser } from "../../redux/reducers/DeleteUserReducer";
+import { logout } from "../../redux/reducers/LogoutReducer";
 
 const DeleteUser = () => {
     const { onOpenChange } = useDisclosure();
@@ -11,17 +12,18 @@ const DeleteUser = () => {
 
     // const profileDeleteStatus = useSelector(state => state.deleteuser);
 
-    const handleDeleteProfile = () => {
-        dispatch(deleteuser())
-            .then(() => {
-                // Redirect or perform any other action after successful profile deletion
-                navigateTo("/Login")
-                console.log("Profile deleted successfully!");
-            })
-            .catch((error) => {
-                // Handle profile deletion error
-                console.error("Profile deletion error:", error);
-            });
+    const handleDeleteProfile = async () => {
+        try{
+
+            await dispatch(deleteuser())
+            dispatch(logout())
+            console.log("Profile deleted successfully!");
+        }
+        catch(err){
+            console.log("Profile deletion error:", err);
+        }
+   
+        
 
         // Close the modal
         onOpenChange(false);
