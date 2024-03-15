@@ -160,7 +160,7 @@ const LoginForm = () => {
               className="w-full md:max-w-xs"
               color="primary"
               variant="shadow"
-              onClick={Login}
+              type="submit"       
             >
               Login
             </Button>

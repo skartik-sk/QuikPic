@@ -24,6 +24,7 @@ import {
 import Bookmark from "../../icons/Navbar/Bookmark";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../redux/reducers/LogoutReducer";
 
 const BottomNav = () => {
 
