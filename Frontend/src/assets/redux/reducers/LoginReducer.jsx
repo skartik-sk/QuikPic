@@ -11,7 +11,6 @@ export const login = createAsyncThunk("userFeeds", async (payload) => {
   console.log(payload.userName, payload.password);
   const url = "https://quikpic-backend.onrender.com/login";
   const option = {
-   
     headers: {
       "Content-Type": "application/json",
     },
