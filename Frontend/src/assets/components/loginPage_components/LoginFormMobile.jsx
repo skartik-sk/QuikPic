@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 import ForgotPassword from "../../components/globle_Components/ForgotPassword.jsx";
 import { me } from "../../redux/reducers/MeReducer.jsx";
 import { fetchFeed } from "../../redux/reducers/UserFeedReducers.jsx";
+import { UsernameIcon } from "../../icons/LoginSignupForm/UsernameIcon";
 
 
 const LoginFormMobile = () => {
@@ -109,8 +110,8 @@ const LoginFormMobile = () => {
                             <UsernameIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
                         }
 
-                        // isInvalid={isInvalid}
-                        // errorMessage={isInvalid ? "Please enter a valid email" : null}
+                        isInvalid={isInvalid}
+                        errorMessage={isInvalid ? "Please enter a valid email" : null}
                     />
                     <Input
                         label="Password"
