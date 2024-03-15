@@ -102,7 +102,7 @@ const SignupForm = () => {
                 <div style={{ paddingLeft: "6rem", paddingRight: "6rem", paddingTop: "2rem" }} className="flex w-full h-screen flex-col md:flex-nowrap mb-2 md:mb-0 gap-4 ">
 
                     <div className="flex flex-row items-center px-8" style={{ marginBottom: "1.8rem", gap: ".8rem" }}>
-                        <Avatar src="https://i.pravatar.cc/150?u=a04258114e29026302d" size="md" style={{ width: "2.5rem", height: "2.2rem", borderRadius: "50%" }} />
+                        <Avatar src="https://github.com/SingupalliKartik/QuikPic/blob/main/Frontend/src/assets/icons/QuikPic_logo.png?raw=true" size="md" style={{ width: "2.5rem", height: "2.2rem", borderRadius: "50%" }} />
                         <h2 className="text-[1.3rem] font-bold">QuikPic</h2>
                         <div >
                             <Navbar >

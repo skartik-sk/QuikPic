@@ -75,7 +75,7 @@ const LoginFormMobile = () => {
                 <div style={{ paddingLeft: "3rem", paddingRight: "3rem", paddingTop: "4rem" }} className="flex w-full h-screen flex-col md:flex-nowrap mb-2 md:mb-0 gap-4 ">
 
                     <div className="flex flex-row items-center px-8" style={{ marginBottom: "1.8rem", gap: ".8rem" }}>
-                        <Avatar src="https://i.pravatar.cc/150?u=a04258114e29026302d" size="md" style={{ width: "2.8rem", height: "2.2rem", borderRadius: "50%" }} />
+                        <Avatar src="https://github.com/SingupalliKartik/QuikPic/blob/main/Frontend/src/assets/icons/QuikPic_logo.png?raw=true" size="md" style={{ width: "2.8rem", height: "2.2rem", borderRadius: "50%" }} />
                         <h2>QuikPic</h2>
                         <Navbar >
                             <NavbarItem>

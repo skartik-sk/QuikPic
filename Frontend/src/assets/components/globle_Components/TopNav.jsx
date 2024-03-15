@@ -10,6 +10,7 @@ import {
   Input,
   Switch,
   Button,
+  Avatar
 } from "@nextui-org/react";
 import { SearchIcon } from "../../icons/Navbar/SearchIcon";
 import { SunIcon } from "../../icons/Navbar/SunIcon";
@@ -26,7 +27,11 @@ const TopNav = () => {
     >
       <NavbarBrand style={{ maxWidth: "none" }}>
         {/* <AcmeLogo /> */}
+        <div className="flex">
+        <Avatar src="https://github.com/SingupalliKartik/QuikPic/blob/main/Frontend/src/assets/icons/QuikPic_logo.png?raw=true" size="md" style={{ width: "2.8rem", height: "2.2rem", borderRadius: "50%" }} />
+                        
         <p className="font-bold text-inherit text-xl">QuikPic</p>
+        </div>
       </NavbarBrand>
       <NavbarContent justify="end">
         <NavbarItem>
