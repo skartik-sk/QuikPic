@@ -42,8 +42,8 @@ const LoginForm = () => {
   };
   const Login = async (e) => {
     await dispatch(login({ userName: email, password: password }));
-    dispatch(fetchFeed())
     dispatch(me())
+    dispatch(fetchFeed())
     
     navigate("/Home");
   };
