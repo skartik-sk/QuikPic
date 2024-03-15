@@ -81,7 +81,7 @@ const LoginForm = () => {
             style={{ marginBottom: "1.8rem", gap: ".8rem" }}
           >
             <Avatar
-              src="https://i.pravatar.cc/150?u=a04258114e29026302d"
+              src="../../icons/QuikPic_logo.png"
               size="md"
               style={{ width: "2.8rem", height: "2.2rem", borderRadius: "50%" }}
             />
