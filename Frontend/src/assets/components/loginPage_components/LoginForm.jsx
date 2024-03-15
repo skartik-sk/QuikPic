@@ -81,7 +81,7 @@ const LoginForm = () => {
             style={{ marginBottom: "1.8rem", gap: ".8rem" }}
           >
             <Avatar
-              src="../../icons/QuikPic_logo.png"
+              src="https://github.com/SingupalliKartik/QuikPic/blob/main/Frontend/src/assets/icons/QuikPic_logo.png?raw=true"
               size="md"
               style={{ width: "2.8rem", height: "2.2rem", borderRadius: "50%" }}
             />
