@@ -27,8 +27,8 @@ const TopNav = () => {
     >
       <NavbarBrand style={{ maxWidth: "none" }}>
         {/* <AcmeLogo /> */}
-        <div className="flex">
-        <Avatar src="https://github.com/SingupalliKartik/QuikPic/blob/main/Frontend/src/assets/icons/QuikPic_logo.png?raw=true" size="md" style={{ width: "2.8rem", height: "2.2rem", borderRadius: "50%" }} />
+        <div className="flex gap-4">
+        <Avatar src="https://github.com/SingupalliKartik/QuikPic/blob/main/Frontend/src/assets/icons/QuikPic_logo.png?raw=true" size="md" style={{ width: "2.5rem", height: "2.2rem", borderRadius: "50%" }} />
                         
         <p className="font-bold text-inherit text-xl">QuikPic</p>
         </div>
