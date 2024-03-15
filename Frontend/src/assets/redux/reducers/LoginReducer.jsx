@@ -1,6 +1,6 @@
 import { user } from "@nextui-org/theme";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-
+import axios from "axios";
 const initialState = {
   loading: true,
   data: [],
@@ -11,17 +11,12 @@ export const login = createAsyncThunk("userFeeds", async (payload) => {
   console.log(payload.userName, payload.password);
   const url = "https://quikpic-backend.onrender.com/login";
   const option = {
-    method: "POST",
-    body: JSON.stringify({
-      username: payload.userName,
-      password: payload.password,
-    }),
     headers: {
       "Content-Type": "application/json",
     },
-    credentials: "include",
+    withCredentials: true,
   };
-  const response = await fetch(url, option);
+  const response = await axios.post(url,{username: payload.userName, password: payload.password } ,option);
   return response.json();
 });
 export const loginReducers = createSlice({

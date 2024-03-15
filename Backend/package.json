@@ -19,6 +19,7 @@
   "homepage": "https://github.com/SingupalliKartik/Quipify#readme",
   "dependencies": {
     "aws-sdk": "^2.1576.0",
+    "axios": "^1.6.7",
     "bcrypt": "^5.1.1",
     "cloudinary": "^1.41.1",
     "cookie-parser": "^1.4.6",

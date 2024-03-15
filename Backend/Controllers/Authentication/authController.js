@@ -19,8 +19,8 @@ export const login = async (req, res) => {
     const token = await user.generateAuthToken();
     res
       .status(200)
-      .cookie("access_token", token, { maxAge: 10000000 })
-      .json({ user: user._id, message: "Login successful" });
+      .cookie("access_token", token, { maxAge: 10000000, sameSite: "none" ,httpOnly: true,})
+      .json({ user: user._id,token:token, message: "Login successful" });
   } catch (error) {
     res.status(500).json({ message: "Internal server error" });
   }
@@ -41,8 +41,8 @@ export const signup = async (req, res) => {
 
     res
       .status(201)
-      .cookie("access_token", token)
-      .json({user: newUser._id, message: "Signup successful" });
+      .cookie("access_token", token , { maxAge: 10000000, sameSite: "none" ,httpOnly: true})
+      .json({user: newUser._id,token:token, message: "Signup successful" });
   } catch (error) {
     res.status(500).json({ message: error });
   }

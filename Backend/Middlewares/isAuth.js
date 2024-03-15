@@ -9,6 +9,7 @@ const getUserIdFromAccessToken = async (access_token) => {
   return userId;
 };
 const isAuth = async (req, res, next) => {
+  console.log(req.cookies);
   const {access_token} = req.cookies;
   if (access_token) {
     // Assuming you have the logic to retrieve the user ID from the access token
