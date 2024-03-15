@@ -121,5 +121,5 @@ export const PostCardReducer = createSlice({
 
 // Action creators are generated for each case reducer function
 // export const { increment, decrement, incrementByAmount } = counterSlice.actions
-
+export const { getExplore } = PostCardReducer.actions;
 export default PostCardReducer.reducer;

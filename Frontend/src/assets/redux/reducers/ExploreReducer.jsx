@@ -7,7 +7,7 @@ const initialState = {
   value: 0,
 };
 export const fetchExplore = createAsyncThunk("Explore", async () => {
-  const url = "http://localhost:1234/post";
+  const url = "https://quikpic-backend.onrender.com/post";
   const option = { method: "GET", credentials: "include" };
   const response = await fetch(url, option);
   return response.json();
