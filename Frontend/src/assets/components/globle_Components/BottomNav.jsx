@@ -29,9 +29,9 @@ import { me } from "../../redux/reducers/MeReducer.jsx";
 import { useNavigate } from 'react-router-dom';
 
 const BottomNav = () => {
-
+  
   const dispatch = useDispatch();
-  const navigateTo = useNavigate();
+  // const navigateTo = useNavigate();
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const handleLogout = async () => {
     await dispatch(logout())
