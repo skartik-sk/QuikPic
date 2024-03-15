@@ -44,7 +44,7 @@ const LoginForm = () => {
     await dispatch(login({ userName: email, password: password }));
     dispatch(me())
     dispatch(fetchFeed())
-    
+
     navigate("/Home");
   };
 
@@ -107,77 +107,80 @@ const LoginForm = () => {
             <h1>Nice to see you again!</h1>
           </div>
 
-          <Input
-            type="username"
-            label="Username"
-            variant="bordered"
-            placeholder="Enter your username"
-            className="md:max-w-xs"
-            value={email}
-            onChange={handleChange}
-            // onBlur={handleBlur}
-            endContent={
-              <UsernameIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
-            }
-            isInvalid={isInvalid}
-            errorMessage={isInvalid ? "Please enter a valid email" : null}
-          />
-          <Input
-            label="Password"
-            variant="bordered"
-            onChange={handleChangepass}
-            value={password}
-            placeholder="Enter your password"
-            endContent={
-              <button
-                className="focus:outline-none"
-                type="button"
-                onClick={toggleVisibility}
-              >
-                {isVisible ? (
-                  <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
-                ) : (
-                  <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
-                )}
-              </button>
-            }
-            type={isVisible ? "text" : "password"}
-            className="md:max-w-xs"
-          />
+          <form onSubmit={Login}>
 
-          <div
-            className="flex justify-end md:max-w-xs"
-            style={{ paddingBottom: "1rem" }}
-          >
-            <ForgotPassword />
-            {/* <Link href="../components/loginPage_components/ForgotPassword.jsx" size="sm" underline="active">
+            <Input
+              type="username"
+              label="Username"
+              variant="bordered"
+              placeholder="Enter your username"
+              className="md:max-w-xs"
+              value={email}
+              onChange={handleChange}
+              // onBlur={handleBlur}
+              endContent={
+                <UsernameIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
+              }
+              isInvalid={isInvalid}
+              errorMessage={isInvalid ? "Please enter a valid email" : null}
+            />
+            <Input
+              label="Password"
+              variant="bordered"
+              onChange={handleChangepass}
+              value={password}
+              placeholder="Enter your password"
+              endContent={
+                <button
+                  className="focus:outline-none"
+                  type="button"
+                  onClick={toggleVisibility}
+                >
+                  {isVisible ? (
+                    <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                  ) : (
+                    <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                  )}
+                </button>
+              }
+              type={isVisible ? "text" : "password"}
+              className="md:max-w-xs"
+            />
+
+            <div
+              className="flex justify-end md:max-w-xs"
+              style={{ paddingBottom: "1rem" }}
+            >
+              <ForgotPassword />
+              {/* <Link href="../components/loginPage_components/ForgotPassword.jsx" size="sm" underline="active">
               Forgot Password
             </Link> */}
-          </div>
+            </div>
 
-          <div>
-            <Button
-              className="w-full md:max-w-xs"
-              color="primary"
-              variant="shadow"
-              type="submit"       
-            >
-              Login
-            </Button>
-          </div>
+            <div>
+              <Button
+                className="w-full md:max-w-xs"
+                color="primary"
+                variant="shadow"
+                type="submit"
+              >
+                Login
+              </Button>
+            </div>
 
-          <div className="my-1 md:max-w-xs w-full">
-            <Divider className="my-1" />
-          </div>
+            <div className="my-1 md:max-w-xs w-full">
+              <Divider className="my-1" />
+            </div>
 
-          <div className="flex justify-center">
-            <h3>
-              Don't have an account?{" "}
-              <Link href="/Signup" size="md" underline="active">
-                Signup
-              </Link>
-            </h3>
-          </div>
+            <div className="flex justify-center">
+              <h3>
+                Don't have an account?{" "}
+                <Link href="/Signup" size="md" underline="active">
+                  Signup
+                </Link>
+              </h3>
+            </div>
+          </form>
         </div>
       </div>
     </div>
