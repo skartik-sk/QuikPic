@@ -112,7 +112,7 @@ const LoginForm = () => {
             variant="bordered"
             placeholder="Enter your username"
             className="md:max-w-xs"
-            value={username}
+            value={email}
             onChange={handleChange}
             // onBlur={handleBlur}
             endContent={
