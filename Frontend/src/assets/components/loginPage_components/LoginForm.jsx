@@ -167,20 +167,20 @@ const LoginForm = () => {
                 Login
               </Button>
             </div>
-
-            <div className="my-1 md:max-w-xs w-full">
-              <Divider className="my-1" />
-            </div>
-
-            <div className="flex justify-center">
-              <h3>
-                Don't have an account?{" "}
-                <Link href="/Signup" size="md" underline="active">
-                  Signup
-                </Link>
-              </h3>
-            </div>
           </form>
+
+          <div className="my-1 md:max-w-xs w-full">
+            <Divider className="my-1" />
+          </div>
+
+          <div className="flex justify-center">
+            <h3>
+              Don't have an account?{" "}
+              <Link href="/Signup" size="md" underline="active">
+                Signup
+              </Link>
+            </h3>
+          </div>
         </div>
       </div>
     </div>
