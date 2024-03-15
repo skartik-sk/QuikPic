@@ -11,16 +11,13 @@ export const login = createAsyncThunk("userFeeds", async (payload) => {
   console.log(payload.userName, payload.password);
   const url = "https://quikpic-backend.onrender.com/login";
   const option = {
-    body: JSON.stringify({
-      username: payload.userName,
-      password: payload.password,
-    }),
+   
     headers: {
       "Content-Type": "application/json",
     },
     withCredentials: "include",
   };
-  const response = await axios.post(url, option);
+  const response = await axios.post(url,{username: payload.userName, password: payload.password } ,option);
   return response.json();
 });
 export const loginReducers = createSlice({
