@@ -85,7 +85,7 @@ const LoginForm = () => {
               size="md"
               style={{ width: "2.8rem", height: "2.2rem", borderRadius: "50%" }}
             />
-            <h2 className="text-[1.3rem] font-bold">Quipify</h2>
+            <h2 className="text-[1.3rem] font-bold">QuikPic</h2>
             <Navbar>
               <NavbarItem>
                 <Switch
@@ -112,11 +112,11 @@ const LoginForm = () => {
             variant="bordered"
             placeholder="Enter your username"
             className="md:max-w-xs"
-            value={email}
+            value={username}
             onChange={handleChange}
             // onBlur={handleBlur}
             endContent={
-              <MailIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
+              <UsernameIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
             }
             isInvalid={isInvalid}
             errorMessage={isInvalid ? "Please enter a valid email" : null}

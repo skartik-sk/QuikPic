@@ -101,16 +101,16 @@ const LoginFormMobile = () => {
                         type="username"
                         label="Username"
                         variant="bordered"
-                        placeholder="Enter your email"
+                        placeholder="Enter your username"
                         className="md:max-w-xs"
                         value={email}
                         onChange={handleChange}
                         endContent={
-                            <MailIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
+                            <UsernameIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
                         }
 
-                        isInvalid={isInvalid}
-                        errorMessage={isInvalid ? "Please enter a valid email" : null}
+                        // isInvalid={isInvalid}
+                        // errorMessage={isInvalid ? "Please enter a valid email" : null}
                     />
                     <Input
                         label="Password"
