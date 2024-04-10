@@ -11,7 +11,7 @@ const app = express();
 
 app.use(express.json());
 app.use(cookie());
-app.use(cors({  origin:"https://main--quikpikweb.netlify.app" || "http://localhost:5173",
+app.use(cors({  origin:["https://main--quikpikweb.netlify.app" , "http://localhost:5173"],
 credentials:true}));
 app.use("/",userRouter);
 app.use("/post",postRouter); 
