@@ -181,15 +181,16 @@ const delpost = async () => {
           className="overflow-visible py-2 w-fit"
         >
           <button 
-            style={{ width: "fit-content ", height: "fit-content" }}
+            style={{ width: "300px ", height: "300px" }}
             className=""
             onClick={postviewPage}
           >
             
             <Image 
+            style={{ width: "300px ", height: "300px" }}
               loading="false"
-              width={300}
-              height={200}
+            
+             
               alt="NextUI hero Image with delay"
               src={data.image}
             />
