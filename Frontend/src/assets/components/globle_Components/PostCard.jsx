@@ -121,7 +121,7 @@ const delpost = async () => {
         >
           <Popover showArrow placement="bottom">
             <PopoverTrigger>
-              <User
+              <User style={{position:"static"}}
                 as="button"
                 name={data.createdBy.username}
                 className="transition-transform"
@@ -187,7 +187,7 @@ const delpost = async () => {
           >
             
             <Image 
-            style={{ width: "300px ", height: "300px" }}
+            style={{ width: "300px ", height: "300px", position: "static"}}
               loading="false"
             
              
@@ -267,18 +267,14 @@ const delpost = async () => {
           <CardBody className="flex-row justify-between py-1">
             <CardBody className="truncate px-0 py-1 ">
               <div className="truncate w-[15px]">
-                Liked by kartik and many others
+                Liked by {data.likes.length} people
               </div>
             </CardBody>
 
             <AvatarGroup   max={2} size="sm">
-              <Avatar style={{height:"28px", width:"28px"}} src="https://i.pravatar.cc/150?u=a042581f4e29026024d" />
-              <Avatar style={{height:"28px", width:"28px"}} src="https://i.pravatar.cc/150?u=a04258a2462d826712d" />
-              <Avatar style={{height:"28px", width:"28px"}} src="https://i.pravatar.cc/150?u=a042581f4e29026704d" />
-              <Avatar style={{height:"28px", width:"28px"}} src="https://i.pravatar.cc/150?u=a04258114e29026302d" />
-              <Avatar style={{height:"28px", width:"28px"}} src="https://i.pravatar.cc/150?u=a04258114e29026702d" />
-              <Avatar style={{height:"28px", width:"28px"}} src="https://i.pravatar.cc/150?u=a04258114e29026708c" />
-            </AvatarGroup>
+             {[...Array(data.likes.length)].map((e, i) => <span className="busterCards" key={i}><Avatar style={{height:"28px", width:"28px"}} src="https://i.pravatar.cc/150?u=a042581f4e29026024d" /></span>)}
+              
+              </AvatarGroup>
           </CardBody>
           <CardBody
             // style={{ width: "300px" }}

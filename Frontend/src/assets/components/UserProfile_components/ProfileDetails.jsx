@@ -32,7 +32,7 @@ console.log(data);
   return (
     <div
       style={{
-        marginTop: "2rem",
+        margin: "2rem",
         flex: "row",
         display: "flex",
         justifyContent: "center",
@@ -40,9 +40,9 @@ console.log(data);
       }}
     >
       <div className="flex-1 flex-row items-center justify-center">
-        <Image
-          width={230}
-          height={230}
+        <Image style={{ borderRadius: "100%"}}
+          width={180}
+          height={180}
           alt="NextUI hero Image"
           src={getProfile()}
         />
@@ -52,7 +52,7 @@ console.log(data);
         className="flex flex-1 flex-col"
         style={{ gap: "1.2rem", width: "4rem" }}
       >
-        <div className="flex flex-row items-center justify-between">
+        <div   className="flex flex-row items-center justify-between">
           <h2>{data.username}</h2>
           <Button color="primary" size="sm">
             <Link to = "/Setting">
@@ -62,7 +62,7 @@ console.log(data);
           </Button>
         </div>
 
-        <div className="flex flex-row items-center justify-between gap-4">
+        <div style={{gap:"2rem"}}  className="flex flex-row items-center justify-around">
           <div className="flex flex-row items-center justify-between gap-1">
             <h3 className="text-xs font-semibold">{post}</h3>
             <h3 className="text-xs">Posts</h3>
