@@ -30,10 +30,14 @@ import { faGear } from "@fortawesome/free-solid-svg-icons";
 import Bookmark from "../../icons/Navbar/Bookmark";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from 'react-router-dom';
 
+import { logout } from "../../redux/reducers/LogoutReducer";
+import { me } from "../../redux/reducers/MeReducer";
 const SideNav = () => {
   const data = useSelector((state) => state.me.data);
   const dispatch = useDispatch();
+  const navigateTo = useNavigate();
     const [showLogoutModal, setShowLogoutModal] = useState(false);
     const handleLogout = async () => {
       await dispatch(logout())

@@ -10,6 +10,7 @@ import {
   NavbarItem,
   Switch,
   Navbar,
+  Progress,
 } from "@nextui-org/react";
 import { MailIcon } from "../../icons/LoginSignupForm/MailIcon";
 import { EyeFilledIcon } from "../../icons/LoginSignupForm/EyeFilledIcon";
@@ -57,7 +58,7 @@ const LoginForm = () => {
   const [isVisible, setIsVisible] = React.useState(false);
 
   const toggleVisibility = () => setIsVisible(!isVisible);
-
+  
   return (
     <div className="w-full flex flex-row">
       <div className="flex flex-1 ">
@@ -69,6 +70,14 @@ const LoginForm = () => {
       </div>
 
       <div className="flex-1 flex-col">
+      {loading ? (
+          <Progress
+            size="sm"
+            isIndeterminate
+            aria-label="Loading..."
+            className="max-w-md"
+          />
+        ) :(
         <div
           style={{
             paddingLeft: "6rem",
@@ -117,7 +126,7 @@ const LoginForm = () => {
             onChange={handleChange}
             // onBlur={handleBlur}
             endContent={
-              <UsernameIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
+              <UsernameIcon style= {{marginBottom: "10px"}} className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
             }
             isInvalid={isInvalid}
             errorMessage={isInvalid ? "Please enter a valid email" : null}
@@ -135,9 +144,9 @@ const LoginForm = () => {
                 onClick={toggleVisibility}
               >
                 {isVisible ? (
-                  <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                  <EyeSlashFilledIcon style= {{marginBottom: "10px"}} className="text-2xl text-default-400 pointer-events-none" />
                 ) : (
-                  <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                  <EyeFilledIcon style= {{marginBottom: "10px"}} className="text-2xl text-default-400 pointer-events-none" />
                 )}
               </button>
             }
@@ -178,7 +187,7 @@ const LoginForm = () => {
               </Link>
             </h3>
           </div>
-        </div>
+        </div>)}
       </div>
     </div>
   );

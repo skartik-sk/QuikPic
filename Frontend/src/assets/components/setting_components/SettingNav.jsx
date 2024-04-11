@@ -30,13 +30,13 @@ const SettingNav = () => {
   const navigateTo = useNavigate();
   const iconClasses =
     "text-xl text-default-500 pointer-events-none flex-shrink-0";
-  const [activeSection, setActiveSection] = useState(null);
+  const [activeSection, setActiveSection] = useState("edit");
   const handleLogout = async() => {
     await dispatch(logout())
       
         // Redirect or perform any other action after successful logout
-        await dispatch(me());
         navigateTo("/Signup")
+        await dispatch(me());
         console.log("User logged out successfully!");
   
     

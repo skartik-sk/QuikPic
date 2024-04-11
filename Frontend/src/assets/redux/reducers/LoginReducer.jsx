@@ -2,7 +2,7 @@ import { user } from "@nextui-org/theme";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 const initialState = {
-  loading: true,
+  loading: false,
   data: [],
   error: "kuh",
   value: 0,

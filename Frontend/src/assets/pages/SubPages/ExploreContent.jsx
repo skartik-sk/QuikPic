@@ -22,8 +22,13 @@ const ExploreContent = () => {
     <div className="w-full">
       <TopNav />
       <Card className="flex-row flex-wrap gap-3  justify-center  ">
-        {Data.map((item) => {
-          return <PostCard key={item._id} data={item} />;
+        {Data.toReversed().map((item) => {
+          return ( 
+          <span>
+          <PostCard key={item._id} data={item} />
+          </span>
+        
+        );
         })}
       </Card>
     </div>

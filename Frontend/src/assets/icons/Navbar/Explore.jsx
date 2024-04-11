@@ -2,7 +2,7 @@ import React from 'react'
 
 export const Explore = () => {
   return (
-    <div><svg width="36" height="35" viewBox="0 0 36 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <div><svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
     <circle cx="18.8265" cy="12.7516" r="12.5" fill="url(#paint0_linear_6_534)"/>
     <g filter="url(#filter0_bd_6_534)">
     <circle cx="13.8265" cy="16.5016" r="13.75" fill="#FAB607"/>

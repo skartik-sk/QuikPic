@@ -21,8 +21,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGear } from "@fortawesome/free-solid-svg-icons";
 import Bookmark from "../../icons/Navbar/Bookmark";
 import { Link } from "react-router-dom";
+import { logout } from "../../redux/reducers/LogoutReducer";
+import { me } from "../../redux/reducers/MeReducer";
 import { useDispatch, useSelector } from "react-redux";
-
+import { useNavigate } from 'react-router-dom';
 const SideNav_expanded = () => {
 
   const data = useSelector((state) => state.me.data);
@@ -34,7 +36,7 @@ const SideNav_expanded = () => {
       return data.profileImage;
     }
   };
-
+  const navigateTo = useNavigate();
   const dispatch = useDispatch();
     const [showLogoutModal, setShowLogoutModal] = useState(false);
     const handleLogout = async () => {

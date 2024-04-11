@@ -2,7 +2,7 @@ import React from 'react'
 
 const Bookmark = () => {
   return (
-    <div><svg width="28" height="35" viewBox="0 0 28 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <div><svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M24.4041 0.503296H11.5724C10.1609 0.503296 9.0061 1.58115 9.0061 2.89853V22.0604L17.9882 18.4676L26.9704 22.0604V2.89853C26.9704 1.58115 25.8155 0.503296 24.4041 0.503296Z" fill="url(#paint0_linear_6_57)" fill-opacity="0.3"/>
     <g filter="url(#filter0_bd_6_57)">
     <path d="M19.5071 4.6347H4.10913C2.41536 4.6347 1.02954 5.92813 1.02954 7.50899V30.5033L11.8081 26.1918L22.5867 30.5033V7.50899C22.5867 5.92813 21.2009 4.6347 19.5071 4.6347Z" fill="#FF782C"/>

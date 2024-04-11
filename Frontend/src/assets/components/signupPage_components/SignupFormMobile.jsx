@@ -113,7 +113,7 @@ const SignupFormMobile = () => {
                         onChange={handleUsernameChange}
                         // value={username}
                         endContent={
-                            <UsernameIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
+                            <UsernameIcon style= {{marginBottom: "10px"}} className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
                         }
                     />
 
@@ -126,7 +126,7 @@ const SignupFormMobile = () => {
                         value={email}
                         onChange={handleEmailChange}
                         endContent={
-                            <MailIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
+                            <MailIcon style= {{marginBottom: "10px"}} className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
                         }
 
                         isInvalid={isInvalid}
@@ -141,9 +141,9 @@ const SignupFormMobile = () => {
                         endContent={
                             <button className="focus:outline-none" type="button" onClick={toggleVisibility}>
                                 {isVisible ? (
-                                    <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                                    <EyeSlashFilledIcon style= {{marginBottom: "10px"}} className="text-2xl text-default-400 pointer-events-none" />
                                 ) : (
-                                    <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                                    <EyeFilledIcon style= {{marginBottom: "10px"}} className="text-2xl text-default-400 pointer-events-none" />
                                 )}
                             </button>
                         }

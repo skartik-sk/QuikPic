@@ -43,8 +43,8 @@ setSavedPosts(data.savedPosts);
                             <Card>
                                 <CardBody className="flex-row flex-wrap gap-3">
                                    {item.id === "1" ? 
-                                    Post.map((post) => <PostCard key={post._id} data={post }  />) :
-                                   savedPosts.map((post) => <PostCard key={post._id} data={post} />)}
+                                    Post.toReversed().map((post) => <PostCard key={post._id} data={post }  />) :
+                                   savedPosts.toReversed().map((post) => <PostCard key={post._id} data={post} />)}
                                 </CardBody>
                             </Card>
                         </Tab>

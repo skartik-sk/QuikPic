@@ -39,7 +39,7 @@ console.log(data);
       
       }}
     >
-      <div className="flex-1">
+      <div className="flex-1 flex-row items-center justify-center">
         <Image
           width={230}
           height={230}
@@ -50,7 +50,7 @@ console.log(data);
 
       <div
         className="flex flex-1 flex-col"
-        style={{ gap: "1.5rem", width: "20rem" }}
+        style={{ gap: "1.2rem", width: "4rem" }}
       >
         <div className="flex flex-row items-center justify-between">
           <h2>{data.username}</h2>

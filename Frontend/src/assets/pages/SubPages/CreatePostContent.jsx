@@ -11,11 +11,13 @@ import {
   Image,
   Textarea,
   Progress,
+Slider
 } from "@nextui-org/react";
 import { useNavigate } from "react-router-dom";
 import TopNav from "../../components/globle_Components/TopNav";
 import { PorgressBar } from "../../components/postCreationPage_components/PorgressBar";
 import AddImgage from "../../icons/post/AddImgage";
+
 import { createPost } from "../../redux/reducers/CreatePostReducer";
 const CreatePostContent = () => {
   const loading = useSelector((state) => state.create.loading);
@@ -34,7 +36,7 @@ const CreatePostContent = () => {
     useDropzone({ onDrop });
   const [preview, setPreview] = useState(null);
   const [next, setNext] = useState(false);
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState(2);
   const [caption, setCaption] = useState();
   const handleOnSubmit = async () => {
     if (acceptedFiles[0] === undefined) {
@@ -51,7 +53,6 @@ const CreatePostContent = () => {
     }
     setValue(100);
     const formData = new FormData();
-console.log(acceptedFiles[0])
     formData.append("photo", acceptedFiles[0]);
     formData.append("caption", caption);
     console.log(formData);

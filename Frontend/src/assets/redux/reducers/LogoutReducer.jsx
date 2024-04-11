@@ -12,6 +12,10 @@ export const logout = createAsyncThunk("user/logout", async () => {
         const response = await fetch("https://quikpic-backend.onrender.com/logout", {
             method: "GET",
             credentials: "include",
+            headers: {
+                "Content-Type": "application/json",
+                "sameSite": "None",
+            },
 
         });
         //   const response = await fetch(url, option);

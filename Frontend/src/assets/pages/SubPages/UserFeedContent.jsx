@@ -21,7 +21,6 @@ const UserFeedContent = () => {
    // doSomeing();
     dispatch(fetchFeed());
   }, []);
-  console.log(Data.length);
   return (
     <div className="w-full">
       <TopNav />
@@ -29,8 +28,7 @@ const UserFeedContent = () => {
         {Data.length <= 1 || Data === undefined || Data.length == undefined ? (
           <div>Kisi ko follow kar lo yar</div>
         ) : (
-          Data.map((item) => {
-            console.log(item);
+          Data.toReversed().map((item) => {
             return <PostCard key={item._id} data={item} />;
           })
         )}
