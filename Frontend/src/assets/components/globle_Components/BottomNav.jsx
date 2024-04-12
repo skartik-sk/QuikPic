@@ -29,7 +29,7 @@ import { me } from "../../redux/reducers/MeReducer.jsx";
 import { useNavigate } from 'react-router-dom';
 
 const BottomNav = () => {
-  
+  const navigateTo = useNavigate();
   const dispatch = useDispatch();
   // const navigateTo = useNavigate();
   const [showLogoutModal, setShowLogoutModal] = useState(false);
