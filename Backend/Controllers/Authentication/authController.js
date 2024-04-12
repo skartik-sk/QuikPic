@@ -50,6 +50,5 @@ export const signup = async (req, res) => {
 
 export const logout = (req, res) => {
   res.clearCookie("access_token", { path: "/", sameSite: "none", secure: true });
-
   res.status(200).json({ message: "logout successful" });
 };
