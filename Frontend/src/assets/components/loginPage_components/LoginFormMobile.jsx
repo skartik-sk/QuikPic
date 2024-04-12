@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { Input, Link, Divider, Button, Avatar, NavbarItem, Switch, Navbar } from "@nextui-org/react";
+import { Input, Link, Divider, Button, Avatar, NavbarItem, Switch, Navbar,Progress } from "@nextui-org/react";
 import { MailIcon } from '../../icons/LoginSignupForm/MailIcon';
 import { EyeFilledIcon } from "../../icons/LoginSignupForm/EyeFilledIcon";
 import { EyeSlashFilledIcon } from "../../icons/LoginSignupForm/EyeSlashFilledIcon";
@@ -73,6 +73,14 @@ const LoginFormMobile = () => {
 
 
             <div className="flex-1 flex-col">
+            {loading ? (
+          <Progress
+            size="sm"
+            isIndeterminate
+            aria-label="Loading..."
+            className="max-w-md"
+          />
+        ) :(
                 <div style={{ paddingLeft: "3rem", paddingRight: "3rem", paddingTop: "4rem" }} className="flex w-full h-screen flex-col md:flex-nowrap mb-2 md:mb-0 gap-4 ">
 
                     <div className="flex flex-row items-center px-8" style={{ marginBottom: "1.8rem", gap: ".8rem" }}>
@@ -152,7 +160,7 @@ const LoginFormMobile = () => {
                         <h3>Don't have an account? {" "}
                             <Link href="/Signup" size="md" underline="active">Signup</Link></h3>
                     </div>
-                </div>
+                </div>)}
             </div>
         </div>
     );
