@@ -14,6 +14,7 @@ export const signup = createAsyncThunk("user/signup", async (payload) => {
     body: JSON.stringify(payload),
     headers: {
       "Content-Type": "application/json",
+      "sameSite": "none",
     },
     credentials: "include",
   };
