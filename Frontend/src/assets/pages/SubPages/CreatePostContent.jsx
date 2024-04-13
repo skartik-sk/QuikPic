@@ -78,6 +78,7 @@ const CreatePostContent = () => {
         style={{ height: "70vh" }}
         className="w-full flex justify-center align-middle items-center"
       >
+        {/* to create bread crumbs */}
         {loading ? (
           <Progress
             size="sm"
