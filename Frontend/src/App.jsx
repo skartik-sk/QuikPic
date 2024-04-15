@@ -26,6 +26,7 @@ import EditPostPage from "./assets/pages/EditPostPage";
 
 
 
+
 function MainLayout({ children }) {
   function useWindowWidth() {
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
