@@ -66,14 +66,18 @@ const SignupForm = () => {
         setPassword(event.target.value);
     };
 
+    const handleFormSubmit = async (event) => {
+        event.preventDefault();
+    };
+
     const toggleVisibility = () => setIsVisible(!isVisible);
     const Signup = async (e) => {
- 
 
-       await dispatch(signup({ username, email, password }));
-       dispatch(me())
-       dispatch(fetchFeed())
-       navigate("/Home");
+
+        await dispatch(signup({ username, email, password }));
+        dispatch(me())
+        dispatch(fetchFeed())
+        navigate("/Home");
         // if (result.message === "Signup successful") {
         //     localStorage.setItem("user", result.user);
         //     // navigate("/")
@@ -127,64 +131,73 @@ const SignupForm = () => {
                         <h1>Join us today!</h1>
                     </div>
 
-                    <Input
-                        type="username"
-                        label="Username"
-                        variant="bordered"
-                        placeholder="Enter your name"
-                        value={username}
-                        onChange={handleUsernameChange}
-                        className="md:max-w-xs"
-                        // value={username}
-                        endContent={
-                            <UsernameIcon style= {{marginBottom: "14px"}} className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
-                        }
-                    />
-                    <Input
-                        type="email"
-                        label="Email"
-                        variant="bordered"
-                        placeholder="Enter your email"
-                        className="md:max-w-xs"
-                        value={email}
-                        onChange={handleEmailChange}
-                        // onBlur={handleBlur}
-                        endContent={
-                            <MailIcon style= {{marginBottom: "10px"}} className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
-                        }
+                    <form onSubmit={handleFormSubmit}>
+                        <div style={{ marginBottom: "1rem" }}>
+                            <Input
+                                type="username"
+                                label="Username"
+                                variant="bordered"
+                                placeholder="Enter your name"
+                                value={username}
+                                onChange={handleUsernameChange}
+                                className="md:max-w-xs"
+                                // value={username}
+                                endContent={
+                                    <UsernameIcon style={{ marginBottom: "14px" }} className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
+                                }
+                            />
+                        </div>
+                        <div style={{ marginBottom: "1rem" }}>
+                        <Input
+                            type="email"
+                            label="Email"
+                            variant="bordered"
+                            placeholder="Enter your email"
+                            className="md:max-w-xs"
+                            value={email}
+                            onChange={handleEmailChange}
+                            // onBlur={handleBlur}
+                            endContent={
+                                <MailIcon style={{ marginBottom: "10px" }} className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
+                            }
 
-                        isInvalid={isInvalid}
-                        errorMessage={isInvalid ? "Please enter a valid email" : null}
-                    />
-                    <Input
-                        label="Password"
-                        variant="bordered"
-                        placeholder="Enter your password"
-                        onChange={handlePasswordChange}
-                        value={password}
-                        endContent={
-                            <button className="focus:outline-none" type="button" onClick={toggleVisibility}>
-                                {isVisible ? (
-                                    <EyeSlashFilledIcon style= {{marginBottom: "10px"}} className="text-2xl text-default-400 pointer-events-none" />
-                                ) : (
-                                    <EyeFilledIcon style= {{marginBottom: "10px"}} className="text-2xl text-default-400 pointer-events-none" />
-                                )}
-                            </button>
-                        }
+                            isInvalid={isInvalid}
+                            errorMessage={isInvalid ? "Please enter a valid email" : null}
+                        />
+                        </div>
+                        <div style={{ marginBottom: "2rem" }}>
+                        <Input
+                            label="Password"
+                            variant="bordered"
+                            placeholder="Enter your password"
+                            onChange={handlePasswordChange}
+                            value={password}
+                            endContent={
+                                <button className="focus:outline-none" type="button" onClick={toggleVisibility}>
+                                    {isVisible ? (
+                                        <EyeSlashFilledIcon style={{ marginBottom: "10px" }} className="text-2xl text-default-400 pointer-events-none" />
+                                    ) : (
+                                        <EyeFilledIcon style={{ marginBottom: "10px" }} className="text-2xl text-default-400 pointer-events-none" />
+                                    )}
+                                </button>
+                            }
 
-                        type={isVisible ? "text" : "password"}
-                        className="md:max-w-xs"
+                            type={isVisible ? "text" : "password"}
+                            className="md:max-w-xs"
+                        />
+                         </div>
 
-                    />
 
-                    <div>
-                        <Button className="w-full md:max-w-xs"
-                            color="primary"
-                            variant="shadow"
-                            onClick={Signup}>
-                            Signup
-                        </Button>
-                    </div>
+                        <div>
+                            <Button className="w-full md:max-w-xs"
+                                color="primary"
+                                variant="shadow"
+                                type="submit"
+                                onClick={Signup}>
+                                Signup
+                            </Button>
+                        </div>
+                    </form>
 
                     <div className="my-1 md:max-w-xs w-full">
                         <Divider className="my-1" />

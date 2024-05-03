@@ -59,15 +59,18 @@ const SignupFormMobile = () => {
 
     const toggleVisibility = () => setIsVisible(!isVisible);
     const Signup = async (e) => {
-        
 
-      await  dispatch(signup({ username, email, password }));
+
+        await dispatch(signup({ username, email, password }));
         dispatch(me())
         dispatch(fetchFeed())
         navigate("/Home");
     };
 
-   
+    const handleFormSubmit = async (event) => {
+        event.preventDefault();
+    };
+
 
     return (
         <div className="w-full flex flex-row">
@@ -81,7 +84,7 @@ const SignupFormMobile = () => {
                 <div style={{ paddingLeft: "3rem", paddingRight: "3rem", paddingTop: "4rem" }} className="flex w-full h-screen flex-col md:flex-nowrap mb-2 md:mb-0 gap-4 ">
 
                     <div className="flex flex-row items-center px-8" style={{ marginBottom: "1.8rem", gap: ".8rem" }}>
-                        <Avatar src="https://github.com/SingupalliKartik/QuikPic/blob/main/Frontend/src/assets/icons/QuikPic_logo.png?raw=true" size="md"  style={{width:"4.2rem", height:"2.2rem", borderRadius:"50%"}}/>
+                        <Avatar src="https://github.com/SingupalliKartik/QuikPic/blob/main/Frontend/src/assets/icons/QuikPic_logo.png?raw=true" size="md" style={{ width: "4.2rem", height: "2.2rem", borderRadius: "50%" }} />
                         <h2>QuikPic</h2>
                         <Navbar >
                             <NavbarItem>
@@ -103,61 +106,70 @@ const SignupFormMobile = () => {
                         <h1>Join us today!</h1>
                     </div>
 
-                    <Input
-                        type="username"
-                        label="Username"
-                        variant="bordered"
-                        placeholder="Enter your name"
-                        className="md:max-w-xs"
-                        value={username}
-                        onChange={handleUsernameChange}
-                        // value={username}
-                        endContent={
-                            <UsernameIcon style= {{marginBottom: "10px"}} className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
-                        }
-                    />
+                    <form onSubmit={handleFormSubmit}>
+                        <div style={{ marginBottom: "1rem" }}>
+                            <Input
+                                type="username"
+                                label="Username"
+                                variant="bordered"
+                                placeholder="Enter your name"
+                                className="md:max-w-xs"
+                                value={username}
+                                onChange={handleUsernameChange}
+                                // value={username}
+                                endContent={
+                                    <UsernameIcon style={{ marginBottom: "10px" }} className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
+                                }
+                            />
+                        </div>
 
-                    <Input
-                        type="email"
-                        label="Email"
-                        variant="bordered"
-                        placeholder="Enter your email"
-                        className="md:max-w-xs"
-                        value={email}
-                        onChange={handleEmailChange}
-                        endContent={
-                            <MailIcon style= {{marginBottom: "10px"}} className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
-                        }
+                        <div style={{ marginBottom: "1rem" }}>
+                            <Input
+                                type="email"
+                                label="Email"
+                                variant="bordered"
+                                placeholder="Enter your email"
+                                className="md:max-w-xs"
+                                value={email}
+                                onChange={handleEmailChange}
+                                endContent={
+                                    <MailIcon style={{ marginBottom: "10px" }} className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
+                                }
 
-                        isInvalid={isInvalid}
-                        errorMessage={isInvalid ? "Please enter a valid email" : null}
-                    />
-                    <Input
-                        label="Password"
-                        variant="bordered"
-                        placeholder="Enter your password"
-                        onChange={handlePasswordChange}
-                        value={password}
-                        endContent={
-                            <button className="focus:outline-none" type="button" onClick={toggleVisibility}>
-                                {isVisible ? (
-                                    <EyeSlashFilledIcon style= {{marginBottom: "10px"}} className="text-2xl text-default-400 pointer-events-none" />
-                                ) : (
-                                    <EyeFilledIcon style= {{marginBottom: "10px"}} className="text-2xl text-default-400 pointer-events-none" />
-                                )}
-                            </button>
-                        }
+                                isInvalid={isInvalid}
+                                errorMessage={isInvalid ? "Please enter a valid email" : null}
+                            />
+                        </div>
 
-                        type={isVisible ? "text" : "password"}
-                        className="md:max-w-xs"
+                        <div style={{ marginBottom: "2rem" }}>
+                            <Input
+                                label="Password"
+                                variant="bordered"
+                                placeholder="Enter your password"
+                                onChange={handlePasswordChange}
+                                value={password}
+                                endContent={
+                                    <button className="focus:outline-none" type="button" onClick={toggleVisibility}>
+                                        {isVisible ? (
+                                            <EyeSlashFilledIcon style={{ marginBottom: "10px" }} className="text-2xl text-default-400 pointer-events-none" />
+                                        ) : (
+                                            <EyeFilledIcon style={{ marginBottom: "10px" }} className="text-2xl text-default-400 pointer-events-none" />
+                                        )}
+                                    </button>
+                                }
 
-                    />
+                                type={isVisible ? "text" : "password"}
+                                className="md:max-w-xs"
 
-                    <div>
-                        <Button  onClick={Signup} className="w-full md:max-w-xs" color="primary" variant="shadow">
-                            Signup
-                        </Button>
-                    </div>
+                            />
+                        </div>
+
+                        <div>
+                            <Button onClick={Signup} className="w-full md:max-w-xs" color="primary" variant="shadow">
+                                Signup
+                            </Button>
+                        </div>
+                    </form>
 
                     <div className="my-1 md:max-w-xs w-full">
                         <Divider className="my-1" />
