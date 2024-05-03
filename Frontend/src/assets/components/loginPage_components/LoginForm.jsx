@@ -24,6 +24,7 @@ import ForgotPassword from "../../components/globle_Components/ForgotPassword.js
 import { me } from "../../redux/reducers/MeReducer";
 import UserFeedReducers, { fetchFeed } from "../../redux/reducers/UserFeedReducers.jsx";
 import { UsernameIcon } from "../../icons/LoginSignupForm/UsernameIcon";
+import { LoginSignupImg } from "../../icons/LoginSignupForm/LoginSignupImg";
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -67,7 +68,7 @@ const LoginForm = () => {
       <div className="flex flex-1 ">
         <img
           className="w-full h-full"
-          src="https://img.freepik.com/free-vector/flat-geometric-mosaic-pattern-design_23-2149280518.jpg?w=740&t=st=1710430511~exp=1710431111~hmac=8d193bc87a8b38ac8ed8eb269063b0fa4f1702803458650247b43f7237f6a416"
+          src={LoginSignupImg}
           alt=""
         />
       </div>
