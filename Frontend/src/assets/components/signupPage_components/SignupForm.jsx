@@ -13,6 +13,7 @@ import SignupReducer, { signup } from "../../redux/reducers/SignupReducer";
 import { useNavigate } from "react-router-dom";
 import { me } from "../../redux/reducers/MeReducer";
 import { fetchFeed } from "../../redux/reducers/UserFeedReducers";
+import { LoginSignupImg } from "../../icons/LoginSignupForm/LoginSignupImg";
 
 
 const SignupForm = () => {
@@ -98,7 +99,7 @@ const SignupForm = () => {
         <div className="w-full flex flex-row">
 
             <div className="flex flex-1 ">
-                <img className="w-full h-full bg-cover" src="https://img.freepik.com/free-vector/flat-geometric-mosaic-pattern-design_23-2149280518.jpg?w=740&t=st=1714735654~exp=1714736254~hmac=0064fc3cf34be3d6b75e6ea564fc9a80b49e08b04de3cc5068f481afeed46441" alt="" />
+                <img className="w-full h-full bg-cover" src={LoginSignupImg} alt="" />
             </div>
 
 
