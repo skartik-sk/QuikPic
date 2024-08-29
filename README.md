@@ -29,7 +29,8 @@ Welcome to our Social Media Web App, QuikPic! This allows users to connect with 
 - **Social Interactions:**
   - Follow and unfollow users
   - See followers and following lists
-  
+
+   
 ## Technologies Used
 - **Frontend:**
   - React.js
