@@ -5,7 +5,7 @@ export const resetPassword = createAsyncThunk(
   "user/resetPassword",
   async ({ id, token, password }) => {
     try {
-      const response = await fetch(`https://quikpic-backend.onrender.com/resetPassword/${id}/${token}`, {
+      const response = await fetch(`https://quikpik-back.vercel.app//resetPassword/${id}/${token}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

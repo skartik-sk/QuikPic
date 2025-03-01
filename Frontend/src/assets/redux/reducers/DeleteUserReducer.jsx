@@ -9,7 +9,7 @@ const initialState = {
 export const deleteuser = createAsyncThunk("user/deleteuser", async () => {
     //   console.log(payload.userName, payload.password);
     try {
-        const response = await fetch("https://quikpic-backend.onrender.com/user/deleteProfile", {
+        const response = await fetch("https://quikpik-back.vercel.app//user/deleteProfile", {
             method: "DELETE",
             credentials: "include",
 

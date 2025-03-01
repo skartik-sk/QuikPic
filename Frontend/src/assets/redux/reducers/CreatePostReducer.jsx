@@ -9,14 +9,14 @@ const initialState = {
 };
 export const createPost = createAsyncThunk("createPost", async (payload) => {
   console.log(payload)
-  const url = "https://quikpic-backend.onrender.com/post";
+  const url = "https://quikpik-back.vercel.app//post";
   const option = { method: "POST",body:payload, credentials: "include" };
   const response = await fetch(url, option);
   return response.json();
 });
 export const editPost = createAsyncThunk("editpost", async (payload) => {
   console.log(payload)
-  const url = `https://quikpic-backend.onrender.com/post/${payload._id}/caption`;
+  const url = `https://quikpik-back.vercel.app//post/${payload._id}/caption`;
 
 
   const option = { method: "PUT", body: JSON.stringify(payload), credentials: "include",headers: { 'Content-Type': 'application/json' }, };

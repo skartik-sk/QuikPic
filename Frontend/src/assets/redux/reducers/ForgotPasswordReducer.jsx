@@ -9,7 +9,7 @@ const initialState = {
 export const forgotPassword = createAsyncThunk(
   "user/forgotPassword",
   async (email) => {
-    const url = "https://quikpic-backend.onrender.com/forgotPassword";
+    const url = "https://quikpik-back.vercel.app//forgotPassword";
     const options = {
       method: "POST",
       headers: {

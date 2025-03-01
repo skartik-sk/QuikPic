@@ -8,14 +8,14 @@ const initialState = {
   value: 0,
 };
 export const getSavedPosts = createAsyncThunk("getSavedPosts", async () => {
-  const url = "https://quikpic-backend.onrender.com/post/getSavedPosts";
+  const url = "https://quikpik-back.vercel.app//post/getSavedPosts";
   const option = { method: "POST", credentials: "include" };
   const response = await fetch(url, option);
   return response.json();
 });
 export const getUserPost = createAsyncThunk("getUserPost", async () => {
   console.log("me agaya");
-  const url = "https://quikpic-backend.onrender.com/post/getUserPosts";
+  const url = "https://quikpik-back.vercel.app//post/getUserPosts";
   const option = { method: "POST", credentials: "include" };
   const response = await fetch(url, option);
   //console.log(response.json());

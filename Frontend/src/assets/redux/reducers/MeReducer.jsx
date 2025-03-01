@@ -8,7 +8,7 @@ const initialState = {
   error: "",
 };
 export const me = createAsyncThunk("me", async () => {
-  const url = "https://quikpic-backend.onrender.com/user/profile";
+  const url = "https://quikpik-back.vercel.app//user/profile";
   const option = {
     method: "GET",
     headers: {

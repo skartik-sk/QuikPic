@@ -12,7 +12,7 @@ const initialState = {
 export const fetchUserProfile = createAsyncThunk(
   "user/fetchUserProfile",
   async () => {
-    const url = "https://quikpic-backend.onrender.com/user/profile";
+    const url = "https://quikpik-back.vercel.app//user/profile";
     const option = {
       method: "GET",
       headers: {
@@ -30,7 +30,7 @@ export const updateProfile = createAsyncThunk(
   "user/updateProfile",
   async (formData) => {
     console.log(formData)
-    const url = "https://quikpic-backend.onrender.com/user/updateProfile";
+    const url = "https://quikpik-back.vercel.app//user/updateProfile";
     const option = {
       method: "POST",
       body: formData,

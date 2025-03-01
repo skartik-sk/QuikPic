@@ -8,7 +8,7 @@ const initialState = {
 };
 
 export const signup = createAsyncThunk("user/signup", async (payload) => {
-  const url = "https://quikpic-backend.onrender.com/signup"; 
+  const url = "https://quikpik-back.vercel.app//signup"; 
   const options = {
     method: "POST",
     body: JSON.stringify(payload),
