@@ -12,7 +12,6 @@ export const posting = async (req, res) => {
     if (!result || result.error) {
       throw new Error("Failed to upload the image");
     }
-    console.log(res.user.id._id);
     const newPost = new postModel({ 
       image: result.secure_url,
       caption: caption,
@@ -41,7 +40,6 @@ export const posting = async (req, res) => {
 export const getPostById = async (req, res) => {
   try {
     const postId = req.params.id;
-    console.log(postId);
     // Code to fetch a post with the specified ID
   const post = await Post.findById(postId)
     .populate('createdBy', 'username profileImage bio followers following')
@@ -75,7 +73,6 @@ export const getAllPosts = async (req, res) => {
 
 export const updatePost = async (req, res) => {
   try {
-    console.log({"pura":req.body});
     const  caption  = req.body;
     const postId = req.params.id;
 
@@ -138,8 +135,6 @@ export const deletePost = async (req, res) => {
 export const getUserPost = async (req, res) => {
   try {
     const userId = res.user.id._id;
-    console.log("hih");
-    console.log(userId);
     const user = await UserModel.findById(userId)
       .populate({
         path: 'post',

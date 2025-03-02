@@ -34,10 +34,8 @@ export const forgotPassword = async (req, res) => {
   
       transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
-          console.log(error);
           return res.status(500).json({ message: "Failed to send reset email" });
         } else {
-          console.log('Email sent: ' + info.response);
           user.resetToken = token;
           user.save();
           return res.status(200).json({ message: "Reset email sent successfully" });
@@ -57,7 +55,6 @@ export const forgotPassword = async (req, res) => {
       // Verify token
     //   const userId = await jwt.decode(token, process.env.SECRET_KEY) 
       const user = await UserModel.findById(id);
-console.log(user)
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
             }

@@ -36,7 +36,7 @@ export const updateUserProfile = async (req, res) => {
 
     try {
       let userProfile = await UserModel.findById( res.user.id._id );
-console.log(userProfile)
+
       // If user profile doesn't exist, create a new one
       if (!userProfile) {
         return res.status(404).json({ msg: 'User profile not found' });
@@ -55,7 +55,6 @@ console.log(userProfile)
       }
       
       await userProfile.save();
-      console.log(userProfile)
       res.json(userProfile);
     } catch (err) {
       console.error(err.message);
@@ -69,9 +68,8 @@ export const deleteUserProfile = async (req, res) => {
       const user = await UserModel.findById(res.user.id._id);
       const userId = user._id;
       const followers = user.followers;
-      console.log(followers)
       const following = user.following;
-      console.log(following)
+
       const posts = user.post;
       if (!user) {
         return res.status(404).json({ msg: 'User not found' });

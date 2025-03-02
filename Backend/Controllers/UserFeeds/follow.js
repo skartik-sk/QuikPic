@@ -31,12 +31,8 @@ export const unfollow = async (req, res) => {
     const userId = res.user.id._id.toString();
     const user = await UserModel.findById(userId);
     const toUnfollowUser = await UserModel.findById(toUnfollow);
-    console.log(user);
-    console.log(toUnfollowUser);
     user.following.pull(toUnfollow);
     toUnfollowUser.followers.pull(userId);
-    console.log(user);
-    console.log(toUnfollowUser);
     await user.save();
     await toUnfollowUser.save();
     res.json({ message: "Unfollowed successfully" });

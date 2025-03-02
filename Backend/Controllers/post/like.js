@@ -6,10 +6,7 @@ export const addLikeToPost = async (req, res) => {
     const postId = req.params.id;
 
     const post = await Post.findById(postId);
-
-    console.log(post)
     const existingLike = post.likes.find((likes) => likes == userId);
-console.log(existingLike)
     if (existingLike) {
       post.likes = post.likes.filter((likes) => likes != userId);
 
@@ -19,7 +16,6 @@ console.log(existingLike)
           }
 
     post.likes.push( userId );
-console.log(userId)
     const updatedPost = await post.save();
 
     res.status(200).json(updatedPost);

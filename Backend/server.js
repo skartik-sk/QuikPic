@@ -4,9 +4,8 @@ import app from "./index.js";
 configDotenv();
 const DB = `mongodb+srv://${process.env.USER_NAME}:${process.env.PASSWORD}@socialmedia.qyms09a.mongodb.net/?retryWrites=true&w=majority`;
 const connect = async () => {
-  try {
+  try { 
     await mongoose.connect(DB,{dbName: "SocialMedia"} );
-    console.log("Connected to MongoDB");
   } catch (error) {
     console.error("Failed to connect to MongoDB:", error);
   }
