@@ -5,7 +5,7 @@ import { follow, getFollowers, unfollow } from '../Controllers/UserFeeds/follow.
 
 const router = express.Router();
 
-router.route('/getPost').get(isAuth, getPost);
+router.route('/').get(isAuth, getPost);
 
 // Routes for following/unfollowing users
 router.route('/unfollow/:ids').put(isAuth, unfollow);
