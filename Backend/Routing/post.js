@@ -21,7 +21,7 @@ router.route('/:id/like').put(isAuth, addLikeToPost);
 router.route('/:id/saveAPost').post(isAuth, savePost);
 
 // Retrieve saved posts for a user
-router.route('/getSavedPosts').post(isAuth,getSavedPosts);
-router.route('/getUserPosts').post(isAuth,getUserPost);
+router.route('/getSavedPosts').get(isAuth,getSavedPosts);
+router.route('/getUserPosts').get(isAuth,getUserPost);
 
 export default router;
