@@ -12,13 +12,13 @@ export const addLikeToPost = async (req, res) => {
 
       const updatedPost = await post.save();
 
-      return  res.status(200).json(updatedPost);
+      return  res.status(200).json({message:"unlike the post"});
           }
 
     post.likes.push( userId );
     const updatedPost = await post.save();
 
-    res.status(200).json(updatedPost);
+    res.status(200).json({message:"liked the post"});
   } catch (error) {
     res.status(500).json({ error: "Failed to add like to post" });
   }
